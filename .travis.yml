@@ -1,0 +1,12 @@
+language: python
+
+install: pip install mkdocs
+
+script: mkdocs build && bash script/publish.sh
+
+notifications:
+  email: false
+
+branches:
+  only:
+  - docs
