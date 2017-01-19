@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ats.senza client &mdash; ats-senza 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ats-senza 0.8 documentation" href="index.html"/>
+        <link rel="next" title="API Reference" href="api.html"/>
+        <link rel="prev" title="ats.senza server" href="server.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ats-senza
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">ats.senza server</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ats.senza client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accelerometer">Accelerometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#battery">Battery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#camera">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gps">GPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gravity">Gravity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gsm">GSM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#call">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network">Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#signal">Signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sms">Sms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registration">Registration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gyroscope">Gyroscope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#light">Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linear-acc">Linear-acc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#magnetometer">Magnetometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#orientation">Orientation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pressure">Pressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proximity">Proximity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relative-humidity">Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recorder">Recorder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotation-vector">Rotation vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#temperature">Temperature</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ats-senza</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>ats.senza client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ats-senza-client">
+<h1>ats.senza client<a class="headerlink" href="#ats-senza-client" title="Permalink to this headline">¶</a></h1>
+<p>With the provided client you can send data to a sensor emulator, which will
+immediately affect the behavior of the Android VM.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help
+usage: senza [--version] [-v | -q] [--log-file LOG_FILE] [-h] [--debug]
+             [--config CONFIG] [--debug-requests]
+
+senza
+
+optional arguments:
+  --version            show program&#39;s version number and exit
+  -v, --verbose        Increase verbosity of output. Can be repeated.
+  -q, --quiet          Suppress output except warnings and errors.
+  --log-file LOG_FILE  Specify a file to log output. Disabled by default.
+  -h, --help           Show help message and exit.
+  --debug              Show tracebacks on errors.
+  --config CONFIG      Configuration file (default: senza-client.ini)
+  --debug-requests     Print request details
+
+Commands:
+  accelerometer  Send a command to the accelerometer emulator
+  battery        Send a command to the battery emulator
+  camera         Select a video file to provide as camera input
+  complete       print bash completion command
+  gps            Send a command to the gps emulator
+  gravity        Send a command to the gravity sensor emulator
+  gsm call       Send a call command to the GSM emulator
+  gsm network    Send a command to the GSM emulator
+  gsm registration  Send a gsm registration command to the GSM emulator
+  gsm signal     Send a gsm network command to the GSM emulator
+  gsm sms        Send a SMS to the GSM emulator
+  gyroscope      Send a command to the gyroscope emulator
+  help           print detailed help for another command
+  light          Send a command to the light sensor emulator
+  linear-acc     Send a command to the linear_acc emulator
+  magnetometer   Send a command to the magnetometer emulator
+  orientation    Send a command to the orientation sensor emulator
+  pressure       Send a command to the pressure sensor emulator
+  proximity      Send a command to the proximity sensor emulator
+  recorder       Send a command to start or stop video recording
+  relative-humidity  Send a command to the relative_humidity sensor emulator
+  rotation-vector  Send a command to the rotation vector sensor emulator
+  schema         Display JSON schema for a given subcommand
+  temperature    Send a command to the thermometer emulator
+</pre></div>
+</div>
+<div class="section" id="accelerometer">
+<h2>Accelerometer<a class="headerlink" href="#accelerometer" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help accelerometer
+usage: senza accelerometer [-h] avm_id x y z
+
+Send a command to the accelerometer emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  x           orientation vector: x (float)
+  y           orientation vector: y (float)
+  z           orientation vector: z (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="battery">
+<h2>Battery<a class="headerlink" href="#battery" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help battery
+usage: senza battery [-h] avm_id level_percent ac_online [status]
+
+Send a command to the battery emulator
+
+positional arguments:
+  avm_id         AVM identifier
+  level_percent  battery level (1-100)
+  ac_online      0=battery; 1=AC
+  status         One of CHARGING, DISCHARGING, NOTCHARGING, FULL, UNKNOWN;
+                 default CHARGING
+
+optional arguments:
+  -h, --help     show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="camera">
+<h2>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help camera
+usage: senza camera [-h] avm_id file_id
+
+Select a video file to provide as camera input
+
+positional arguments:
+  avm_id      AVM identifier
+  file_id     Camera file id
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="gps">
+<h2>GPS<a class="headerlink" href="#gps" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gps
+usage: senza gps [-h] avm_id latitude longitude
+
+Send a command to the gps emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  latitude    latitude (float)
+  longitude   longitude (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="gravity">
+<h2>Gravity<a class="headerlink" href="#gravity" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gravity
+usage: senza gravity [-h] avm_id x y z
+
+Send a command to the gravity sensor emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  x           gravity vector: x (float)
+  y           gravity vector: y (float)
+  z           gravity vector: z (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="gsm">
+<h2>GSM<a class="headerlink" href="#gsm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="call">
+<h3>Call<a class="headerlink" href="#call" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gsm call
+usage: senza gsm call [-h] avm_id action phone_number
+
+Send a call command to the GSM emulator
+
+positional arguments:
+  avm_id        AVM identifier
+  action        Action to perform (one of &quot;receive&quot;, &quot;accept&quot;, &quot;cancel,
+                &quot;hold&quot;)
+  phone_number  Phone number to use
+
+optional arguments:
+  -h, --help    show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="network">
+<h3>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gsm network
+usage: senza gsm network [-h] avm_id type
+
+Send a command to the GSM emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  type        Network type (one of gsm, gprs, edge, edge, cdma, hspa, hsupa,
+              umts, hsdpa, evdo, lte
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="signal">
+<h3>Signal<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gsm signal
+usage: senza gsm signal [-h] avm_id strength
+
+Send a gsm network command to the GSM emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  strength    Signal strength (between 0 and 4)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="sms">
+<h3>Sms<a class="headerlink" href="#sms" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gsm sms
+usage: senza gsm sms [-h] avm_id phone_number text
+
+Send a SMS to the GSM emulator
+
+positional arguments:
+  avm_id        AVM identifier
+  phone_number  Phone number to use
+  text          SMS text
+
+optional arguments:
+  -h, --help    show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="registration">
+<h3>Registration<a class="headerlink" href="#registration" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gsm registration
+usage: senza gsm registration [-h] avm_id type
+
+Send a gsm registration command to the GSM emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  type        Network registration, one of &quot;home&quot;, &quot;denied&quot;, &quot;searching&quot;,
+              &quot;roaming&quot;, &quot;none&quot;
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gyroscope">
+<h2>Gyroscope<a class="headerlink" href="#gyroscope" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help gyroscope
+usage: senza gyroscope [-h] avm_id azimuth pitch roll
+
+Send a command to the gyroscope emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  azimuth     azimuth (float)
+  pitch       pitch (float)
+  roll        roll (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="light">
+<h2>Light<a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help light
+usage: senza light [-h] avm_id light
+
+Send a command to the light sensor emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  light       light level (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="linear-acc">
+<h2>Linear-acc<a class="headerlink" href="#linear-acc" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help linear-acc
+usage: senza linear-acc [-h] avm_id x y z
+
+Send a command to the linear_acc emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  x           linear_acc vector: x (float)
+  y           linear_acc vector: y (float)
+  z           linear_acc vector: z (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="magnetometer">
+<h2>Magnetometer<a class="headerlink" href="#magnetometer" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help magnetometer
+usage: senza magnetometer [-h] avm_id x y z
+
+Send a command to the magnetometer emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  x           magnetometer vector: x (float)
+  y           magnetometer vector: y (float)
+  z           magnetometer vector: z (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="orientation">
+<h2>Orientation<a class="headerlink" href="#orientation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help orientation
+usage: senza orientation [-h] avm_id azimuth pitch roll
+
+Send a command to the orientation sensor emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  azimuth     azimuth (float)
+  pitch       pitch (float)
+  roll        roll (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="pressure">
+<h2>Pressure<a class="headerlink" href="#pressure" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help pressure
+usage: senza pressure [-h] avm_id pressure
+
+Send a command to the pressure sensor emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  pressure    pressure (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="proximity">
+<h2>Proximity<a class="headerlink" href="#proximity" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help proximity
+usage: senza proximity [-h] avm_id distance
+
+Send a command to the proximity sensor emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  distance    distance (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="relative-humidity">
+<h2>Relative Humidity<a class="headerlink" href="#relative-humidity" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help relative-humidity
+usage: senza relative-humidity [-h] avm_id relative_humidity
+
+Send a command to the relative_humidity sensor emulator
+
+positional arguments:
+  avm_id             AVM identifier
+  relative_humidity  relative_humidity (float)
+
+optional arguments:
+  -h, --help         show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="recorder">
+<h2>Recorder<a class="headerlink" href="#recorder" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help recorder
+usage: senza recorder [-h] avm_id filename start
+
+Send a command to start or stop video recording
+
+positional arguments:
+  avm_id      AVM identifier
+  filename    filename
+  start       start
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="rotation-vector">
+<h2>Rotation vector<a class="headerlink" href="#rotation-vector" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help rotation-vector
+usage: senza rotation-vector [-h] avm_id x y z angle accuracy
+
+Send a command to the rotation vector sensor emulator
+
+positional arguments:
+  avm_id      AVM identifier
+  x           rotation vector: x (float)
+  y           rotation vector: y (float)
+  z           rotation vector: z (float)
+  angle       rotation vector: angle (float)
+  accuracy    rotation vector: accuracy (float)
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="temperature">
+<h2>Temperature<a class="headerlink" href="#temperature" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ senza help temperature
+usage: senza temperature [-h] avm_id temperature
+
+Send a command to the thermometer emulator
+
+positional arguments:
+  avm_id       AVM identifier
+  temperature  temperature (float)
+
+optional arguments:
+  -h, --help   show this help message and exit
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="server.html" class="btn btn-neutral" title="ats.senza server" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ats.auth client &mdash; ats-auth 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ats-auth 0.8 documentation" href="index.html"/>
+        <link rel="next" title="HTTP API Reference" href="http-api.html"/>
+        <link rel="prev" title="ats.auth server" href="server.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ats-auth
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">ats.auth server</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ats.auth client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#token-generation">Token generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#token-revocation">Token revocation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="http-api.html">HTTP API Reference</a></li>
+</ul>
+
+            
+          
+          <div class="local-toc">
+            <a href="http-routingtable.html">HTTP Routing Table</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ats-auth</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>ats.auth client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ats-auth-client">
+<h1>ats.auth client<a class="headerlink" href="#ats-auth-client" title="Permalink to this headline">¶</a></h1>
+<p>With the provided client you can create authentication tokens, display
+their claims and optionally verify the signature.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ ats-auth help
+Traceback (most recent call last):
+  File &quot;/home/marco/aic/services/auth/bin/ats-auth&quot;, line 6, in &lt;module&gt;
+    from pkg_resources import load_entry_point
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2976, in &lt;module&gt;
+    @_call_aside
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2962, in _call_aside
+    f(*args, **kwargs)
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2989, in _initialize_master_working_set
+    working_set = WorkingSet._build_master()
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 660, in _build_master
+    ws.require(__requires__)
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 968, in require
+    needed = self.resolve(parse_requirements(requirements))
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 854, in resolve
+    raise DistributionNotFound(req, requirers)
+pkg_resources.DistributionNotFound: The &#39;ats.auth&#39; distribution was not found and is required by the application
+</pre></div>
+</div>
+<div class="section" id="token-generation">
+<h2>Token generation<a class="headerlink" href="#token-generation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ ats-auth help token create
+Traceback (most recent call last):
+  File &quot;/home/marco/aic/services/auth/bin/ats-auth&quot;, line 6, in &lt;module&gt;
+    from pkg_resources import load_entry_point
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2976, in &lt;module&gt;
+    @_call_aside
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2962, in _call_aside
+    f(*args, **kwargs)
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2989, in _initialize_master_working_set
+    working_set = WorkingSet._build_master()
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 660, in _build_master
+    ws.require(__requires__)
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 968, in require
+    needed = self.resolve(parse_requirements(requirements))
+  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 854, in resolve
+    raise DistributionNotFound(req, requirers)
+pkg_resources.DistributionNotFound: The &#39;ats.auth&#39; distribution was not found and is required by the application
+</pre></div>
+</div>
+<p>You have to provide at least a username, either as a parameter or in the OS_USERNAME
+environment variable (see <a class="reference external" href="http://docs.openstack.org/cli-reference/content/cli_openrc.html">Set environment variables using the OpenStack RC file</a>).
+Likewise, you can provide a password as a parameter, at the prompt or via the OS_PASSWORD variable.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ ats-auth token create --username marco
+Password <span class="k">for</span> user marco:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDY1NjQ0OTMuNDE0ODE4LCJzdWIiOiJtYXJjbyIsImlzcyI6ImF0cy5hdXRoIiwiZXhwIjoxNDQ2NTY4MDkzLjQxNDgxOH0.rmmO0NpE9k8Z-Sox7WoBq7LncIwYa9MGUvsjzCQQ1XA
+</pre></div>
+</div>
+<p>If you want to decode the content of the token, you can do that with the <code class="docutils literal"><span class="pre">--verbose</span></code> option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ ats-auth token create --username marco --verbose
+Configuration file: ats-auth-client.ini
+Password <span class="k">for</span> user marco:
+Requesting new token...
+username: marco
+header: <span class="o">{</span><span class="s1">&#39;alg&#39;</span>: <span class="s1">&#39;HS256&#39;</span>, <span class="s1">&#39;typ&#39;</span>: <span class="s1">&#39;JWT&#39;</span><span class="o">}</span>
+UNVERIFIED claims: <span class="o">{</span><span class="s1">&#39;exp&#39;</span>: 1446568241.016732, <span class="s1">&#39;iat&#39;</span>: 1446564641.016732, <span class="s1">&#39;iss&#39;</span>: <span class="s1">&#39;ats.auth&#39;</span>, <span class="s1">&#39;sub&#39;</span>: <span class="s1">&#39;marco&#39;</span><span class="o">}</span>
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDY1NjQ2NDEuMDE2NzMyLCJzdWIiOiJtYXJjbyIsImlzcyI6ImF0cy5hdXRoIiwiZXhwIjoxNDQ2NTY4MjQxLjAxNjczMn0.3DWqx1J-DhaFbHurmALqAGkJbFGyKxTn_YTGUwk6KYo
+</pre></div>
+</div>
+<p>As with all <code class="docutils literal"><span class="pre">cliff</span></code>-based commands, the verbose logs are written to stderr, so you can still redirect the relevant stdout content within scripts.</p>
+<p>If you also have the jwt_secret value, you can specify it in <code class="docutils literal"><span class="pre">auth-client.ini</span></code>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="k">[client]</span>
+<span class="na">jwt_secret</span> <span class="o">=</span> <span class="s">ASDFFGGHJGLKJWELROISUFLDKJFLS</span>
+</pre></div>
+</div>
+<p>Now the claims will be verified:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ ats-auth token create --username marco --verbose
+Configuration file: ats-auth-client.ini
+Password <span class="k">for</span> user marco:
+Requesting new token...
+username: marco
+header: <span class="o">{</span><span class="s1">&#39;typ&#39;</span>: <span class="s1">&#39;JWT&#39;</span>, <span class="s1">&#39;alg&#39;</span>: <span class="s1">&#39;HS256&#39;</span><span class="o">}</span>
+claims: <span class="o">{</span><span class="s1">&#39;exp&#39;</span>: 1446568595.9806926, <span class="s1">&#39;iat&#39;</span>: 1446564995.9806926, <span class="s1">&#39;sub&#39;</span>: <span class="s1">&#39;marco&#39;</span>, <span class="s1">&#39;iss&#39;</span>: <span class="s1">&#39;ats.auth&#39;</span><span class="o">}</span>
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDY1NjQ5OTUuOTgwNjkyNiwic3ViIjoibWFyY28iLCJpc3MiOiJhdHMuYXV0aCIsImV4cCI6MTQ0NjU2ODU5NS45ODA2OTI2fQ.NO4Xq14r8QxEoNjxytgjEI_on9plMza_kkgXoJ9XRZY
+</pre></div>
+</div>
+<p>If the secret key is wrong or the token was tampered with, you&#8217;ll read <em>Signature verification failed</em>.</p>
+</div>
+<div class="section" id="token-revocation">
+<h2>Token revocation<a class="headerlink" href="#token-revocation" title="Permalink to this headline">¶</a></h2>
+<p>Revoking a token puts it in a blacklist, therefore denying subsequent requests:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ ats-auth token revoke eyJhbGciOiJIU<span class="o">[</span>...<span class="o">]</span>jiK7StJgRm5jw7pzopfDCxDa0loc
+Logging out user marco
+Token revoked.
+</pre></div>
+</div>
+<p>When a password is changed, it&#8217;s a good idea to void all current tokens for a given user:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ ats-auth token revoke-all --as-user marco
+All tokens revoked.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http-api.html" class="btn btn-neutral float-right" title="HTTP API Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="server.html" class="btn btn-neutral" title="ats.auth server" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

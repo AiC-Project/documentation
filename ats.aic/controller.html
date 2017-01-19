@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Controller environment &mdash; AiC 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="AiC 0.8 documentation" href="index.html"/>
+        <link rel="next" title="Building the Player" href="build_player.html"/>
+        <link rel="prev" title="Bootstrap environment" href="bootstrap.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AiC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Cloud AiC Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure_openstack.html">OpenStack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootstrap.html">Bootstrap environment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Controller environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_player.html">Building the Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_frontend.html">Building the frontend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage_frontend.html">Using AiC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Architecture diagrams</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">AiC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Controller environment</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controller.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="controller-environment">
+<h1>Controller environment<a class="headerlink" href="#controller-environment" title="Permalink to this headline">¶</a></h1>
+<p>The controller is used to build, deploy and manage the AiC components (AOSP, Player, etc.).</p>
+<p>The controller environment is very similar to the bootstrap, as it actually uses the same
+Python application. The difference is that the controller is always installed on an appropriate
+Ubuntu system with all the required libraries, Docker version, and enough disk space
+to build the Android images. To make things easier, we&#8217;ll install the controller inside
+OpenStack and continue from there.</p>
+<p>Create the controller instance:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ aic-stack create controller
+INFO     Creating stack <span class="s2">&quot;dev-controller&quot;</span>.
++--------------------------------------+----------------+--------------------+---
+<span class="p">|</span> id                                   <span class="p">|</span> stack_name     <span class="p">|</span> stack_status       <span class="p">|</span>
++--------------------------------------+----------------+--------------------+---
+<span class="o">[</span>...<span class="o">]</span>
+<span class="p">|</span> de761a61-83f0-4fa7-8396-015312374605 <span class="p">|</span> dev-controller <span class="p">|</span> CREATE_IN_PROGRESS <span class="p">|</span>
++--------------------------------------+----------------+--------------------+---
+<span class="o">[</span>...<span class="o">]</span>
+ Stack dev-controller CREATE_COMPLETE
+INFO     Waiting <span class="k">for</span> port 10.2.0.150:22...
+INFO     Waiting <span class="k">for</span> port 10.2.0.150:22...
+INFO     Waiting <span class="k">for</span> port 10.2.0.150:22...
+<span class="c1"># Host 10.2.0.150 found: line 161</span>
+/home/marco/.ssh/known_hosts updated.
+Original contents retained as /home/marco/.ssh/known_hosts.old
+INFO     Stack <span class="s2">&quot;dev-controller&quot;</span> created and available.
+</pre></div>
+</div>
+<p>The server is been created using the <a class="reference external" href="https://cloud-images.ubuntu.com/">Ubuntu Cloud Image</a>.</p>
+<p>Install the rest of the packages:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">(bootstrap) $</span> aic install controller
+<span class="go">INFO     Installing controller server.</span>
+
+<span class="go">PLAY [Deploy a controller server (build + admin)] *****************************</span>
+
+<span class="go">GATHERING FACTS ***************************************************************</span>
+<span class="go">The authenticity of host &#39;10.2.0.151 (10.2.0.151)&#39; can&#39;t be established.</span>
+<span class="go">ECDSA key fingerprint is SHA256:CTVptNKTZubG3mLC3JCUYm3kP9pgPFCout8myw5e0Fw.</span>
+<span class="go">Are you sure you want to continue connecting (yes/no)? yes</span>
+</pre></div>
+</div>
+<p>If you see a message like <code class="docutils literal"><span class="pre">fatal:</span> <span class="pre">[controller]</span> <span class="pre">=&gt;</span> <span class="pre">SSH</span> <span class="pre">Error:</span> <span class="pre">Permission</span> <span class="pre">denied</span> <span class="pre">(publickey)</span></code>,
+try to connect with <strong class="command">aic-stack ssh controller</strong> and check the SSH key.</p>
+<p>Now you should be able to connect to the controller instance.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">(bootstrap) $</span> aic-stack ssh controller
+<span class="go">INFO     Connecting to server &quot;dev-controller&quot;.</span>
+<span class="go">The authenticity of host &#39;10.2.0.150 (10.2.0.150)&#39; can&#39;t be established.</span>
+<span class="go">ECDSA key fingerprint is SHA256:ZYrcoVU61xt77PB/glWZJYZT7ppJZGVLqhsPuC8jMuk.</span>
+<span class="go">Are you sure you want to continue connecting (yes/no)? yes</span>
+<span class="go">Warning: Permanently added &#39;10.2.0.150&#39; (ECDSA) to the list of known hosts.</span>
+<span class="go">[...]</span>
+<span class="gp">ubuntu@dev-controller:~$</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">ubuntu</span></code> user can run <strong class="command">sudo</strong> without password, therefore we have a separate user
+to actually deploy the services.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">ubuntu@dev-controller:~$</span> sudo -i
+<span class="gp">root@dev-controller:~#</span> su - developer
+<span class="gp">developer@dev-controller:~$</span> <span class="nb">cd</span> aic/
+<span class="gp">developer@dev-controller:~/aic$</span> . environment.sh
+<span class="go">Please enter your OpenStack Password:</span>
+<span class="gp">(controller)developer@dev-controller:~/aic$</span> aic <span class="nb">help</span>
+<span class="go">usage: aic [--version] [-v] [--log-file LOG_FILE] [-q] [-h] [--debug]</span>
+
+<span class="go">aic</span>
+
+<span class="go">optional arguments:</span>
+<span class="go">  --version            show program&#39;s version number and exit</span>
+<span class="go">  -v, --verbose        Increase verbosity of output. Can be repeated.</span>
+<span class="go">  --log-file LOG_FILE  Specify a file to log output. Disabled by default.</span>
+<span class="go">  -q, --quiet          Suppress output except warnings and errors.</span>
+<span class="go">  -h, --help           Show this help message and exit.</span>
+<span class="go">  --debug              Show tracebacks on errors.</span>
+
+<span class="go">Commands:</span>
+<span class="go">  ansible-config  creates or updates ansible.cfg</span>
+<span class="go">  complete       print bash completion command</span>
+<span class="go">  [...]</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="build_player.html" class="btn btn-neutral float-right" title="Building the Player" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bootstrap.html" class="btn btn-neutral" title="Bootstrap environment" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

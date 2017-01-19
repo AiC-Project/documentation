@@ -1,0 +1,1017 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Reference &mdash; ats-senza 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ats-senza 0.8 documentation" href="index.html"/>
+        <link rel="prev" title="ats.senza client" href="client.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ats-senza
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">ats.senza server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">ats.senza client</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accelerometer">Accelerometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#battery">Battery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#camera">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gps">GPS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gravity">Gravity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gsm">GSM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#call">Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network">Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registration">Registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#signal">Signal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sms">Sms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gyroscope">Gyroscope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#light">Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linear-acceleration">Linear acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#magnetometer">Magnetometer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#orientation">Orientation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pressure">Pressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proximity">Proximity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relative-humidity">Relative Humidity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotation-vector">Rotation vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#temperature">Temperature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recording">Recording</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ats-senza</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<p>For the examples, we&#8217;ll use <a class="reference external" href="https://github.com/micha/resty">Resty</a></p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> . resty
+<span class="gp">$</span> resty http://127.0.0.1:8083
+<span class="go">http://127.0.0.1:8083*</span>
+</pre></div>
+</div>
+<p>Example response of a successful request:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">CONTENT-LENGTH</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">CONNECTION</span><span class="o">:</span> <span class="l">keep-alive</span>
+<span class="na">DATE</span><span class="o">:</span> <span class="l">Wed, 04 Nov 2015 10:32:40 GMT</span>
+<span class="na">SERVER</span><span class="o">:</span> <span class="l">Python/3.5 aiohttp/0.18.3</span>
+</pre></div>
+</div>
+<div class="section" id="accelerometer">
+<h2>Accelerometer<a class="headerlink" href="#accelerometer" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-accelerometer-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/accelerometer/{avm_id}</code><a class="headerlink" href="#post--android-sensors-accelerometer-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/accelerometer/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;x&quot;:&quot;0&quot;,&quot;y&quot;:&quot;0.5&quot;,&quot;z&quot;:&quot;1.0&quot;}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; orientation vector x</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; orientation vector y</li>
+<li><strong>z</strong> (<em>float</em>) &#8211; orientation vector z</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="battery">
+<h2>Battery<a class="headerlink" href="#battery" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-battery-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/battery/{avm_id}</code><a class="headerlink" href="#post--android-sensors-battery-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/battery/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;level&quot;:40}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>level</strong> (<em>int</em>) &#8211; the battery level</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="camera">
+<h2>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-camera-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/camera/{avm_id}</code><a class="headerlink" href="#post--android-sensors-camera-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/camera/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;file_id&quot;:&quot;zebre.mpg&quot;}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>file_id</strong> (<em>string</em>) &#8211; the name of the video file (or in the cloud version or AiC, the file id)
+to be found under the folder $SENZA_CAMERA_VIDEO_PATH</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gps">
+<h2>GPS<a class="headerlink" href="#gps" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-gps-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gps/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gps-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gps/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;latitude&quot;:48.8567,&quot;longitude&quot;:2.3508}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>latitude</strong> (<em>float</em>) &#8211; the latitude (+ is North, - is South)</li>
+<li><strong>longitude</strong> (<em>float</em>) &#8211; the longitude (+ is East, - is West)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gravity">
+<h2>Gravity<a class="headerlink" href="#gravity" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-gravity-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gravity/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gravity-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gravity/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;x&quot;: 0, &quot;y&quot;: 9.776, &quot;z&quot;: 0.813}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; gravity vector x</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; gravity vector y</li>
+<li><strong>z</strong> (<em>float</em>) &#8211; gravity vector z</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="gsm">
+<h2>GSM<a class="headerlink" href="#gsm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="call">
+<h3>Call<a class="headerlink" href="#call" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--android-sensors-gsm-call-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gsm/call/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gsm-call-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gsm/call/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;action&quot;: &quot;receive&quot;, &quot;phone_number&quot;: &quot;+3312345&quot;}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>action</strong> (<em>string</em>) &#8211; Action type to perform (one of &#8220;accept&#8221;, &#8220;cancel&#8221;, &#8220;hold&#8221;, &#8220;receive&#8221;)</li>
+<li><strong>phone_number</strong> (<em>string</em>) &#8211; The (remote) phone number used for the call action</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="network">
+<h3>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--android-sensors-gsm-network-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gsm/network/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gsm-network-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gsm/network/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;type&quot;: &quot;lte&quot;}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>type</strong> (<em>string</em>) &#8211; The network type to use (one of &#8220;gsm&#8221;, &#8220;gprs&#8221;, &#8220;edge&#8221;, &#8220;cdma&#8221;, &#8220;hspa&#8221;,
+&#8220;hsupa&#8221;, &#8220;umts&#8221;, &#8220;hsdpa&#8221;, &#8220;evdo&#8221;, &#8220;lte&#8221;, &#8220;full&#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="registration">
+<h3>Registration<a class="headerlink" href="#registration" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--android-sensors-gsm-registration-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gsm/registration/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gsm-registration-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gsm/registration/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;type&quot;: &quot;home&quot;}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>type</strong> (<em>string</em>) &#8211; The gsm registration type to use (one of &#8220;home&#8221;, &#8220;denied&#8221;, &#8220;searching&#8221;, &#8220;roaming&#8221;, &#8220;none&#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="signal">
+<h3>Signal<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--android-sensors-gsm-signal-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gsm/signal/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gsm-signal-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gsm/signal/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;strength&quot;: 3}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>strength</strong> (<em>string</em>) &#8211; The sms strength (between 0, the minimum, and 4, the maximum)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sms">
+<h3>Sms<a class="headerlink" href="#sms" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--android-sensors-gsm-sms-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gsm/sms/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gsm-sms-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gsm/sms/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;phone_number&quot;: &quot;+3312345&quot;, &quot;text&quot;: &quot;Bonjour&quot;}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>phone_number</strong> (<em>string</em>) &#8211; The (remote) phone number the sms will be received from</li>
+<li><strong>text</strong> (<em>string</em>) &#8211; The sms text to be received</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="gyroscope">
+<h2>Gyroscope<a class="headerlink" href="#gyroscope" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-gyroscope-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/gyroscope/{avm_id}</code><a class="headerlink" href="#post--android-sensors-gyroscope-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/gyroscope/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;azimuth&quot;: 0, &quot;pitch&quot;: 9.776, &quot;roll&quot;: 0.813}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>azimuth</strong> (<em>float</em>) &#8211; device azimuth in degrees</li>
+<li><strong>pitch</strong> (<em>float</em>) &#8211; device pitch in degrees</li>
+<li><strong>roll</strong> (<em>float</em>) &#8211; device roll in degrees</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="light">
+<h2>Light<a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-light-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/light/{avm_id}</code><a class="headerlink" href="#post--android-sensors-light-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/light/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;light&quot;: 90}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>pressure</strong> (<em>float</em>) &#8211; light (in lux)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="linear-acceleration">
+<h2>Linear acceleration<a class="headerlink" href="#linear-acceleration" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-linear_acc-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/linear_acc/{avm_id}</code><a class="headerlink" href="#post--android-sensors-linear_acc-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/linear_acc/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;x&quot;: 0, &quot;y&quot;: 9.776, &quot;z&quot;: 0.813}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; linear acceleration vector x (in m/s²)</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; linear acceleration vector y (in m/s²)</li>
+<li><strong>z</strong> (<em>float</em>) &#8211; linear acceleration vector z (in m/s²)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="magnetometer">
+<h2>Magnetometer<a class="headerlink" href="#magnetometer" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-magnetometer-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/magnetometer/{avm_id}</code><a class="headerlink" href="#post--android-sensors-magnetometer-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/magnetometer/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;x&quot;: 0, &quot;y&quot;: 9.776, &quot;z&quot;: 0.813}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; magnetometer vector x (in µT)</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; magnetometer vector y (in µT)</li>
+<li><strong>z</strong> (<em>float</em>) &#8211; magnetometer vector z (in µT)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="orientation">
+<h2>Orientation<a class="headerlink" href="#orientation" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-orientation-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/orientation/{avm_id}</code><a class="headerlink" href="#post--android-sensors-orientation-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/orientation/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;azimuth&quot;: 0, &quot;pitch&quot;: 9.776, &quot;roll&quot;: 0.813}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>azimuth</strong> (<em>float</em>) &#8211; device azimuth in degrees</li>
+<li><strong>pitch</strong> (<em>float</em>) &#8211; device pitch in degrees</li>
+<li><strong>roll</strong> (<em>float</em>) &#8211; device roll in degrees</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="pressure">
+<h2>Pressure<a class="headerlink" href="#pressure" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-pressure-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/pressure/{avm_id}</code><a class="headerlink" href="#post--android-sensors-pressure-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/pressure/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;pressure&quot;: 100}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>pressure</strong> (<em>float</em>) &#8211; pressure in hPa</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="proximity">
+<h2>Proximity<a class="headerlink" href="#proximity" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-proximity-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/proximity/{avm_id}</code><a class="headerlink" href="#post--android-sensors-proximity-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/proximity/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;distance&quot;: 50}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>proximity</strong> (<em>float</em>) &#8211; proximity in cm</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="relative-humidity">
+<h2>Relative Humidity<a class="headerlink" href="#relative-humidity" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-relative_humidity-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/relative_humidity/{avm_id}</code><a class="headerlink" href="#post--android-sensors-relative_humidity-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/relative_humidity/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;relative_humidity&quot;: 50}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>relative_humidity</strong> (<em>float</em>) &#8211; relative humidity in %</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="rotation-vector">
+<h2>Rotation vector<a class="headerlink" href="#rotation-vector" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-rotation_vector-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/rotation_vector/{avm_id}</code><a class="headerlink" href="#post--android-sensors-rotation_vector-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/rotation_vector/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;x&quot;: 0, &quot;y&quot;: 9.776, &quot;z&quot;: 0.813, &quot;angle&quot;: 12.783, &quot;accuracy&quot;: 50}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>float</em>) &#8211; rotation vector x</li>
+<li><strong>y</strong> (<em>float</em>) &#8211; rotation vector y</li>
+<li><strong>z</strong> (<em>float</em>) &#8211; rotation vector z</li>
+<li><strong>angle</strong> (<em>float</em>) &#8211; rotation angle</li>
+<li><strong>accuracy</strong> (<em>float</em>) &#8211; estimated accuracy (in radians)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="temperature">
+<h2>Temperature<a class="headerlink" href="#temperature" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-temperature-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/temperature/{avm_id}</code><a class="headerlink" href="#post--android-sensors-temperature-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/temperature/jHLGWPeRSVyVzyCpWRsEjg <span class="s1">&#39;{&quot;temperature&quot;: 18}&#39;</span> -i
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>temperature</strong> &#8211; temperature in celsius degrees</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="recording">
+<h2>Recording<a class="headerlink" href="#recording" title="Permalink to this headline">¶</a></h2>
+<dl class="post">
+<dt id="post--android-sensors-recording-avm_id">
+<code class="descname">POST </code><code class="descname">/android/sensors/recording/{avm_id}</code><a class="headerlink" href="#post--android-sensors-recording-avm_id" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Example request</strong>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> POST /android/sensors/recording/jHLGWPeRSVyVzyCpWRsEjg <span class="se">\</span>
+<span class="go">&#39;{&quot;filename&quot;:&quot;recording.avi&quot;,&quot;start&quot;:&quot;1&quot;}&#39; -i</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine to which the data will be sent</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">JSON Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>string</em>) &#8211; the filename to hold the video recording</li>
+<li><strong>start</strong> (<em>int</em>) &#8211; whether to start or stop the recording (1 to start, 0 to stop)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the data has been sent</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; the data is not well formed (see response content)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="client.html" class="btn btn-neutral" title="ats.senza client" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+# https://www.websequencediagrams.com/
+
+participant client
+participant server
+participant dbms
+participant worker
+participant rabbitmq
+participant docker
+participant heat
+participant player
+participant android
+
+client->server: DELETE android/{avm_id}
+activate player
+activate android
+note right of player: xorg, ffserver, adb,\nsdl, audio, sensors,\ncamera, avmdata
+server->dbms: status DELETING
+server->>worker: task avm-delete
+worker->rabbitmq: delete queues
+worker->rabbitmq: delete user
+worker->>+heat: delete stack
+server-->client: 202 ACCEPTED
+
+worker->+docker: run-player.yml down
+docker->player: delete
+destroy player
+docker-->-worker: success
+heat->-android: delete
+destroy android
+
+worker->dbms: status DELETED

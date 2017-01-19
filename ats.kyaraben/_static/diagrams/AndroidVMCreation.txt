@@ -1,0 +1,43 @@
+# https://www.websequencediagrams.com/
+
+participant client
+participant server
+participant dbms
+participant worker
+participant rabbitmq
+participant compose
+participant player
+participant heat
+
+client->+server: POST /android
+note right of server: quota check
+server->dbms: SELECT live_current
+dbms-->server: # of live vms
+
+note right of server: create avm in db
+server->dbms: INSERT INTO avms status QUEUED
+server->dbms: INSERT INTO avmotp
+
+server->>+worker: task avm-create
+server-->-client: 202 ACCEPTED
+
+worker->dbms: status CREATING
+note right of worker: amqp resources
+worker->rabbitmq: create android-events.{avm_id} queues
+worker->rabbitmq: create {avm_id} user
+worker->rabbitmq: set user permissions
+
+note right of worker: openstack resources
+worker->+heat: create stack
+worker->>worker: task avm-containers-create
+
+note right of worker: docker resources
+
+worker->heat: get instance_ip
+heat-->worker: instance_ip
+worker->+compose: run-player.yml up
+compose->*+player: run
+note right of player: xorg, ffserver, adb,\nsdl, audio, sensors,\ncamera, avmdata
+compose-->-worker: success
+worker->dbms: INSERT billing timestamp
+worker->-dbms: status READY

@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Bootstrap environment &mdash; AiC 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="AiC 0.8 documentation" href="index.html"/>
+        <link rel="next" title="Controller environment" href="controller.html"/>
+        <link rel="prev" title="OpenStack Configuration" href="configure_openstack.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AiC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Cloud AiC Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure_openstack.html">OpenStack Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Bootstrap environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controller.html">Controller environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_player.html">Building the Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_frontend.html">Building the frontend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage_frontend.html">Using AiC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Architecture diagrams</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">AiC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Bootstrap environment</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/bootstrap.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bootstrap-environment">
+<h1>Bootstrap environment<a class="headerlink" href="#bootstrap-environment" title="Permalink to this headline">¶</a></h1>
+<p>The bootstrap environment is used to configure OpenStack and install the build
+system within a controller VM.</p>
+<p>Python 2.7 is required because the OpenStack and Ansible commands have not been ported to Python 3 yet.
+You can install everything inside a Python <a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">virtual environment</a>.
+A laptop with any Linux system should be fine.</p>
+<p>During the installation, passwords and encryption keys will be generated in the <code class="file docutils literal"><span class="pre">secrets</span></code> directory. You can delete it
+when you&#8217;ve done installing all the hosts.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ sudo apt install virtualenv
+$ mkdir aic<span class="p">;</span> <span class="nb">cd</span> aic
+$ virtualenv --python<span class="o">=</span>python2.7 bootstrap
+$ <span class="nb">source</span> bootstrap/bin/activate
+<span class="o">(</span>bootstrap<span class="o">)</span> $
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">(bootstrap)</span></code> part of the prompt means you are working within the virtual environment.
+The <strong class="command">activate</strong> script changed the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">PATH</span></code> envvar to search in <code class="file docutils literal"><span class="pre">bootstrap/bin</span></code> before anywhere else.
+You can exit from the virtual environment anytime by typing <strong class="command">deactivate</strong>, which is a bash function
+injected by the <strong class="command">activate</strong> script.</p>
+<p>Now download and install the <code class="docutils literal"><span class="pre">ats.aic</span></code> package.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ mkdir src
+<span class="o">(</span>bootstrap<span class="o">)</span> $ git clone https://github.com/AiC-Project/ats.aic.git src/ats.aic
+<span class="o">(</span>bootstrap<span class="o">)</span> $ <span class="nb">pushd</span> src/ats.aic<span class="p">;</span> pip install -r requirements/dev.txt<span class="p">;</span> <span class="nb">popd</span>
+</pre></div>
+</div>
+<p>You should be able to execute the AiC, OpenStack and Ansible clients:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ <span class="nb">type</span> aic aic-inventory aic-stack <span class="se">\</span>
+              openstack ansible &gt;/dev/null <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;ok&quot;</span>
+ok
+</pre></div>
+</div>
+<p>Now try the OpenStack client:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ openstack orchestration build info
+Missing parameter<span class="o">(</span>s<span class="o">)</span>:
+Set a username with --os-username, OS_USERNAME, or auth.username
+</pre></div>
+</div>
+<p>The command starts but cannot authenticate.</p>
+<p>Authentication is done through the <code class="file docutils literal"><span class="pre">aic-openrc.sh</span></code> file you previously downloaded
+(see <a class="reference external" href="http://docs.openstack.org/cli-reference/content/cli_openrc.html">Set environment variables using the OpenStack RC file</a>).
+The same file will be used by the install procedure, as part of the configuration.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ mkdir etc
+<span class="o">(</span>bootstrap<span class="o">)</span> $ cp /path/to/aic-openrc.sh etc/
+</pre></div>
+</div>
+<p>If you have SSL endpoints for the OpenStack APIs, you need to copy the
+certificate file too. In Mirantis, the certificate file is <code class="file docutils literal"><span class="pre">public_haproxy.pem</span></code>,
+but the name may vary for other distributions.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ cp /path/to/public_haproxy.pem etc/
+<span class="o">(</span>bootstrap<span class="o">)</span> $ <span class="nb">echo</span> <span class="nb">export</span> <span class="nv">OS_CACERT</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/etc/public_haproxy.pem &gt;&gt; etc/aic-openrc.sh
+</pre></div>
+</div>
+<p>To activate both the virtual environment and the OpenStack credentials at the same time, create a small script:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ <span class="nb">echo</span> <span class="s2">&quot;source bootstrap/bin/activate&quot;</span> &gt;environment.sh
+<span class="o">(</span>bootstrap<span class="o">)</span> $ <span class="nb">echo</span> <span class="s2">&quot;source etc/aic-openrc.sh&quot;</span> &gt;&gt;environment.sh
+</pre></div>
+</div>
+<p>Since the script changes variables and injects functions in the bash environment,
+it must be called with <strong class="command">source environment.sh</strong>.
+Provide the OpenStack password, then retry:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> environment.sh
+Please enter your OpenStack Password:
+$ openstack orchestration build info
++----------+-------------------------+
+<span class="p">|</span> Property <span class="p">|</span> Value                   <span class="p">|</span>
++----------+-------------------------+
+<span class="p">|</span> api      <span class="p">|</span> <span class="o">{</span>                       <span class="p">|</span>
+<span class="p">|</span>          <span class="p">|</span>   <span class="s2">&quot;revision&quot;</span>: <span class="s2">&quot;unknown&quot;</span> <span class="p">|</span>
+<span class="p">|</span>          <span class="p">|</span> <span class="o">}</span>                       <span class="p">|</span>
+<span class="p">|</span> engine   <span class="p">|</span> <span class="o">{</span>                       <span class="p">|</span>
+<span class="p">|</span>          <span class="p">|</span>   <span class="s2">&quot;revision&quot;</span>: <span class="s2">&quot;unknown&quot;</span> <span class="p">|</span>
+<span class="p">|</span>          <span class="p">|</span> <span class="o">}</span>                       <span class="p">|</span>
++----------+-------------------------+
+</pre></div>
+</div>
+<p>The actual output is not important, the command succeeded in authenticating with the
+<a class="reference external" href="http://developer.openstack.org/api-ref-orchestration-v1.html">Heat API</a>.</p>
+<p>In order to continue, you need a minimal configuration file. The <code class="docutils literal"><span class="pre">cluster</span></code>
+value will be used as a name prefix - to have for instance production and test
+(or development) servers on the same OpenStack tenant.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ <span class="nb">echo</span> <span class="s2">&quot;cluster: dev&quot;</span> &gt; etc/config-controller.yml
+</pre></div>
+</div>
+<p>Another important value is the name of the public network, where the floating ips will
+be assigned. In Mirantis 6 and 7, the network is named <code class="docutils literal"><span class="pre">net04_ext</span></code>; in version 8 the
+name can be changed when installing and is <code class="docutils literal"><span class="pre">admin_floating_net</span></code> by default. If unsure, check
+the network topology in the dashboard. If needed, you can share the network among projects.</p>
+<p>When you have found the name, write it in the configuration file:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ <span class="nb">echo</span> <span class="s2">&quot;floating_net: admin_floating_net&quot;</span> &gt;&gt; etc/config-controller.yml
+</pre></div>
+</div>
+<p>Create the network and security infrastructure:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ aic-stack create network
+Creating stack <span class="s2">&quot;network&quot;</span>.
+<span class="o">[</span>...<span class="o">]</span>
+ Stack network CREATE_COMPLETE
+</pre></div>
+</div>
+<p>If the command takes more than a few seconds, you probably have a version of OpenStack
+that does not report the <code class="docutils literal"><span class="pre">CREATE_COMPLETE</span></code> event (i.e. Juno). In this case, just type <code class="kbd docutils literal"><span class="pre">Control-C</span></code>
+and verify with <strong class="command">openstack stack show network</strong> or <strong class="command">openstack stack list</strong> that the status is
+indeed <code class="docutils literal"><span class="pre">CREATE_COMPLETE</span></code>.</p>
+<p>Even with multiple clusters during development, the <code class="docutils literal"><span class="pre">network</span></code> stack is
+shared. This is done to limit the consumption of cloud resources and to have
+readable names for them. If you need to experiment different network layouts or
+security groups, it is recommended to use separate tenants.</p>
+<p>The new VMs will use public DNS servers, and may not be able to resolve the hostname
+contained in <code class="docutils literal"><span class="pre">OS_AUTH_URL</span></code>. You can append it to their /etc/hosts file, by adding
+the following to <code class="file docutils literal"><span class="pre">etc/config-controller.yaml</span></code>:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">additional_hosts</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">public.fuel.local</span>
+    <span class="l l-Scalar l-Scalar-Plain">ip</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10.2.0.136</span>
+</pre></div>
+</div>
+<p>Now, we need to upload the image of the Ubuntu distribution used by the Linux services.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ aic-stack upload ubuntu
+Checking <span class="k">if</span> ubuntu-16.04-server-cloudimg-amd64-disk1.img already exists.
+Could not find resource ubuntu-16.04-server-cloudimg-amd64-disk1.img
+Downloading the 16.04 Ubuntu image.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+<span class="o">[</span>...<span class="o">]</span>
+Uploading to OpenStack...
++------------------+------------------------------------------------------+
+<span class="p">|</span> Field            <span class="p">|</span> Value                                                <span class="p">|</span>
++------------------+------------------------------------------------------+
+<span class="p">|</span> checksum         <span class="p">|</span> 0a82289683f10c0f7c20a67d79697fe7                     <span class="p">|</span>
+<span class="p">|</span> container_format <span class="p">|</span> bare                                                 <span class="p">|</span>
+<span class="o">[</span>...<span class="o">]</span>
+<span class="p">|</span> virtual_size     <span class="p">|</span> None                                                 <span class="p">|</span>
+<span class="p">|</span> visibility       <span class="p">|</span> private                                              <span class="p">|</span>
++------------------+------------------------------------------------------+
+Done.
+</pre></div>
+</div>
+<p>An empty sdcard image is required too:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ aic-stack upload sdcard
+Checking <span class="k">if</span> sdcard-1g already exists.
+<span class="o">[</span>...<span class="o">]</span>
+Uploading to OpenStack...
+<span class="o">[</span>...<span class="o">]</span>
+Done.
+</pre></div>
+</div>
+<p>Now create and store an SSH key to use with the servers:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ openstack keypair create aic <span class="p">|</span> install -m <span class="m">600</span> /dev/fd/0 etc/aic.pem
+</pre></div>
+</div>
+<p>Keep in mind that you will not be able to download the key again from Horizon.</p>
+<p>If the AiC git repositories require a deployment key, provide it in the same directory:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="o">(</span>bootstrap<span class="o">)</span> $ cp /path/to/git_key etc/
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="controller.html" class="btn btn-neutral float-right" title="Controller environment" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configure_openstack.html" class="btn btn-neutral" title="OpenStack Configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

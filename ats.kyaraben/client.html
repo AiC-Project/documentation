@@ -1,0 +1,991 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kyaraben client &mdash; Kyaraben 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Kyaraben 0.8 documentation" href="index.html"/>
+        <link rel="next" title="Sequence Diagrams" href="diagrams.html"/>
+        <link rel="prev" title="Kyaraben server &amp; worker" href="server.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kyaraben
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Kyaraben server &amp; worker</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Kyaraben client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#projects">Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-show-a-project">Create / show a project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-delete-projects">List / delete projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-ownership">Project ownership</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#android-images">Android Images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#android-vms">Android VMs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-delete-vms">Create / delete VMs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retrieve-avm-data">Retrieve AVM data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generate-connection-password">Generate connection password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retrieve-status-of-asynchronous-commands">Retrieve status of asynchronous commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#apks">APKs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#upload-manage-apks-in-a-project">Upload / manage APKs in a project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-list-apks-in-a-vm">Install / list APKs in a VM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#camera-emulation">Camera emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#instrumented-tests">Instrumented Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-sources-create-list-delete-compile">Test sources: create / list / delete / compile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-test-apks">Running test APKs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-campaigns">Test campaigns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monkey-tests">Monkey tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#user-information">User information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Sequence Diagrams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http-api.html">HTTP API Reference</a></li>
+</ul>
+
+            
+          
+          <div class="local-toc">
+            <a href="http-routingtable.html">HTTP Routing Table</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kyaraben</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Kyaraben client</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/client.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kyaraben-client">
+<h1>Kyaraben client<a class="headerlink" href="#kyaraben-client" title="Permalink to this headline">¶</a></h1>
+<p>With the provided client, you can create, list and delete Android VMs (in
+short, AVM) and the related services (display, debug bridge etc.)</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ kyaraben help
+usage: kyaraben [--version] [-v | -q] [--log-file LOG_FILE] [-h] [--debug]
+                [--config CONFIG] [--debug-requests]
+
+kyaraben
+
+optional arguments:
+  --version            show program&#39;s version number and exit
+  -v, --verbose        Increase verbosity of output. Can be repeated.
+  -q, --quiet          Suppress output except warnings and errors.
+  --log-file LOG_FILE  Specify a file to log output. Disabled by default.
+  -h, --help           Show help message and exit.
+  --debug              Show tracebacks on errors.
+  --config CONFIG      Configuration file (default: kyaraben-client.ini)
+  --debug-requests     Print request details
+
+Commands:
+  android apk install  Install an APK
+  android apk list  List installed packages
+  android command status  Show command result
+  android create  Create and register an Android VM stack, including services
+  android delete  Remove an Android VM stack, including services
+  android display-url  URL to use for a NoVNC console
+  android list   List/search Android VMs
+  android monkey run  Run monkey
+  android otp    Get a one-time password (valid for 30s)
+  android properties  Read Android system properties
+  android show   Retrieve information about an Android VM stack
+  android test list  List the test packages in a vm
+  android test run  Run a test set
+  android update  Update an existing VM
+  complete       print bash completion command
+  gateway android ports  Retrieve connection information for an Android VM
+  help           print detailed help for another command
+  image list     List Android images
+  project apk delete  Delete an APK from a project
+  project apk list  List the APKs in a project
+  project apk show  Retrieve APK details
+  project apk upload  Add an APK to a project
+  project camera delete  Delete a camera_file from a project
+  project camera list  List the camera_files in a project
+  project camera upload  Add a camera_file to a project
+  project campaign delete  Delete test campaign(s)
+  project campaign list  List all campaigns
+  project campaign run  Run a test campaign
+  project campaign show  Retrieve information about a test campaign
+  project create  Create a new project
+  project delete  Delete a project
+  project list   List all available projects
+  project show   Retrieve information about a project
+  project testsource compile  Compile a testsource
+  project testsource create  Add a testsource to a project
+  project testsource delete  Delete a testsource from a project
+  project testsource download  Download a testsource
+  project testsource list  List testsources in a project
+  project testsource show  Retrieve information about a test source
+  project testsource update  Update a testsource, possibly renaming it
+  project update  Update an existing project
+  user quota     Retrieve user quota parameters
+  user whoami    Retrieve user parameters
+</pre></div>
+</div>
+<p>Most of of these commands provide a list or table output of some sorts; you can
+easily change the output to JSON, comma-separated-values or other formats
+supported by the <a class="reference external" href="http://docs.openstack.org/developer/cliff/">Cliff</a> package:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>...
+
+  -f {csv,json,table,value,yaml}, --format {csv,json,table,value,yaml}
+                        the output format, defaults to table
+  -c COLUMN, --column COLUMN
+                        specify the column(s) to include, can be repeated
+
+json formatter:
+  --noindent            whether to disable indenting the JSON
+
+table formatter:
+  --max-width &lt;integer&gt;
+                        Maximum display width, &lt;1 to disable. You can also use
+                        the CLIFF_MAX_TERM_WIDTH environment variable, but the
+                        parameter takes precedence.
+
+CSV Formatter:
+  --quote {all,minimal,none,nonnumeric}
+                        when to include quotes, defaults to nonnumeric
+</pre></div>
+</div>
+<p>Typing <strong class="command">kyaraben</strong> without any option provides an interactive console in which you
+can run further subcommands and call an external editor.
+Read <a class="reference external" href="http://docs.openstack.org/developer/cliff/interactive_mode.html">Cliff Interactive Mode</a>
+for more information.</p>
+<p>All of the client commands are implemented through REST APIs; you can log the calls behind each
+command with the <em>&#8211;debug-requests</em> option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben user whoami --debug-requests
+2016-11-28 10:51:58,014 INFO Starting new HTTP connection <span class="o">(</span>1<span class="o">)</span>: 127.0.0.1
+Starting new HTTP connection <span class="o">(</span>1<span class="o">)</span>: 127.0.0.1
+2016-11-28 10:51:58,018 DEBUG <span class="s2">&quot;GET /user/whoami HTTP/1.1&quot;</span> <span class="m">200</span> 29
++--------+-------+
+<span class="p">|</span> Field  <span class="p">|</span> Value <span class="p">|</span>
++--------+-------+
+<span class="p">|</span> userid <span class="p">|</span> marco <span class="p">|</span>
++--------+-------+
+</pre></div>
+</div>
+<div class="section" id="projects">
+<h2>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h2>
+<p>Resources (virtual machines, applications and assets) are organized in projects.
+Creating a project is therefore the first step to consume most of the APIs.</p>
+<div class="section" id="create-show-a-project">
+<h3>Create / show a project<a class="headerlink" href="#create-show-a-project" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ kyaraben help project create
+usage: kyaraben project create [-h] [--as-user AS_USER] project_name
+
+Create a new project
+
+positional arguments:
+  project_name       user-defined name of the project (needs not be unique)
+...
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project create foobar
+e88a9326b19d11e690b1fa163e64e706
+</pre></div>
+</div>
+<p>All log lines are sent to stderr, so it&#8217;s easy to capture stdout and compose scripts:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">project_id</span><span class="o">=</span><span class="k">$(</span>kyaraben project create foobar --verbose<span class="k">)</span>
+Configuration file: kyaraben-client.ini
+Requesting project creation...
+Project created: 088f6ca0b19e11e690b1fa163e64e706
+$ <span class="nb">echo</span> <span class="nv">$project_id</span>
+088f6ca0b19e11e690b1fa163e64e706
+</pre></div>
+</div>
+<p>You can retrieve data about the new project.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project show 088f6ca0b19e11e690b1fa163e64e706
++-----------------+----------------------------------+
+<span class="p">|</span> Field           <span class="p">|</span> Value                            <span class="p">|</span>
++-----------------+----------------------------------+
+<span class="p">|</span> count_avms      <span class="p">|</span> <span class="m">0</span>                                <span class="p">|</span>
+<span class="p">|</span> project_id      <span class="p">|</span> 088f6ca0b19e11e690b1fa163e64e706 <span class="p">|</span>
+<span class="p">|</span> project_name    <span class="p">|</span> foobar                           <span class="p">|</span>
+<span class="p">|</span> status          <span class="p">|</span> READY                            <span class="p">|</span>
+<span class="p">|</span> status_reason   <span class="p">|</span>                                  <span class="p">|</span>
+<span class="p">|</span> status_ts       <span class="p">|</span> 2016-11-23T17:05:18Z             <span class="p">|</span>
+<span class="p">|</span> sum_avms_uptime <span class="p">|</span> 0.0                              <span class="p">|</span>
++-----------------+----------------------------------+
+</pre></div>
+</div>
+<p>or in a more compact form:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project show 088f6ca0b19e11e690b1fa163e64e706 -f shell
+<span class="nv">count_avms</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+<span class="nv">project_id</span><span class="o">=</span><span class="s2">&quot;020c4e92b19f11e690b1fa163e64e706&quot;</span>
+<span class="nv">project_name</span><span class="o">=</span><span class="s2">&quot;baz&quot;</span>
+<span class="nv">status</span><span class="o">=</span><span class="s2">&quot;READY&quot;</span>
+<span class="nv">status_reason</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">status_ts</span><span class="o">=</span><span class="s2">&quot;2016-11-23T17:05:18Z&quot;</span>
+<span class="nv">sum_avms_uptime</span><span class="o">=</span><span class="s2">&quot;0.0&quot;</span>
+</pre></div>
+</div>
+<p>The project&#8217;s name can be changed after the creation:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">project_id</span><span class="o">=</span><span class="k">$(</span>kyaraben project create foobar<span class="k">)</span>
+$ kyaraben project update --project-name baz <span class="nv">$project_id</span>
+$ kyaraben project show <span class="nv">$project_id</span>
++-----------------+----------------------------------+
+<span class="p">|</span> Field           <span class="p">|</span> Value                            <span class="p">|</span>
++-----------------+----------------------------------+
+<span class="p">|</span> count_avms      <span class="p">|</span> <span class="m">0</span>                                <span class="p">|</span>
+<span class="p">|</span> project_id      <span class="p">|</span> 020c4e92b19f11e690b1fa163e64e706 <span class="p">|</span>
+<span class="p">|</span> project_name    <span class="p">|</span> baz                              <span class="p">|</span>
+<span class="p">|</span> status          <span class="p">|</span> READY                            <span class="p">|</span>
+<span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-delete-projects">
+<h3>List / delete projects<a class="headerlink" href="#list-delete-projects" title="Permalink to this headline">¶</a></h3>
+<p>To show all the projects:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project list
++----------------------------------+--------------+--------+
+<span class="p">|</span> project_id                       <span class="p">|</span> project_name <span class="p">|</span> status <span class="p">|</span>
++----------------------------------+--------------+--------+
+<span class="p">|</span> f6f326c2b31311e6a436fa163e316d19 <span class="p">|</span> foobar       <span class="p">|</span> READY  <span class="p">|</span>
+<span class="p">|</span> f975b6eeb31311e6a436fa163e316d19 <span class="p">|</span> drwho        <span class="p">|</span> READY  <span class="p">|</span>
+<span class="p">|</span> 0a915bc2b31411e6a436fa163e316d19 <span class="p">|</span> panda        <span class="p">|</span> READY  <span class="p">|</span>
++----------------------------------+--------------+--------+
+</pre></div>
+</div>
+<p>To delete, pass the project id:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project delete f6f326c2b31311e6a436fa163e316d19 --verbose
+Deleted f6f326c2b31311e6a436fa163e316d19
+</pre></div>
+</div>
+</div>
+<div class="section" id="project-ownership">
+<h3>Project ownership<a class="headerlink" href="#project-ownership" title="Permalink to this headline">¶</a></h3>
+<p>A project is <em>owned</em> by the user who created it.</p>
+<p>Users cannot create VMs, use them or upload files in a project they don&#8217;t own (there
+is a simple sharing mechanism but is unfinished).</p>
+<p>By default, the <strong class="command">kyaraben</strong> command connects as the user defined in the file
+<code class="file docutils literal"><span class="pre">kyaraben-client.ini</span></code>.</p>
+<p>Since the requests to the kyaraben server are authorized through a separate component,
+it is possible to impersonate other users:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project create drwho --as-user marco
+fb651ee0b31d11e6a436fa163e316d19
+$ kyaraben project create panda --as-user karine
+012381fab31e11e6a436fa163e316d19
+$ kyaraben project list --as-user karine
++----------------------------------+--------------+--------+
+<span class="p">|</span> project_id                       <span class="p">|</span> project_name <span class="p">|</span> status <span class="p">|</span>
++----------------------------------+--------------+--------+
+<span class="p">|</span> 012381fab31e11e6a436fa163e316d19 <span class="p">|</span> panda        <span class="p">|</span> READY  <span class="p">|</span>
++----------------------------------+--------------+--------+
+$ kyaraben project list --as-user marco
++----------------------------------+--------------+--------+
+<span class="p">|</span> project_id                       <span class="p">|</span> project_name <span class="p">|</span> status <span class="p">|</span>
++----------------------------------+--------------+--------+
+<span class="p">|</span> fb651ee0b31d11e6a436fa163e316d19 <span class="p">|</span> drwho        <span class="p">|</span> READY  <span class="p">|</span>
++----------------------------------+--------------+--------+
+</pre></div>
+</div>
+<p>Likewise, most other subcommands accept the <em>&#8211;as-user</em> parameter.</p>
+</div>
+</div>
+<div class="section" id="android-images">
+<h2>Android Images<a class="headerlink" href="#android-images" title="Permalink to this headline">¶</a></h2>
+<p>Android images are used to instantiate AVMs. At the moment, only the <em>list</em>
+API is available. The data is stored in the SQL table &#8220;images&#8221;.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben image list
++-----------------+-----------------+
+<span class="p">|</span> android_version <span class="p">|</span> image           <span class="p">|</span>
++-----------------+-----------------+
+<span class="p">|</span>               <span class="m">4</span> <span class="p">|</span> kitkat-tablet   <span class="p">|</span>
+<span class="p">|</span>               <span class="m">4</span> <span class="p">|</span> kitkat-phone    <span class="p">|</span>
+<span class="p">|</span>               <span class="m">5</span> <span class="p">|</span> lollipop-tablet <span class="p">|</span>
+<span class="p">|</span>               <span class="m">5</span> <span class="p">|</span> lollipop-phone  <span class="p">|</span>
++-----------------+-----------------+
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Creating a VM with the AiC image <em>kitkat-tablet</em> would actually look up in the SQL database
+for the real image names to use (in this case, by default, <em>system-kitkat-tablet</em>
+and <em>data-kitkat-tablet</em>).
+The fact the AVM is using two partitions (three with the sdcard) is transparent to AiC users,
+and only referenced in the Heat template.</p>
+</div>
+</div>
+<div class="section" id="android-vms">
+<h2>Android VMs<a class="headerlink" href="#android-vms" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-delete-vms">
+<h3>Create / delete VMs<a class="headerlink" href="#create-delete-vms" title="Permalink to this headline">¶</a></h3>
+<p>The <em>android create</em> subcommand accepts a few parameters.</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ kyaraben help android create
+usage: kyaraben android create [-h] [--as-user AS_USER] --image IMAGE
+                               [--avm-name AVM_NAME] [--width WIDTH]
+                               [--height HEIGHT] [--dpi DPI]
+                               [--enable-sensors | --disable-sensors]
+                               [--enable-battery | --disable-battery]
+                               [--enable-gps | --disable-gps]
+                               [--enable-camera | --disable-camera]
+                               [--enable-record | --disable-record]
+                               [--enable-gsm | --disable-gsm]
+                               [--enable-nfc | --disable-nfc]
+                               project_id
+
+Create and register an Android VM stack, including services
+
+positional arguments:
+  project_id
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --as-user AS_USER    userid to impersonate
+  --image IMAGE        ROM image to use. e.g. --image=foo for system-foo and
+                       data-foo.
+  --avm-name AVM_NAME  assigned name of the AVM
+  --width WIDTH        screen width
+  --height HEIGHT      screen height
+  --dpi DPI            screen dpi
+  --enable-sensors
+  --disable-sensors
+  --enable-battery
+  --disable-battery
+  --enable-gps
+  --disable-gps
+  --enable-camera
+  --disable-camera
+  --enable-record
+  --disable-record
+  --enable-gsm
+  --disable-gsm
+  --enable-nfc
+  --disable-nfc
+</pre></div>
+</div>
+<p>Only the project_id and the image name are required, but a name for the vm can be specified:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">project_id</span><span class="o">=</span>f975b6eeb31311e6a436fa163e316d19
+$ kyaraben android create <span class="nv">$project_id</span> --image kitkat-tablet --avm-name poyo
+4f500c52b31b11e6a436fa163e316d19
+</pre></div>
+</div>
+<p>The remaining parameters relate to the emulated hardware environment (screen size,
+presence of sensors or devices).</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben android create f975b6eeb31311e6a436fa163e316d19 --image kitkat-tablet --width <span class="m">1280</span> <span class="se">\</span>
+--height <span class="m">800</span> --dpi 240
+7ca58e6cb32911e6a436fa163e316d19
+</pre></div>
+</div>
+<p>To delete a VM, the project_id is not required:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben android delete 7ca58e6cb32911e6a436fa163e316d19 --verbose
+Deleted 7ca58e6cb32911e6a436fa163e316d19
+</pre></div>
+</div>
+<p>Like for projects, the vm&#8217;s name can be changed after the creation.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben android update 4f500c52b31b11e6a436fa163e316d19 --avm-name foobar
+$ kyaraben android show 4f500c52b31b11e6a436fa163e316d19 -f value -c avm_name
+foobar
+</pre></div>
+</div>
+</div>
+<div class="section" id="retrieve-avm-data">
+<h3>Retrieve AVM data<a class="headerlink" href="#retrieve-avm-data" title="Permalink to this headline">¶</a></h3>
+<p>After a VM has been created, its status becomes READY and it&#8217;s possible to retrieve
+its metadata:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$  kyaraben android show 4f500c52b31b11e6a436fa163e316d19 -f shell
+<span class="nv">avm_id</span><span class="o">=</span><span class="s2">&quot;4f500c52b31b11e6a436fa163e316d19&quot;</span>
+<span class="nv">avm_name</span><span class="o">=</span><span class="s2">&quot;foobar&quot;</span>
+<span class="nv">avm_owner</span><span class="o">=</span><span class="s2">&quot;karine&quot;</span>
+<span class="nv">campaign_id</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">hwconfig</span><span class="o">=</span><span class="s2">&quot;{&#39;height&#39;: 600, &#39;enable_camera&#39;: 1, &#39;enable_gsm&#39;: 1, &#39;enable_sensors&#39;: 1, &#39;enable_battery&#39;: 1,</span>
+<span class="s2">&#39;enable_nfc&#39;: 0, &#39;dpi&#39;: 160, &#39;enable_gps&#39;: 1, &#39;enable_record&#39;: 0, &#39;width&#39;: 800}&quot;</span>
+<span class="nv">image</span><span class="o">=</span><span class="s2">&quot;kitkat-tablet&quot;</span>
+<span class="nv">project_id</span><span class="o">=</span><span class="s2">&quot;f975b6eeb31311e6a436fa163e316d19&quot;</span>
+<span class="nv">status</span><span class="o">=</span><span class="s2">&quot;READY&quot;</span>
+<span class="nv">status_reason</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">status_ts</span><span class="o">=</span><span class="s2">&quot;2016-11-25T14:28:41Z&quot;</span>
+<span class="nv">ts_created</span><span class="o">=</span><span class="s2">&quot;2016-11-25T14:27:35Z&quot;</span>
+<span class="nv">uptime</span><span class="o">=</span><span class="s2">&quot;4930.114172&quot;</span>
+</pre></div>
+</div>
+<p>The VMs can be listed with or without filtering by project_id:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben android list
++-----------------+----------+-----------+-------------+-----------------+-----------------+...
+<span class="p">|</span> avm_id          <span class="p">|</span> avm_name <span class="p">|</span> avm_owner <span class="p">|</span> campaign_id <span class="p">|</span> image           <span class="p">|</span> project_id      <span class="p">|</span>
++-----------------+----------+-----------+-------------+-----------------+-----------------+...
+<span class="p">|</span> 33cad8d6b32a11e <span class="p">|</span> 33cad8d6 <span class="p">|</span> karine    <span class="p">|</span>             <span class="p">|</span> lollipop-tablet <span class="p">|</span> f975b6eeb31311e <span class="p">|</span>
+<span class="p">|</span> 6a436fa163e316d <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>                 <span class="p">|</span> 6a436fa163e316d <span class="p">|</span>
+<span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>                 <span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>
+<span class="p">|</span> 2c5b3b4ab32a11e <span class="p">|</span> 2c5b3b4a <span class="p">|</span> karine    <span class="p">|</span>             <span class="p">|</span> lollipop-phone  <span class="p">|</span> f975b6eeb31311e <span class="p">|</span>
+<span class="p">|</span> 6a436fa163e316d <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>                 <span class="p">|</span> 6a436fa163e316d <span class="p">|</span>
+<span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>                 <span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>
+<span class="p">|</span> 31136fb8b32a11e <span class="p">|</span> 31136fb8 <span class="p">|</span> karine    <span class="p">|</span>             <span class="p">|</span> kitkat-tablet   <span class="p">|</span> 0a915bc2b31411e <span class="p">|</span>
+<span class="p">|</span> 6a436fa163e316d <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>                 <span class="p">|</span> 6a436fa163e316d <span class="p">|</span>
+<span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>                 <span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>
++-----------------+----------+-----------+-------------+-----------------+-----------------+...
+$ kyaraben android list --project 0a915bc2b31411e6a436fa163e316d19
++-----------------+----------+-----------+-------------+---------------+-----------------+--...
+<span class="p">|</span> avm_id          <span class="p">|</span> avm_name <span class="p">|</span> avm_owner <span class="p">|</span> campaign_id <span class="p">|</span> image         <span class="p">|</span> project_id      <span class="p">|</span>
++-----------------+----------+-----------+-------------+---------------+-----------------+--...
+<span class="p">|</span> 31136fb8b32a11e <span class="p">|</span> 31136fb8 <span class="p">|</span> karine    <span class="p">|</span>             <span class="p">|</span> kitkat-tablet <span class="p">|</span> 0a915bc2b31411e <span class="p">|</span>
+<span class="p">|</span> 6a436fa163e316d <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>               <span class="p">|</span> 6a436fa163e316d <span class="p">|</span>
+<span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>          <span class="p">|</span>           <span class="p">|</span>             <span class="p">|</span>               <span class="p">|</span> <span class="m">19</span>              <span class="p">|</span>
++-----------------+----------+-----------+-------------+---------------+-----------------+--...
+</pre></div>
+</div>
+<p>The state of Android system properties can be retrieved when the VM is operational:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben android properties cb19a022b54c11e6a436fa163e316d19
++--------------------------------+-------------------------------------------------------------------------------+
+<span class="p">|</span> Field                          <span class="p">|</span> Value                                                                         <span class="p">|</span>
++--------------------------------+-------------------------------------------------------------------------------+
+<span class="o">[</span>...<span class="o">]</span>
+<span class="p">|</span> aicd.orientation.azimuth       <span class="p">|</span> 0.000000                                                                      <span class="p">|</span>
+<span class="p">|</span> aicd.orientation.pitch         <span class="p">|</span> 0.000000                                                                      <span class="p">|</span>
+<span class="p">|</span> aicd.orientation.roll          <span class="p">|</span> 0.000000                                                                      <span class="p">|</span>
+<span class="p">|</span> aicd.screen_rotation           <span class="p">|</span> <span class="m">0</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> aicd.telemeter.distance        <span class="p">|</span> 8.000000                                                                      <span class="p">|</span>
+<span class="p">|</span> aicd.thermometer.temperature   <span class="p">|</span> 9.000000                                                                      <span class="p">|</span>
+<span class="p">|</span> dalvik.vm.heapsize             <span class="p">|</span> 256m                                                                          <span class="p">|</span>
+<span class="p">|</span> dalvik.vm.stack-trace-file     <span class="p">|</span> /data/anr/traces.txt                                                          <span class="p">|</span>
+<span class="p">|</span> debug.force_rtl                <span class="p">|</span> <span class="m">0</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> dev.bootcomplete               <span class="p">|</span> <span class="m">1</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> dhcp.eth1.dns1                 <span class="p">|</span> 8.8.4.4                                                                       <span class="p">|</span>
+<span class="p">|</span> dhcp.eth1.dns2                 <span class="p">|</span> 8.8.8.8                                                                       <span class="p">|</span>
+<span class="p">|</span> dhcp.eth1.dns3                 <span class="p">|</span>                                                                               <span class="p">|</span>
+<span class="p">|</span> dhcp.eth1.dns4                 <span class="p">|</span>                                                                               <span class="p">|</span>
+<span class="p">|</span> dhcp.eth1.domain               <span class="p">|</span> openstacklocal                                                                <span class="p">|</span>
+<span class="o">[</span>...<span class="o">]</span>
+<span class="p">|</span> service.bootanim.exit          <span class="p">|</span> <span class="m">1</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> sys.boot_completed             <span class="p">|</span> <span class="m">1</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> sys.settings_global_version    <span class="p">|</span> <span class="m">3</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> sys.settings_secure_version    <span class="p">|</span> <span class="m">9</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> sys.settings_system_version    <span class="p">|</span> <span class="m">7</span>                                                                             <span class="p">|</span>
+<span class="p">|</span> sys.sysctl.extra_free_kbytes   <span class="p">|</span> <span class="m">5625</span>                                                                          <span class="p">|</span>
+<span class="p">|</span> sys.sysctl.tcp_def_init_rwnd   <span class="p">|</span> <span class="m">60</span>                                                                            <span class="p">|</span>
+<span class="p">|</span> sys.usb.config                 <span class="p">|</span> adb                                                                           <span class="p">|</span>
+<span class="p">|</span> sys.usb.state                  <span class="p">|</span> adb                                                                           <span class="p">|</span>
+<span class="p">|</span> wifi.interface                 <span class="p">|</span> eth1                                                                          <span class="p">|</span>
+<span class="p">|</span> wifi.interface.mac             <span class="p">|</span> fa:16:3e:85:42:27                                                             <span class="p">|</span>
+<span class="p">|</span> wlan.driver.status             <span class="p">|</span> ok                                                                            <span class="p">|</span>
++--------------------------------+-------------------------------------------------------------------------------+
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-connection-password">
+<h3>Generate connection password<a class="headerlink" href="#generate-connection-password" title="Permalink to this headline">¶</a></h3>
+<p>The VM screen output is authenticated with a <em>one-time password</em>, which must be used
+to open an HTTP connection within 30 seconds. A password can be requested at any time.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">avm_id</span><span class="o">=</span>cf7c92e0dbf911e690e6fa163e15ccce
+$ kyaraben android otp <span class="nv">$avm_id</span>
+378494
+</pre></div>
+</div>
+</div>
+<div class="section" id="retrieve-status-of-asynchronous-commands">
+<h3>Retrieve status of asynchronous commands<a class="headerlink" href="#retrieve-status-of-asynchronous-commands" title="Permalink to this headline">¶</a></h3>
+<p>Some of the APIs return a <em>command_id</em> value, which can be used to track the status
+of the ongoing operation.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">avm_id</span><span class="o">=</span>d1d9b7f2dbf911e690e6fa163e15ccce
+$ <span class="nv">command_id</span><span class="o">=</span>7f8a02e4dbfa11e690e6fa163e15ccce
+$ kyaraben android <span class="nb">command</span> status <span class="nv">$avm_id</span> <span class="nv">$command_id</span>
++------------+-----------------------------------------------------------+
+<span class="p">|</span> Field      <span class="p">|</span> Value                                                     <span class="p">|</span>
++------------+-----------------------------------------------------------+
+<span class="p">|</span> returncode <span class="p">|</span> <span class="m">0</span>                                                         <span class="p">|</span>
+<span class="p">|</span> status     <span class="p">|</span> READY                                                     <span class="p">|</span>
+<span class="p">|</span> stderr     <span class="p">|</span> <span class="m">7202</span> KB/s <span class="o">(</span><span class="m">2853346</span> bytes in 0.386s<span class="o">)</span>                       <span class="p">|</span>
+<span class="p">|</span> stdout     <span class="p">|</span> pkg: /data/local/tmp/66b95e0edbfa11e690e6fa163e15ccce.apk <span class="p">|</span>
+<span class="p">|</span>            <span class="p">|</span> Success                                                   <span class="p">|</span>
++------------+-----------------------------------------------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="apks">
+<h2>APKs<a class="headerlink" href="#apks" title="Permalink to this headline">¶</a></h2>
+<p>APK is the package file format for Android applications. An APK file is stored in a project
+and can be deployed to any VM in the same project.</p>
+<div class="section" id="upload-manage-apks-in-a-project">
+<h3>Upload / manage APKs in a project<a class="headerlink" href="#upload-manage-apks-in-a-project" title="Permalink to this headline">¶</a></h3>
+<p>If you have not built any APK file yourself, you can find some open source ones on <a class="reference external" href="https://f-droid.org">https://f-droid.org</a>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ wget https://f-droid.org/repo/com.uberspot.a2048_23.apk
+<span class="o">[</span>...<span class="o">]</span>
+$ kyaraben project apk upload 0a915bc2b31411e6a436fa163e316d19 com.uberspot.a2048_23.apk
+Uploading com.uberspot.a2048_23.apk
+3f588992b55411e6a436fa163e316d19
+</pre></div>
+</div>
+<p>When a file is uploaded, it is assigned a unique apk_id - there is no control on duplicate file names
+on the server.</p>
+<p>The files can then be listed and deleted. The <em>package</em> value can be used in the <em>android apk list</em> command
+or in the monkey tests.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">project_id</span><span class="o">=</span>0a915bc2b31411e6a436fa163e316d19
+$ <span class="nv">apk_id</span><span class="o">=</span>3f588992b55411e6a436fa163e316d19
+$ kyaraben project apk list <span class="nv">$project_id</span> -f yaml
+- apk_id: 3f588992b55411e6a436fa163e316d19
+  filename: com.uberspot.a2048_23.apk
+  package: com.uberspot.a2048
+  project_id: 0a915bc2b31411e6a436fa163e316d19
+  status: READY
+$ kyaraben project apk show <span class="nv">$project_id</span> <span class="nv">$apk_id</span> -f yaml
+apk_id: 3f588992b55411e6a436fa163e316d19
+filename: com.uberspot.a2048_23.apk
+package: com.uberspot.a2048
+project_id: 0a915bc2b31411e6a436fa163e316d19
+status: READY
+status_reason: <span class="s1">&#39;&#39;</span>
+$ kyaraben project apk delete <span class="nv">$project_id</span> <span class="nv">$apk_id</span>
+Deleted 3f588992b55411e6a436fa163e316d19
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-list-apks-in-a-vm">
+<h3>Install / list APKs in a VM<a class="headerlink" href="#install-list-apks-in-a-vm" title="Permalink to this headline">¶</a></h3>
+<p>Once an APK is uploaded to a project, it can be installed.
+Installing APK is an asynchronous operation, but you can track the status of the install command, and
+see possible errors.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">avm_id</span><span class="o">=</span>f40d2ec4b55911e6a436fa163e316d19
+$ <span class="nv">apk_id</span><span class="o">=</span>3f588992b55411e6a436fa163e316d19
+Install requested: 3f588992b55411e6a436fa163e316d19 on f40d2ec4b55911e6a436fa163e316d19.
+To know <span class="k">if</span> the installation is successful, run <span class="s2">&quot;kyaraben android command status f40d2ec4b55911e6a436fa163e316d19 8707f254b55a11e6a436fa163e316d19&quot;</span>
+8707f254b55a11e6a436fa163e316d19
+$ <span class="nv">command_id</span><span class="o">=</span>8707f254b55a11e6a436fa163e316d19
+$ kyaraben android <span class="nb">command</span> status <span class="nv">$avm_id</span> <span class="nv">$command_id</span>
++------------+-----------------------------------------------------------+
+<span class="p">|</span> Field      <span class="p">|</span> Value                                                     <span class="p">|</span>
++------------+-----------------------------------------------------------+
+<span class="p">|</span> returncode <span class="p">|</span> <span class="m">0</span>                                                         <span class="p">|</span>
+<span class="p">|</span> status     <span class="p">|</span> READY                                                     <span class="p">|</span>
+<span class="p">|</span> stderr     <span class="p">|</span> <span class="m">4399</span> KB/s <span class="o">(</span><span class="m">872273</span> bytes in 0.193s<span class="o">)</span>                        <span class="p">|</span>
+<span class="p">|</span> stdout     <span class="p">|</span> pkg: /data/local/tmp/3f588992b55411e6a436fa163e316d19.apk <span class="p">|</span>
+<span class="p">|</span>            <span class="p">|</span> Success                                                   <span class="p">|</span>
++------------+-----------------------------------------------------------+
+</pre></div>
+</div>
+<p>There is also a <em>list</em> command, but it shows the installed APKs as <em>packages</em> rather than <em>files</em>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben android apk list f40d2ec4b55911e6a436fa163e316d19
++-----------------------------+
+<span class="p">|</span> package                     <span class="p">|</span>
++-----------------------------+
+<span class="p">|</span> com.uberspot.a2048          <span class="p">|</span>
+<span class="p">|</span> com.example.android.apis    <span class="p">|</span>
+<span class="p">|</span> com.android.gesture.builder <span class="p">|</span>
++-----------------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="camera-emulation">
+<h2>Camera emulation<a class="headerlink" href="#camera-emulation" title="Permalink to this headline">¶</a></h2>
+<p>The emulator can present a virtual camera image (or movie) to the applications.
+Like with APKs, camera files need to be upload to the project, and activated for each VM.
+A file can be an image or video, it will be converted if necessary.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">project_id</span><span class="o">=</span>fb651ee0b31d11e6a436fa163e316d19
+$ kyaraben project camera upload <span class="nv">$project_id</span> zebre.mpg
+Uploading zebre.mpg
+3cf46284b56811e6a436fa163e316d19
+</pre></div>
+</div>
+<p>Listing and deleting camera files is similar:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project camera list <span class="nv">$project_id</span>
++----------------------------------+-----------+----------------------------------+--------+
+<span class="p">|</span> camera_id                        <span class="p">|</span> filename  <span class="p">|</span> project_id                       <span class="p">|</span> status <span class="p">|</span>
++----------------------------------+-----------+----------------------------------+--------+
+<span class="p">|</span> 3cf46284b56811e6a436fa163e316d19 <span class="p">|</span> zebre.mpg <span class="p">|</span> fb651ee0b31d11e6a436fa163e316d19 <span class="p">|</span> READY  <span class="p">|</span>
++----------------------------------+-----------+----------------------------------+--------+
+$ kyaraben project camera delete <span class="nv">$project_id</span> <span class="nv">$camera_id</span>
+Deleted 3cf46284b56811e6a436fa163e316d19
+</pre></div>
+</div>
+</div>
+<div class="section" id="instrumented-tests">
+<h2>Instrumented Tests<a class="headerlink" href="#instrumented-tests" title="Permalink to this headline">¶</a></h2>
+<p>There are two types of APKs: regular applications and <a class="reference external" href="https://developer.android.com/studio/test/index.html">Instrumented Tests</a>.</p>
+<p>To execute a test, Android loads a <em>Test APK</em> and a <em>Debug APK</em> (the app under test) together, in the same process.</p>
+<p>The Test APK can be uploaded in the same way as the Debug APK, but AiC also provides a compiler-as-a-service,
+implementing a DSL syntax.</p>
+<div class="section" id="test-sources-create-list-delete-compile">
+<h3>Test sources: create / list / delete / compile<a class="headerlink" href="#test-sources-create-list-delete-compile" title="Permalink to this headline">¶</a></h3>
+<p>A test source can be uploaded and updated:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">project_id</span><span class="o">=</span>fb651ee0b31d11e6a436fa163e316d19
+$ kyaraben project testsource create <span class="nv">$project_id</span> test.aic
+Uploading test.aic
+6c205cacb57711e6a436fa163e316d19
+<span class="o">[</span>...<span class="o">]</span>
+$ kyaraben project testsource update <span class="nv">$project_id</span> 6c205cacb57711e6a436fa163e316d19 test.aic
+Updating test.aic
+</pre></div>
+</div>
+<p>Once uploaded, the tests can be listed or downloaded.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project testsource list <span class="nv">$project_id</span>
++--------+----------+----------------------------------+--------+----------------------------------+
+<span class="p">|</span> apk_id <span class="p">|</span> filename <span class="p">|</span> project_id                       <span class="p">|</span> status <span class="p">|</span> testsource_id                    <span class="p">|</span>
++--------+----------+----------------------------------+--------+----------------------------------+
+<span class="p">|</span>        <span class="p">|</span> test.aic <span class="p">|</span> fb651ee0b31d11e6a436fa163e316d19 <span class="p">|</span> READY  <span class="p">|</span> 6c205cacb57711e6a436fa163e316d19 <span class="p">|</span>
++--------+----------+----------------------------------+--------+----------------------------------+
+$ kyaraben project testsource download <span class="nv">$project_id</span> 6c205cacb57711e6a436fa163e316d19
+Feature: <span class="s2">&quot;Best feature ever&quot;</span>
+   Scenario: <span class="s2">&quot;Best scenario ever&quot;</span>
+<span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+</div>
+<p>The value <em>apk_id</em> refers to the APK that will be generated upon compiling.</p>
+<p>Compilation takes some time, but the API call returns immediately:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project testsource compile <span class="nv">$project_id</span> 6c205cacb57711e6a436fa163e316d19
+Compiling APK 8f5deaf8b57811e6a436fa163e316d19
+8f5deaf8b57811e6a436fa163e316d19
+</pre></div>
+</div>
+<p>The return value is an apk_id &#8211; though the APK is still not ready:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project apk show <span class="nv">$project_id</span> 8f5deaf8b57811e6a436fa163e316d19
++---------------+----------------------------------+
+<span class="p">|</span> Field         <span class="p">|</span> Value                            <span class="p">|</span>
++---------------+----------------------------------+
+<span class="p">|</span> apk_id        <span class="p">|</span> 8f5deaf8b57811e6a436fa163e316d19 <span class="p">|</span>
+<span class="p">|</span> filename      <span class="p">|</span> test.apk                         <span class="p">|</span>
+<span class="p">|</span> package       <span class="p">|</span>                                  <span class="p">|</span>
+<span class="p">|</span> project_id    <span class="p">|</span> fb651ee0b31d11e6a436fa163e316d19 <span class="p">|</span>
+<span class="p">|</span> status        <span class="p">|</span> COMPILING DSL                    <span class="p">|</span>
+<span class="p">|</span> status_reason <span class="p">|</span>                                  <span class="p">|</span>
++---------------+----------------------------------+
+</pre></div>
+</div>
+<p>When status is READY, it becomes possible to install the APK or use it in a test campaign.</p>
+<p>If there is any compilation error, the status becomes ERROR and a detailed log is reported as status_reason.</p>
+<p>For convenience, these errors and apk_status are also reported in the <em>testsource show</em> command:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project testsource show <span class="nv">$project_id</span> 6c205cacb57711e6a436fa163e316d19
++-------------------+----------------------------------+
+<span class="p">|</span> Field             <span class="p">|</span> Value                            <span class="p">|</span>
++-------------------+----------------------------------+
+<span class="p">|</span> apk_id            <span class="p">|</span> 8f5deaf8b57811e6a436fa163e316d19 <span class="p">|</span>
+<span class="p">|</span> apk_status        <span class="p">|</span> READY                            <span class="p">|</span>
+<span class="p">|</span> apk_status_reason <span class="p">|</span>                                  <span class="p">|</span>
+<span class="p">|</span> filename          <span class="p">|</span> test.aic                         <span class="p">|</span>
+<span class="p">|</span> project_id        <span class="p">|</span> fb651ee0b31d11e6a436fa163e316d19 <span class="p">|</span>
+<span class="p">|</span> status            <span class="p">|</span> READY                            <span class="p">|</span>
+<span class="p">|</span> testsource_id     <span class="p">|</span> 6c205cacb57711e6a436fa163e316d19 <span class="p">|</span>
++-------------------+----------------------------------+
+</pre></div>
+</div>
+<p>Deleting a testsource does not automatically delete the compiled APK:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project testsource delete <span class="nv">$project_id</span> 6c205cacb57711e6a436fa163e316d19
+Deleted 6c205cacb57711e6a436fa163e316d19
+$ kyaraben project testsource show <span class="nv">$project_id</span> 6c205cacb57711e6a436fa163e316d19
+Testsource <span class="s1">&#39;6c205cacb57711e6a436fa163e316d19&#39;</span> not found
+<span class="m">404</span> Client Error: Not Found <span class="k">for</span> url: http://127.0.0.1:8084/projects/fb651ee0b31d11e6a436fa163e316d19/testsources/6c205cacb57711e6a436fa163e316d19/metadata
+$ kyaraben project apk show <span class="nv">$project_id</span> 8f5deaf8b57811e6a436fa163e316d19
++---------------+----------------------------------+
+<span class="p">|</span> Field         <span class="p">|</span> Value                            <span class="p">|</span>
++---------------+----------------------------------+
+<span class="p">|</span> apk_id        <span class="p">|</span> 8f5deaf8b57811e6a436fa163e316d19 <span class="p">|</span>
+<span class="p">|</span> filename      <span class="p">|</span> test.apk                         <span class="p">|</span>
+<span class="p">|</span> package       <span class="p">|</span>                                  <span class="p">|</span>
+<span class="p">|</span> project_id    <span class="p">|</span> fb651ee0b31d11e6a436fa163e316d19 <span class="p">|</span>
+<span class="p">|</span> status        <span class="p">|</span> READY                            <span class="p">|</span>
+<span class="p">|</span> status_reason <span class="p">|</span>                                  <span class="p">|</span>
++---------------+----------------------------------+
+$ kyaraben project apk delete <span class="nv">$project_id</span> 8f5deaf8b57811e6a436fa163e316d19
+Deleted 8f5deaf8b57811e6a436fa163e316d19
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-test-apks">
+<h3>Running test APKs<a class="headerlink" href="#running-test-apks" title="Permalink to this headline">¶</a></h3>
+<p>Once a test APK is installed, it provides test packages:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">avm_id</span><span class="o">=</span>d1d9b7f2dbf911e690e6fa163e15ccce
+$ kyaraben android <span class="nb">test</span> list <span class="nv">$avm_id</span>
++--------------------------------------------------------------------------------+-------------------------------+
+<span class="p">|</span> package                                                                        <span class="p">|</span> target                        <span class="p">|</span>
++--------------------------------------------------------------------------------+-------------------------------+
+<span class="p">|</span> com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner           <span class="p">|</span> com.zenika.aic.core.libs.test <span class="p">|</span>
+<span class="p">|</span> com.zenika.aic.demo.sensor.test/android.support.test.runner.AndroidJUnitRunner <span class="p">|</span> com.zenika.aic.demo.sensor    <span class="p">|</span>
++--------------------------------------------------------------------------------+-------------------------------+
+</pre></div>
+</div>
+<p>These test packages can be run outside of test campaigns, on specific VM instances:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben android <span class="nb">test</span> run <span class="nv">$avm_id</span> com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner
+To retrieve the result, run <span class="s2">&quot;kyaraben android command status d1d9b7f2dbf911e690e6fa163e15ccce 1dd905e4dbfb11e690e6fa163e15ccce&quot;</span>
+1dd905e4dbfb11e690e6fa163e15ccce
+</pre></div>
+</div>
+<p>Since the test can take a while to run, the output is stored and can be retrieved with a command_id:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">command_id</span><span class="o">=</span>caeffefedbfb11e690e6fa163e15ccce
+$ kyaraben android <span class="nb">command</span> status <span class="nv">$avm_id</span> <span class="nv">$command_id</span>
++------------+-------------------------------------------------------------------+
+<span class="p">|</span> Field      <span class="p">|</span> Value                                                             <span class="p">|</span>
++------------+-------------------------------------------------------------------+
+<span class="p">|</span> returncode <span class="p">|</span> <span class="m">0</span>                                                                 <span class="p">|</span>
+<span class="p">|</span> status     <span class="p">|</span> READY                                                             <span class="p">|</span>
+<span class="p">|</span> stderr     <span class="p">|</span>                                                                   <span class="p">|</span>
+<span class="p">|</span> stdout     <span class="p">|</span> INSTRUMENTATION_STATUS: <span class="nv">numtests</span><span class="o">=</span><span class="m">2</span>                                <span class="p">|</span>
+<span class="p">|</span>            <span class="p">|</span> INSTRUMENTATION_STATUS: <span class="nv">stream</span><span class="o">=</span>                                   <span class="p">|</span>
+<span class="p">|</span>            <span class="p">|</span> com.zenika.aic.core.libs.ParserTest:                              <span class="p">|</span>
+<span class="p">|</span>            <span class="p">|</span> INSTRUMENTATION_STATUS: <span class="nv">id</span><span class="o">=</span>InstrumentationTestRunner              <span class="p">|</span>
+<span class="p">|</span>            <span class="p">|</span> INSTRUMENTATION_STATUS: <span class="nv">test</span><span class="o">=</span>testAndroidTestCaseSetupProperly     <span class="p">|</span>
+<span class="p">|</span>            <span class="p">|</span> INSTRUMENTATION_STATUS: <span class="nv">class</span><span class="o">=</span>com.zenika.aic.core.libs.ParserTest <span class="p">|</span>
+<span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-campaigns">
+<h3>Test campaigns<a class="headerlink" href="#test-campaigns" title="Permalink to this headline">¶</a></h3>
+<p>Test runs can be grouped in a <em>Test Campaign</em>. With a test campaign, the same test APK
+can be run in multiple VM configurations, or the same VM configuration can be used to
+run several test APKs. How many test runs are actually executed at any one time is
+defined by the <em>async user quota</em>.</p>
+<p>To define and run a test campaign:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project campaign run 63f49082dbf811e690e6fa163e15ccce --image kitkat-tablet --image lollipop-phone --package com.zenika.aic.demo.sensor.test/android.support.test.runner.AndroidJUnitRunner --package com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner --apk 54cf0536dbfa11e690e6fa163e15ccce --apk 4f541b82dbfa11e690e6fa163e15ccce
+Test campaign requested: <span class="o">{</span><span class="s1">&#39;tests&#39;</span>: <span class="o">[{</span><span class="s1">&#39;packages&#39;</span>: <span class="o">[</span><span class="s1">&#39;com.zenika.aic.demo.sensor.test/android.support.test.runner.AndroidJUnitRunner&#39;</span>, <span class="s1">&#39;com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner&#39;</span><span class="o">]</span>, <span class="s1">&#39;apks&#39;</span>: <span class="o">[</span><span class="s1">&#39;54cf0536dbfa11e690e6fa163e15ccce&#39;</span>, <span class="s1">&#39;4f541b82dbfa11e690e6fa163e15ccce&#39;</span><span class="o">]</span>, <span class="s1">&#39;image&#39;</span>: <span class="s1">&#39;kitkat-tablet&#39;</span><span class="o">}</span>, <span class="o">{</span><span class="s1">&#39;packages&#39;</span>: <span class="o">[</span><span class="s1">&#39;com.zenika.aic.demo.sensor.test/android.support.test.runner.AndroidJUnitRunner&#39;</span>, <span class="s1">&#39;com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner&#39;</span><span class="o">]</span>, <span class="s1">&#39;apks&#39;</span>: <span class="o">[</span><span class="s1">&#39;54cf0536dbfa11e690e6fa163e15ccce&#39;</span>, <span class="s1">&#39;4f541b82dbfa11e690e6fa163e15ccce&#39;</span><span class="o">]</span>, <span class="s1">&#39;image&#39;</span>: <span class="s1">&#39;lollipop-phone&#39;</span><span class="o">}]}</span>.
+8bbe5d58dc0411e690e6fa163e15ccce
+</pre></div>
+</div>
+<p>For each of the listed images, all of the apks will be installed, and all of
+the listed packages will be executed. The corresponding REST API provides a finer control
+over the list of tests to run for each image and the hardware configuration of each VM.</p>
+<p>To retrieve the execution state and test results of a campaign:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">project_id</span><span class="o">=</span>63f49082dbf811e690e6fa163e15ccce
+$ <span class="nv">campaign_id</span><span class="o">=</span>8bbe5d58dc0411e690e6fa163e15ccce
+$ kyaraben project campaign show <span class="nv">$poject_id</span> <span class="nv">$campaign_id</span>
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+<span class="p">|</span> Field           <span class="p">|</span> Value                                                                                                                                                                    <span class="p">|</span>
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+<span class="p">|</span> campaign_id     <span class="p">|</span> 8bbe5d58dc0411e690e6fa163e15ccce                                                                                                                                         <span class="p">|</span>
+<span class="p">|</span> campaign_name   <span class="p">|</span> lovely-big-cobra                                                                                                                                                         <span class="p">|</span>
+<span class="p">|</span> campaign_status <span class="p">|</span> RUNNING                                                                                                                                                                  <span class="p">|</span>
+<span class="p">|</span> progress        <span class="p">|</span> 0.0                                                                                                                                                                      <span class="p">|</span>
+<span class="p">|</span> project_id      <span class="p">|</span> 63f49082dbf811e690e6fa163e15ccce                                                                                                                                         <span class="p">|</span>
+<span class="p">|</span> tests           <span class="p">|</span> <span class="o">[{</span><span class="s1">&#39;hwconfig&#39;</span>: <span class="o">{</span><span class="s1">&#39;enable_camera&#39;</span>: 1, <span class="s1">&#39;enable_gsm&#39;</span>: 1, <span class="s1">&#39;enable_gps&#39;</span>: 1, <span class="s1">&#39;enable_nfc&#39;</span>: 0, <span class="s1">&#39;enable_record&#39;</span>: 0, <span class="s1">&#39;height&#39;</span>: 600, <span class="s1">&#39;enable_battery&#39;</span>: 1, <span class="s1">&#39;enable_sensors&#39;</span>: 1,       <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;width&#39;</span>: 800, <span class="s1">&#39;dpi&#39;</span>: 160<span class="o">}</span>, <span class="s1">&#39;status&#39;</span>: <span class="s1">&#39;QUEUED&#39;</span>, <span class="s1">&#39;stdout&#39;</span>: <span class="s1">&#39;&#39;</span>, <span class="s1">&#39;package&#39;</span>: <span class="s1">&#39;com.zenika.aic.demo.sensor.test/android.support.test.runner.AndroidJUnitRunner&#39;</span>, <span class="s1">&#39;image&#39;</span>:       <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;kitkat-tablet&#39;</span><span class="o">}</span>, <span class="o">{</span><span class="s1">&#39;hwconfig&#39;</span>: <span class="o">{</span><span class="s1">&#39;enable_camera&#39;</span>: 1, <span class="s1">&#39;enable_gsm&#39;</span>: 1, <span class="s1">&#39;enable_gps&#39;</span>: 1, <span class="s1">&#39;enable_nfc&#39;</span>: 0, <span class="s1">&#39;enable_record&#39;</span>: 0, <span class="s1">&#39;height&#39;</span>: 600, <span class="s1">&#39;enable_battery&#39;</span>: 1,           <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;enable_sensors&#39;</span>: 1, <span class="s1">&#39;width&#39;</span>: 800, <span class="s1">&#39;dpi&#39;</span>: 160<span class="o">}</span>, <span class="s1">&#39;status&#39;</span>: <span class="s1">&#39;QUEUED&#39;</span>, <span class="s1">&#39;stdout&#39;</span>: <span class="s1">&#39;&#39;</span>, <span class="s1">&#39;package&#39;</span>: <span class="s1">&#39;com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner&#39;</span>,     <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;image&#39;</span>: <span class="s1">&#39;kitkat-tablet&#39;</span><span class="o">}</span>, <span class="o">{</span><span class="s1">&#39;hwconfig&#39;</span>: <span class="o">{</span><span class="s1">&#39;enable_camera&#39;</span>: 1, <span class="s1">&#39;enable_gsm&#39;</span>: 1, <span class="s1">&#39;enable_gps&#39;</span>: 1, <span class="s1">&#39;enable_nfc&#39;</span>: 0, <span class="s1">&#39;enable_record&#39;</span>: 0, <span class="s1">&#39;height&#39;</span>: 600, <span class="s1">&#39;enable_battery&#39;</span>: 1,  <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;enable_sensors&#39;</span>: 1, <span class="s1">&#39;width&#39;</span>: 800, <span class="s1">&#39;dpi&#39;</span>: 160<span class="o">}</span>, <span class="s1">&#39;status&#39;</span>: <span class="s1">&#39;QUEUED&#39;</span>, <span class="s1">&#39;stdout&#39;</span>: <span class="s1">&#39;&#39;</span>, <span class="s1">&#39;package&#39;</span>:                                                                             <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;com.zenika.aic.demo.sensor.test/android.support.test.runner.AndroidJUnitRunner&#39;</span>, <span class="s1">&#39;image&#39;</span>: <span class="s1">&#39;lollipop-phone&#39;</span><span class="o">}</span>, <span class="o">{</span><span class="s1">&#39;hwconfig&#39;</span>: <span class="o">{</span><span class="s1">&#39;enable_camera&#39;</span>: 1, <span class="s1">&#39;enable_gsm&#39;</span>: 1,         <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;enable_gps&#39;</span>: 1, <span class="s1">&#39;enable_nfc&#39;</span>: 0, <span class="s1">&#39;enable_record&#39;</span>: 0, <span class="s1">&#39;height&#39;</span>: 600, <span class="s1">&#39;enable_battery&#39;</span>: 1, <span class="s1">&#39;enable_sensors&#39;</span>: 1, <span class="s1">&#39;width&#39;</span>: 800, <span class="s1">&#39;dpi&#39;</span>: 160<span class="o">}</span>, <span class="s1">&#39;status&#39;</span>: <span class="s1">&#39;QUEUED&#39;</span>, <span class="s1">&#39;stdout&#39;</span>:  <span class="p">|</span>
+<span class="p">|</span>                 <span class="p">|</span> <span class="s1">&#39;&#39;</span>, <span class="s1">&#39;package&#39;</span>: <span class="s1">&#39;com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner&#39;</span>, <span class="s1">&#39;image&#39;</span>: <span class="s1">&#39;lollipop-phone&#39;</span><span class="o">}]</span>                                                       <span class="p">|</span>
++-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+</pre></div>
+</div>
+<p>Test campaigns can also be listed or deleted:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project campaign list <span class="nv">$project_id</span>
++----------------------------------+-------------------+----------------------------------+---------+
+<span class="p">|</span> campaign_id                      <span class="p">|</span> campaign_name     <span class="p">|</span> project_id                       <span class="p">|</span> status  <span class="p">|</span>
++----------------------------------+-------------------+----------------------------------+---------+
+<span class="p">|</span> 7ca2c674dc0411e690e6fa163e15ccce <span class="p">|</span> newly-happy-burro <span class="p">|</span> 63f49082dbf811e690e6fa163e15ccce <span class="p">|</span> RUNNING <span class="p">|</span>
+<span class="p">|</span> 8bbe5d58dc0411e690e6fa163e15ccce <span class="p">|</span> lovely-big-cobra  <span class="p">|</span> 63f49082dbf811e690e6fa163e15ccce <span class="p">|</span> RUNNING <span class="p">|</span>
++----------------------------------+-------------------+----------------------------------+---------+
+$ kyaraben project campaign delete 63f49082dbf811e690e6fa163e15ccce 7ca2c674dc0411e690e6fa163e15ccce
+Deleted 7ca2c674dc0411e690e6fa163e15ccce
+</pre></div>
+</div>
+</div>
+<div class="section" id="monkey-tests">
+<h3>Monkey tests<a class="headerlink" href="#monkey-tests" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://developer.android.com/studio/test/monkey.html">UI/Application Exerciser Monkey</a>
+can be run on a test package:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ <span class="nv">avm_id</span><span class="o">=</span>cf7c92e0dbf911e690e6fa163e15ccce
+$ kyaraben android monkey run <span class="nv">$avm_id</span> --package com.zenika.aic.demo.sensor.test/android.support.test.runner.AndroidJUnitRunner --throttle <span class="m">1</span> 1000
+To retrieve the result, run <span class="s2">&quot;kyaraben android command status cf7c92e0dbf911e690e6fa163e15ccce 76ec6df0dc0b11e690e7fa163e15ccce&quot;</span>
+76ec6df0dc0b11e690e7fa163e15ccce
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="user-information">
+<h2>User information<a class="headerlink" href="#user-information" title="Permalink to this headline">¶</a></h2>
+<p>A user may need to know its user id, especially after authenticating with an opaque token:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben user whoami
++--------+-------+
+<span class="p">|</span> Field  <span class="p">|</span> Value <span class="p">|</span>
++--------+-------+
+<span class="p">|</span> userid <span class="p">|</span> marco <span class="p">|</span>
++--------+-------+
+</pre></div>
+</div>
+<p>More importantly, the user can ask for the current quota limits:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben user quota
++------------------+-------+
+<span class="p">|</span> Field            <span class="p">|</span> Value <span class="p">|</span>
++------------------+-------+
+<span class="p">|</span> vm_async_current <span class="p">|</span> <span class="m">0</span>     <span class="p">|</span>
+<span class="p">|</span> vm_async_max     <span class="p">|</span> <span class="m">3</span>     <span class="p">|</span>
+<span class="p">|</span> vm_live_current  <span class="p">|</span> <span class="m">2</span>     <span class="p">|</span>
+<span class="p">|</span> vm_live_max      <span class="p">|</span> <span class="m">3</span>     <span class="p">|</span>
++------------------+-------+
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="diagrams.html" class="btn btn-neutral float-right" title="Sequence Diagrams" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="server.html" class="btn btn-neutral" title="Kyaraben server &amp; worker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

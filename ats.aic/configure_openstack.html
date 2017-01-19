@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenStack Configuration &mdash; AiC 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="AiC 0.8 documentation" href="index.html"/>
+        <link rel="next" title="Bootstrap environment" href="bootstrap.html"/>
+        <link rel="prev" title="Cloud AiC Deployment" href="deployment.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> AiC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Cloud AiC Deployment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OpenStack Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootstrap.html">Bootstrap environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controller.html">Controller environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_player.html">Building the Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_frontend.html">Building the frontend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage_frontend.html">Using AiC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Architecture diagrams</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">AiC</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>OpenStack Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/configure_openstack.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="openstack-configuration">
+<span id="id1"></span><h1>OpenStack Configuration<a class="headerlink" href="#openstack-configuration" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we&#8217;ll prepare OpenStack to deploy an AiC installation.</p>
+<p>High-level objects like tenants, users and flavors must be created manually.
+For everything else (networking, security rules, disks, instances..) we recommend
+using the <strong class="command">aic-stack</strong> command, which groups resources into
+<a class="reference external" href="https://wiki.openstack.org/wiki/Heat">Heat</a> stacks, easier to manage and upgrade.</p>
+<p>If you have never installed OpenStack and are not sure where to start,
+please set aside some time and try the
+<a class="reference external" href="http://docs.openstack.org/developer/fuel-docs/userdocs/fuel-install-guide.html">Fuel</a> installer.</p>
+<p>AiC has been tested with the Juno (Mirantis/Fuel 6.1), Kilo (7.0) and Liberty (8.0) versions so far.</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li>Even without Fuel, any other OpenStack distribution should work, provided
+you installed at least the following components.<ul>
+<li>Cinder</li>
+<li>Glance</li>
+<li>Heat</li>
+<li>Neutron</li>
+<li>Nova</li>
+</ul>
+</li>
+<li>The Android VMs require a KVM hypervisor. Ubuntu VMs can run in a
+different hypervisor if you really, really need.</li>
+</ul>
+<p>Create the tenants and a user for the orchestrator:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ . admin-openrc.sh
+
+$ openstack project create aic --description <span class="s1">&#39;AiC services and VMs&#39;</span>
++-------------+----------------------------------+
+<span class="p">|</span> Field       <span class="p">|</span> Value                            <span class="p">|</span>
++-------------+----------------------------------+
+<span class="p">|</span> description <span class="p">|</span> AiC services and VMs             <span class="p">|</span>
+<span class="p">|</span> enabled     <span class="p">|</span> True                             <span class="p">|</span>
+<span class="p">|</span> id          <span class="p">|</span> 50c368c960374377aafbf9baafab4fb5 <span class="p">|</span>
+<span class="p">|</span> name        <span class="p">|</span> aic                              <span class="p">|</span>
++-------------+----------------------------------+
+
+$ openstack project create aic-users --description <span class="s1">&#39;AiC users&#39;</span>
++-------------+----------------------------------+
+<span class="p">|</span> Field       <span class="p">|</span> Value                            <span class="p">|</span>
++-------------+----------------------------------+
+<span class="p">|</span> description <span class="p">|</span> AiC users                        <span class="p">|</span>
+<span class="p">|</span> enabled     <span class="p">|</span> True                             <span class="p">|</span>
+<span class="p">|</span> id          <span class="p">|</span> 45d916de26a84c4f89362f1c0868b779 <span class="p">|</span>
+<span class="p">|</span> name        <span class="p">|</span> aic-users                        <span class="p">|</span>
++-------------+----------------------------------+
+
+$ <span class="nv">pass</span><span class="o">=</span><span class="k">$(</span>openssl rand -base64 20<span class="k">)</span>
+
+$ openstack user create --project aic --password <span class="nv">$pass</span> ats.kyaraben
+
+$ <span class="nb">echo</span> pass
+<span class="nv">krhtWR9JXr6LPjJm1JupEV5CZFI</span><span class="o">=</span>
+</pre></div>
+</div>
+<p>Take note of the password and download the aic-openrc.sh file from the OpenStack dashboard
+(<code class="docutils literal"><span class="pre">horizon/project/access_and_security</span></code>). You will need these later.
+If you have chosen another name for the tenant, the file will be named &lt;project&gt;-openrc.sh.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>There is a simple way to speed up VM management, specifically deletion.
+When a data volume is removed, OpenStack (Cinder service) wipes all the
+bytes by rewriting them, which can take a lot of time. It can be configured
+to skip this operation and free up the space immediately. Be aware of the
+security implication if you remove this feature, as the original bytes
+remain on the unallocated part of the hard disks.</p>
+<ul class="last simple">
+<li>Open cinder.conf in all the storage nodes</li>
+<li>for Kilo and earlier, add: volume_clear_size=10 (0 actually means all)</li>
+<li>for Liberty and later, add: volume_clear=none</li>
+<li>Save cinder.conf</li>
+<li><strong class="command">sudo service cinder-volume restart</strong></li>
+<li><strong class="command">sudo service cinder-api restart</strong></li>
+<li><strong class="command">sudo service cinder-scheduler restart</strong></li>
+</ul>
+</div>
+<p>You now need to create a few flavors for the VMs:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ openstack flavor create aic.controller.tiny --ram <span class="m">4096</span> --disk 6
+$ openstack flavor create aic.controller.big --ram <span class="m">8192</span> --disk 20
+$ openstack flavor create aic.ats --ram <span class="m">1024</span> --disk 6
+$ openstack flavor create aic.sdl --ram <span class="m">8192</span> --disk <span class="m">10</span> --vcpus 2
+$ openstack flavor create aic.android --ram <span class="m">1024</span> --disk 2
+</pre></div>
+</div>
+<p>The big controller flavor is able to build Android images too. The tiny flavor has to use image binaries.</p>
+<p>You may also want to increase the quota limits for <cite>secgroups</cite> and <cite>secgroup-rules</cite> for the aic project.
+We have set 100 and 1000 respectively since we had no reason to keep them low.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bootstrap.html" class="btn btn-neutral float-right" title="Bootstrap environment" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deployment.html" class="btn btn-neutral" title="Cloud AiC Deployment" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

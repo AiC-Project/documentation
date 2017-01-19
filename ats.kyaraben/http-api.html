@@ -1,0 +1,2522 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP API Reference &mdash; Kyaraben 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Kyaraben 0.8 documentation" href="index.html"/>
+        <link rel="prev" title="Sequence Diagrams" href="diagrams.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kyaraben
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.8
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Kyaraben server &amp; worker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">Kyaraben client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Sequence Diagrams</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HTTP API Reference</a></li>
+</ul>
+
+            
+          
+          <div class="local-toc">
+            <a href="http-routingtable.html">HTTP Routing Table</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kyaraben</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>HTTP API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/http-api.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http-api-reference">
+<h1>HTTP API Reference<a class="headerlink" href="#http-api-reference" title="Permalink to this headline">¶</a></h1>
+<p>For the examples, we&#8217;ll use <a class="reference external" href="https://httpie.org">httpie</a> (can be installed with pip).
+We&#8217;ll omit CONTENT-LENGTH, DATE and SERVER response headers.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ mkdir ~/.httpie<span class="p">;</span> <span class="nb">echo</span> <span class="s1">&#39;{&quot;default_options&quot;:[&quot;--session=default&quot;]}&#39;</span> &gt; ~/.httpie/config.json
+$ pip install httpie
+Collecting httpie
+<span class="o">[</span>...<span class="o">]</span>
+Successfully installed httpie-0.9.9
+</pre></div>
+</div>
+<p>When directly connected to the kyaraben server beyond the authentication component (we&#8217;ll assume
+port localhost:8084) the current user can be specified with the X-Auth-UserId header:</p>
+<p>404 errors are possible in most cases, and will happen - for security reasons - even when the user
+does not exist, or the user exists but does not have permission to access the resource.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/user/whoami
+HTTP/1.1 <span class="m">401</span> Unauthorized
+Content-Type: application/json<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+
+<span class="o">{</span>
+    <span class="s2">&quot;error&quot;</span>: <span class="s2">&quot;Missing authentication header&quot;</span>
+<span class="o">}</span>
+
+$ http :8084/user/whoami X-Auth-UserId:marco
+HTTP/1.1 <span class="m">200</span> OK
+Content-Type: application/json<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+
+<span class="o">{</span>
+    <span class="s2">&quot;user&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;userid&quot;</span>: <span class="s2">&quot;marco&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Since we defined a default session for httpie, the user header is persistent, there is no need to repeat it.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/user/whoami
+HTTP/1.1 <span class="m">200</span> OK
+Content-Type: application/json<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+
+<span class="o">{</span>
+    <span class="s2">&quot;user&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;userid&quot;</span>: <span class="s2">&quot;marco&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<dl class="get">
+<dt id="get--android">
+<code class="descname">GET </code><code class="descname">/android</code><a class="headerlink" href="#get--android" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Android VMs that belong to a user</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/android
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;avms&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;avm_id&quot;</span><span class="p">:</span> <span class="s2">&quot;f40d2ec4b55911e6a436fa163e316d19&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;avm_name&quot;</span><span class="p">:</span> <span class="s2">&quot;f40d2ec4&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;avm_owner&quot;</span><span class="p">:</span> <span class="s2">&quot;marco&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;campaign_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;kitkat-tablet&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;fb651ee0b31d11e6a436fa163e316d19&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;ts_created&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-11-28T11:01:03Z&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;uptime&quot;</span><span class="p">:</span> <span class="mf">22226.51023</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;avm_id&quot;</span><span class="p">:</span> <span class="s2">&quot;ededb9ccb58c11e6a436fa163e316d19&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;avm_name&quot;</span><span class="p">:</span> <span class="s2">&quot;ededb9cc&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;avm_owner&quot;</span><span class="p">:</span> <span class="s2">&quot;marco&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;campaign_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;lollipop-phone&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;fb651ee0b31d11e6a436fa163e316d19&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;ts_created&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-11-28T17:05:57Z&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;uptime&quot;</span><span class="p">:</span> <span class="mf">334.477165</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; the user who created and owns the virtual machines.
+If the user does not exist, no error is reported and an empty list is returned</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>avm_id</strong> (<em>uuid</em>) &#8211; unique identifier</li>
+<li><strong>avm_name</strong> (<em>string</em>) &#8211; user-provided name, or generated from avm_id if not provided</li>
+<li><strong>avm_owner</strong> (<em>string</em>) &#8211; the user who owns the AVM</li>
+<li><strong>campaign_id</strong> (<em>uuid</em>) &#8211; for async vms, id of the test campaign</li>
+<li><strong>image</strong> (<em>string</em>) &#8211; Android image used to instantiate the AVM</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; parent project of the AVM</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, CREATING, READY, DELETING, DELETED, ERROR)</li>
+<li><strong>ts_created</strong> (<em>iso8601</em>) &#8211; timestamp of the creation</li>
+<li><strong>uptime</strong> (<em>float</em>) &#8211; longevity of the VM, in seconds</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--android-(string-avm_id)">
+<code class="descname">GET </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--android-(string-avm_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Status and metadata of an Android Virtual Machine.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/android/30adc730b63111e6a436fa163e316d19
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;avm&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;avm_id&quot;</span><span class="p">:</span> <span class="s2">&quot;30adc730b63111e6a436fa163e316d19&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;avm_name&quot;</span><span class="p">:</span> <span class="s2">&quot;first vm&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;avm_owner&quot;</span><span class="p">:</span> <span class="s2">&quot;marco&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;campaign_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;hwconfig&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;dpi&quot;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+            <span class="nt">&quot;enable_battery&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;enable_camera&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;enable_gps&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;enable_gsm&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;enable_nfc&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;enable_record&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;enable_sensors&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+            <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1280</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;kitkat-tablet&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;e1df30bcb61c11e6a436fa163e316d19&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status_reason&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status_ts&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-11-29T12:42:56Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ts_created&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-11-29T12:41:46Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;uptime&quot;</span><span class="p">:</span> <span class="mf">1648.454066</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; the user who created and owns the virtual machine</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no vm identified by avm_id, or it exists but does not belong to the user, or the user itself does not exist</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>avm_id</strong> (<em>uuid</em>) &#8211; virtual machine identifier</li>
+<li><strong>avm_name</strong> (<em>string</em>) &#8211; given or generated VM name</li>
+<li><strong>avm_owner</strong> (<em>string</em>) &#8211; the user who owns the AVM</li>
+<li><strong>campaign_id</strong> (<em>uuid</em>) &#8211; the id of the test campaign (for async vms)</li>
+<li><strong>hwconfig</strong> (<em>object</em>) &#8211; the environment configuration provided at time of creation</li>
+<li><strong>image</strong> (<em>string</em>) &#8211; Android image used to create the VM</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; parent project of the AVM</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, CREATING, DELETING, READY, DELETED, ERROR)</li>
+<li><strong>status_reason</strong> (<em>string</em>) &#8211; status details (when status=ERROR)</li>
+<li><strong>status_ts</strong> (<em>iso8601</em>) &#8211; timestamp of the status</li>
+<li><strong>ts_created</strong> (<em>iso8601</em>) &#8211; timestamp of the creation</li>
+<li><strong>uptime</strong> (<em>float</em>) &#8211; longevity of the VM, in seconds</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--android-(string-avm_id)-apk">
+<code class="descname">GET </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/apk</code><a class="headerlink" href="#get--android-(string-avm_id)-apk" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of the third party, enabled packages installed in a VM.
+System or disabled applications are not returned.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/android/78292832b70011e69093fa163e5f2779/apk
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;packages&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;com.example.android.apis&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;com.android.gesture.builder&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the virtual machine</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>packages</strong> (<em>array</em>) &#8211; list of package names</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--android-(string-avm_id)-command-(string-command_id)">
+<code class="descname">GET </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/command/</code><span class="sig-paren">(</span><em class="property">string: </em><em>command_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--android-(string-avm_id)-command-(string-command_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve output of a remote command run on a VM.</p>
+<p>This is used to capture logs of test runs, monkey tool and apk installation.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/android/78292832b70011e69093fa163e5f2779/command/30c88f2cb71011e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;returncode&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;stderr&quot;</span><span class="p">:</span> <span class="s2">&quot;3880 KB/s (872273 bytes in 0.219s)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;stdout&quot;</span><span class="p">:</span> <span class="s2">&quot;pkg: /data/local/tmp/282831ecb71011e69093fa163e5f2779.apk\nSuccess&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+<li><strong>command_id</strong> &#8211; a command identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>returncode</strong> (<em>string</em>) &#8211; the return code of the adb command</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, RUNNING, READY, ERROR)</li>
+<li><strong>stderr</strong> (<em>string</em>) &#8211; the captured standard error</li>
+<li><strong>stdout</strong> (<em>string</em>) &#8211; the captured standard output</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--android-(string-avm_id)-properties">
+<code class="descname">GET </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/properties</code><a class="headerlink" href="#get--android-(string-avm_id)-properties" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Retrieve the current values of <a class="reference external" href="https://developer.android.com/reference/android/util/Property.html">Android properties</a>.</div></blockquote>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/android/78292832b70011e69093fa163e5f2779/properties
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;aicVM.gles&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;aicVM.gles.renderer&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;aicVM.inited&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;aicd.ac.online&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;aicd.accelerometer.x&quot;</span><span class="p">:</span> <span class="s2">&quot;0.000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;aicd.accelerometer.y&quot;</span><span class="p">:</span> <span class="s2">&quot;9.776219&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;aicd.accelerometer.z&quot;</span><span class="p">:</span> <span class="s2">&quot;0.813417&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sys.settings_system_version&quot;</span><span class="p">:</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sys.sysctl.extra_free_kbytes&quot;</span><span class="p">:</span> <span class="s2">&quot;5625&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sys.sysctl.tcp_def_init_rwnd&quot;</span><span class="p">:</span> <span class="s2">&quot;60&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sys.usb.config&quot;</span><span class="p">:</span> <span class="s2">&quot;adb&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sys.usb.state&quot;</span><span class="p">:</span> <span class="s2">&quot;adb&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;wifi.interface&quot;</span><span class="p">:</span> <span class="s2">&quot;eth1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;wifi.interface.mac&quot;</span><span class="p">:</span> <span class="s2">&quot;fa:16:3e:6e:9d:aa&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;wlan.driver.status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>properties</strong> (<em>object</em>) &#8211; an object of {property_name: property_value, ...}</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--android-(string-avm_id)-testrun">
+<code class="descname">GET </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/testrun</code><a class="headerlink" href="#get--android-(string-avm_id)-testrun" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the test packages installed in a VM.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This API is misplaced. It&#8217;s more the test equivalent of <cite>GET /android/{android_id}/apk</cite>
+than the counterpart to <cite>PUT /android/{android_id}/testrun</cite>.</p>
+</div>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/android/78292832b70011e69093fa163e5f2779/testrun
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;packages&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;com.example.android.apis/.app.LocalSampleInstrumentation&quot;</span><span class="p">:</span> <span class="s2">&quot;com.example.android.apis&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner&quot;</span><span class="p">:</span> <span class="s2">&quot;com.zenika.aic.core.libs.test&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>packages</strong> (<em>object</em>) &#8211; an object of the form {package_name: target, ...}</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--android-(string-avm_id)-totp">
+<code class="descname">GET </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/totp</code><a class="headerlink" href="#get--android-(string-avm_id)-totp" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Generate a Time-Based One-Time Password to connect to the Android display. The password is valid for 30 seconds.</div></blockquote>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/android/78292832b70011e69093fa163e5f2779/totp
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;totp&quot;</span><span class="p">:</span> <span class="s2">&quot;226688&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>totp</strong> (<em>string</em>) &#8211; a password to be sent to the remote VNC server, or the reverse proxy</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--android">
+<code class="descname">POST </code><code class="descname">/android</code><a class="headerlink" href="#post--android" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an Android VM and assign it to the current user.</p>
+<p>A positive response means the creation of the AVM has been started.
+As soon as the resources have been created and the services deployed, the VM status
+becomes READY, even though the VM is still booting up.</p>
+<p>Errors coming from OpenStack (for instance, if the creation would cause the
+user to go over the quota allocated to the tenant, or a networking issue)
+will leave the AVM resource with a status of ERROR and the creation tasks
+automatically rescheduled, to be retried when the (hopefully transient)
+problem is fixed. More details about such errors (and exception traceback)
+can be found either in worker logs, or in the SQL database (column avms.status_reason).</p>
+<p>The only required values are <em>project_id</em> and <em>image</em>.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http post :8084/android <span class="se">\</span>
+<span class="nv">project_id</span><span class="o">=</span>e1df30bcb61c11e6a436fa163e316d19 <span class="se">\</span>
+<span class="nv">image</span><span class="o">=</span>kitkat-tablet <span class="se">\</span>
+hwconfig:<span class="o">=</span><span class="s1">&#39;{&quot;width&quot;:1280,&quot;height&quot;:800,&quot;enable_battery&quot;:0}&#39;</span> <span class="se">\</span>
+<span class="nv">avm_name</span><span class="o">=</span>first_avm
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;avm_id&quot;</span><span class="p">:</span> <span class="s2">&quot;e005e700b62f11e6a436fa163e316d19&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who will own the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; parent project of the AVM</li>
+<li><strong>image</strong> (<em>string</em>) &#8211; Android image to use</li>
+<li><strong>avm_name</strong> (<em>string</em>) &#8211; optional VM name. If missing, part of the id will be used</li>
+<li><strong>hwconfig</strong> (<em>object</em>) &#8211; object with one or more of the following keys</li>
+<li><strong>hwconfig[&quot;width&quot;]</strong> (<em>integer</em>) &#8211; screen width</li>
+<li><strong>hwconfig[&quot;height&quot;]</strong> (<em>integer</em>) &#8211; screen height</li>
+<li><strong>hwconfig[&quot;dpi&quot;]</strong> (<em>integer</em>) &#8211; screen DPI</li>
+<li><strong>hwconfig[&quot;enable_sensors&quot;]</strong> (<em>integer</em>) &#8211; 0/1</li>
+<li><strong>hwconfig[&quot;enable_battery&quot;]</strong> (<em>integer</em>) &#8211; 0/1</li>
+<li><strong>hwconfig[&quot;enable_gps&quot;]</strong> (<em>integer</em>) &#8211; 0/1</li>
+<li><strong>hwconfig[&quot;enable_camera&quot;]</strong> (<em>integer</em>) &#8211; 0/1</li>
+<li><strong>hwconfig[&quot;enable_record&quot;]</strong> (<em>integer</em>) &#8211; 0/1</li>
+<li><strong>hwconfig[&quot;enable_gsm&quot;]</strong> (<em>integer</em>) &#8211; 0/1</li>
+<li><strong>hwconfig[&quot;enable_nfc&quot;]</strong> (<em>integer</em>) &#8211; 0/1</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> &#8211; the creation of AVM and services has started</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> &#8211; malformed request (response contains the expected JSON schema)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>avm_id</strong> (<em>uuid</em>) &#8211; unique identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--android-(string-avm_id)-apk-(string-apk_id)">
+<code class="descname">POST </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/apk/</code><span class="sig-paren">(</span><em class="property">string: </em><em>apk_id</em><span class="sig-paren">)</span><a class="headerlink" href="#post--android-(string-avm_id)-apk-(string-apk_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install an application in a running VM.
+The APK file must have been previously uploaded to the project.
+The request returns the ID of an asynchronous command. The application
+can be reinstalled multiple times without uninstalling.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http post :8084/android/78292832b70011e69093fa163e5f2779/apk/282831ecb71011e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;command_id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9c40926b71911e69093fa163e5f2779&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+<li><strong>apk_id</strong> &#8211; the APK identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">202 Accepted</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>command_id</strong> (<em>uuid</em>) &#8211; a command identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--android-(string-avm_id)-monkey">
+<code class="descname">POST </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/monkey</code><a class="headerlink" href="#post--android-(string-avm_id)-monkey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute the <a class="reference external" href="https://developer.android.com/studio/test/monkey.html">UI/Application Exerciser Monkey</a> on an application.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http post :8084/android/78292832b70011e69093fa163e5f2779/monkey <span class="se">\</span>
+packages:<span class="o">=</span><span class="s1">&#39;[&quot;com.uberspot.a2048&quot;,&quot;com.example.android.apis&quot;]&#39;</span> <span class="se">\</span>
+<span class="nv">event_count</span><span class="o">=</span>100
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;command_id&quot;</span><span class="p">:</span> <span class="s2">&quot;e0f7a8eab71711e69093fa163e5f2779&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">202 Accepted</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>command_id</strong> (<em>uuid</em>) &#8211; a command identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--android-(string-avm_id)-testrun">
+<code class="descname">POST </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><code class="descname">/testrun</code><a class="headerlink" href="#post--android-(string-avm_id)-testrun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run instrumented test packages.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http post :8084/android/78292832b70011e69093fa163e5f2779/testrun <span class="nv">package</span><span class="o">=</span>com.uberspot.a2048
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;command_id&quot;</span><span class="p">:</span> <span class="s2">&quot;8d9f07a6b72111e69093fa163e5f2779&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; uuid of the VM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>package</strong> (<em>string</em>) &#8211; name of the test package to run</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">202 Accepted</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>command_id</strong> (<em>uuid</em>) &#8211; a command identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="put">
+<dt id="put--android">
+<code class="descname">PUT </code><code class="descname">/android</code><a class="headerlink" href="#put--android" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes metadata of an Android VM (currently only the name).</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http put :8084/android/78292832b70011e69093fa163e5f2779 <span class="nv">avm_name</span><span class="o">=</span>totoro
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; uuid of the VM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>avm_name</strong> (<em>string</em>) &#8211; new VM name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the name of the VM has been changed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--android-(string-avm_id)">
+<code class="descname">DELETE </code><code class="descname">/android/</code><span class="sig-paren">(</span><em class="property">string: </em><em>avm_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--android-(string-avm_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an AVM and its associated services (video rendering, web console, adb).</p>
+<p>Like its creation counterpart, this operation is asynchronous and returns a positive response
+as soon as the removal has started. Failures to delete Heat stacks are not handled by this API.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http delete :8084/android/30adc730b63111e6a436fa163e316d19
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the identifier of the AVM to remove</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">202 Accepted</a> &#8211; the removal of AVM and services has started</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; the AVM does not exist, or does not belong to the user, or the user does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--images">
+<code class="descname">GET </code><code class="descname">/images</code><a class="headerlink" href="#get--images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of the available Android images.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/images
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;images&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;android_version&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;kitkat-tablet&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;android_version&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;kitkat-phone&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;android_version&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;lollipop-tablet&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;android_version&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;lollipop-phone&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the AVM</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>avm_id</strong> &#8211; the virtual machine identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>image</strong> (<em>string</em>) &#8211; the prefix to be used when retrieving system and data images in OpenStack Glance</li>
+<li><strong>android_version</strong> (<em>int</em>) &#8211; the major version of Android, used to link the right OpenGL libraries in the player containers</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects">
+<code class="descname">GET </code><code class="descname">/projects</code><a class="headerlink" href="#get--projects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the projects the user has access to.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+
+{
+    &quot;projects&quot;: [
+        {
+            &quot;project_id&quot;: &quot;5416126cb64b11e69093fa163e5f2779&quot;,
+            &quot;project_name&quot;: &quot;foo&quot;,
+            &quot;status&quot;: &quot;READY&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; the user who created, or with whom the projects are shared.
+If the user does not exist, no error is reported and an empty list is returned</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; unique identifier</li>
+<li><strong>project_name</strong> (<em>string</em>) &#8211; user-provided name</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, CREATING, READY, DELETING, DELETED, ERROR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--projects-(string-project_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Status and metadata of a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/5416126cb64b11e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;project&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;count_avms&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5416126cb64b11e69093fa163e5f2779&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;project_name&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status_reason&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status_ts&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-11-29T15:48:53Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;sum_avms_uptime&quot;</span><span class="p">:</span> <span class="mf">0.0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or it exists but does not belong to the user, or the user itself does not exist</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>count_avms</strong> (<em>integer</em>) &#8211; number of Virtual Machines in the project</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; uuid of the project</li>
+<li><strong>project_name</strong> (<em>uuid</em>) &#8211; user-provided name</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, CREATING, READY, DELETING, DELETED, ERROR)</li>
+<li><strong>status_reason</strong> (<em>string</em>) &#8211; status details (when status=ERROR)</li>
+<li><strong>status_ts</strong> (<em>iso8601</em>) &#8211; timestamp of the status</li>
+<li><strong>sum_avms_uptime</strong> (<em>float</em>) &#8211; total longevity of the VMs in the project, in seconds</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-apk">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/apk</code><a class="headerlink" href="#get--projects-(string-project_id)-apk" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the APK files contained in a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/722de0eeb70011e69093fa163e5f2779/apk
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;apks&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;282831ecb71011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;com.uberspot.a2048_23.apk&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;com.uberspot.a2048&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;722de0eeb70011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;testsource_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a2d63d2b7a911e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;com.zenika.aic.core.libs.test-2.apk&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;com.zenika.aic.core.libs.test&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;722de0eeb70011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span>
+            <span class="s2">&quot;testsource_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or it exists but does not belong to the user, or the user itself does not exist</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>apk_id</strong> (<em>uuid</em>) &#8211; the APK identifier</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; the original name of the uploaded file</li>
+<li><strong>package</strong> (<em>string</em>) &#8211; package name from AndroidManifest.xml</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; uuid of the project</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, UPLOADING, COMPILING DSL, COMPILING JAVA, READY, DELETING, DELETED, ERROR)</li>
+<li><strong>testsource_id</strong> (<em>uuid</em>) &#8211; identifier of the test source file (if the apk was compiled) or empty string if the apk was uploaded</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-apk-(string-apk_id)">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/apk/</code><span class="sig-paren">(</span><em class="property">string: </em><em>apk_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--projects-(string-project_id)-apk-(string-apk_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve information about an APK.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/722de0eeb70011e69093fa163e5f2779/apk/282831ecb71011e69093fa163e5f2779
+</pre></div>
+</div>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;apk&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;282831ecb71011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;com.uberspot.a2048_23.apk&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;com.uberspot.a2048&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;722de0eeb70011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status_reason&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>apk_id</strong> &#8211; the APK identifier</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or no apk identified by apk_id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>apk_id</strong> (<em>uuid</em>) &#8211; the APK identifier</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; the original name of the uploaded file</li>
+<li><strong>package</strong> (<em>string</em>) &#8211; package name from AndroidManifest.xml</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; uuid of the project</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, UPLOADING, COMPILING DSL, COMPILING JAVA, READY, DELETING, DELETED, ERROR)</li>
+<li><strong>status_reason</strong> (<em>string</em>) &#8211; status details (when status=ERROR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-camera">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/camera</code><a class="headerlink" href="#get--projects-(string-project_id)-camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the camera files contained in a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/722de0eeb70011e69093fa163e5f2779/camera
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;camera_files&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;camera_id&quot;</span><span class="p">:</span> <span class="s2">&quot;15a56ea8b87911e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;ubuntu-logo.png&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;722de0eeb70011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or it exists but does not belong to the user, or the user itself does not exist</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>camera_id</strong> (<em>uuid</em>) &#8211; the camera file identifier</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; the original name of the uploaded file</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; uuid of the project</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (UPLOADING, READY, DELETING, DELETED, ERROR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-campaigns">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/campaigns</code><a class="headerlink" href="#get--projects-(string-project_id)-campaigns" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the test campaigns in a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/63f49082dbf811e690e6fa163e15ccce/campaigns
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;campaigns&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;campaign_id&quot;</span><span class="p">:</span> <span class="s2">&quot;8bbe5d58dc0411e690e6fa163e15ccce&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;campaign_name&quot;</span><span class="p">:</span> <span class="s2">&quot;lovely-big-cobra&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;63f49082dbf811e690e6fa163e15ccce&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or it exists but does not belong to the user, or the user itself does not exist</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>campaign_id</strong> (<em>uuid</em>) &#8211; uuid of the campaign</li>
+<li><strong>campaign_name</strong> (<em>string</em>) &#8211; custom (user defined or generated) campaign name</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, RUNNING, READY, DELETING, DELETED, ERROR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-campaigns-(string-campaign_id)">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/campaigns/</code><span class="sig-paren">(</span><em class="property">string: </em><em>campaign_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--projects-(string-project_id)-campaigns-(string-campaign_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve information about a test campaign.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/63f49082dbf811e690e6fa163e15ccce/campaigns/8bbe5d58dc0411e690e6fa163e15ccce
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;campaign&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;campaign_id&quot;</span><span class="p">:</span> <span class="s2">&quot;8bbe5d58dc0411e690e6fa163e15ccce&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;campaign_name&quot;</span><span class="p">:</span> <span class="s2">&quot;lovely-big-cobra&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;campaign_status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;63f49082dbf811e690e6fa163e15ccce&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tests&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;hwconfig&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&quot;dpi&quot;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span>
+                    <span class="nt">&quot;enable_battery&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;enable_camera&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;enable_gps&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;enable_gsm&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;enable_nfc&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="nt">&quot;enable_record&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                    <span class="nt">&quot;enable_sensors&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span>
+                    <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">800</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;lollipop-phone&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;com.zenika.aic.core.libs.test/android.test.InstrumentationTestRunner&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;stdout&quot;</span><span class="p">:</span> <span class="s2">&quot;INSTRUMENTATION_STATUS: numtests=2\nINSTRUMENTATION_STATUS: stream=\ncom.zenika.aic.core.libs.ParserTest [...]&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the campaign</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>campaign_id</strong> &#8211; uuid of the campaign</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or no campaign</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>campaign_id</strong> (<em>uuid</em>) &#8211; uuid of the campaign</li>
+<li><strong>campaign_name</strong> (<em>string</em>) &#8211; custom (user defined or generated) campaign name</li>
+<li><strong>campaign_status</strong> (<em>string</em>) &#8211; one of (QUEUED, RUNNING, READY, DELETING, DELETED, ERROR)</li>
+<li><strong>progress</strong> (<em>float</em>) &#8211; completion status of the campaign</li>
+<li><strong>hwconfig</strong> (<em>object</em>) &#8211; the environment configuration for the VM</li>
+<li><strong>image</strong> (<em>string</em>) &#8211; Android image used to create the VM</li>
+<li><strong>package</strong> (<em>string</em>) &#8211; instrumented test package</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (QUEUED, RUNNING, READY, ERROR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--projects-(string-project_id)-campaigns-(string-campaign_id)">
+<code class="descname">DELETE </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/campaigns/</code><span class="sig-paren">(</span><em class="property">string: </em><em>campaign_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--projects-(string-project_id)-campaigns-(string-campaign_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove an existing test campaign (either running, or finished).</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http delete :8084/projects/63f49082dbf811e690e6fa163e15ccce/campaigns/8bbe5d58dc0411e690e6fa163e15ccce
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>campaign_id</strong> &#8211; uuid of the campaign</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the campaign has been deleted</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-testsources">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/testsources</code><a class="headerlink" href="#get--projects-(string-project_id)-testsources" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the DSL files in a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/722de0eeb70011e69093fa163e5f2779/testsources
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;testsources&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0e18f032dca611e690e7fa163e15ccce&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apk_status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apk_status_reason&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;test1.aic&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;722de0eeb70011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;testsource_id&quot;</span><span class="p">:</span> <span class="s2">&quot;ef8ef4ccdca511e690e7fa163e15ccce&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apk_status&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPILING JAVA&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;apk_status_reason&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;test2.aic&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;722de0eeb70011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;testsource_id&quot;</span><span class="p">:</span> <span class="s2">&quot;f107efd4dca511e690e7fa163e15ccce&quot;</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or it exists but does not belong to the user, or the user itself does not exist</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>apk_id</strong> (<em>uuid</em>) &#8211; the APK identifier (if the file has been compiled), or empty string</li>
+<li><strong>apk_status</strong> (<em>string</em>) &#8211; one of (QUEUED, UPLOADING, COMPILING DSL, COMPILING JAVA, READY, DELETING, DELETED, ERROR)</li>
+<li><strong>apk_status_reason</strong> (<em>string</em>) &#8211; status details (when apk_status=ERROR)</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; the original name of the uploaded file</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; uuid of the project</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (UPLOADING, READY)</li>
+<li><strong>testsource_id</strong> (<em>uuid</em>) &#8211; identifier of the test source file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-testsources-(string-testsource_id)">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/testsources/</code><span class="sig-paren">(</span><em class="property">string: </em><em>testsource_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--projects-(string-project_id)-testsources-(string-testsource_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the content of a test source (DSL).</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/722de0eeb70011e69093fa163e5f2779/testsources/eaefe8b8b87911e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">204</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+
+Feature: &quot;Best feature ever&quot;
+   Scenario: &quot;Best scenario ever&quot;
+      Set sensor TYPE_LIGHT at 42
+      Take a screenshot
+   End
+
+   Scenario: &quot;Worst scenario ever&quot;
+      Set battery level at 1
+   End
+End
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>testsource_id</strong> &#8211; identifier of the test source file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or no testsource identified by testsource_id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always text/plain</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--projects-(string-project_id)-testsources-(string-testsource_id)-metadata">
+<code class="descname">GET </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/testsources/</code><span class="sig-paren">(</span><em class="property">string: </em><em>testsource_id</em><span class="sig-paren">)</span><code class="descname">/metadata</code><a class="headerlink" href="#get--projects-(string-project_id)-testsources-(string-testsource_id)-metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve information about a test source.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/projects/722de0eeb70011e69093fa163e5f2779/testsources/eaefe8b8b87911e69093fa163e5f2779/metadata
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;testsource&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;apk_status&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;apk_status_reason&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;test.aic&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;722de0eeb70011e69093fa163e5f2779&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;READY&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;testsource_id&quot;</span><span class="p">:</span> <span class="s2">&quot;eaefe8b8b87911e69093fa163e5f2779&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>testsource_id</strong> &#8211; identifier of the test source file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; there is no project identified by project_id, or no testsource identified by testsource_id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>apk_id</strong> (<em>uuid</em>) &#8211; the APK identifier (if the file has been compiled), or empty string</li>
+<li><strong>apk_status</strong> (<em>string</em>) &#8211; one of (QUEUED, UPLOADING, COMPILING DSL, COMPILING JAVA, READY, DELETING, DELETED, ERROR)</li>
+<li><strong>apk_status_reason</strong> (<em>string</em>) &#8211; status details (when apk_status=ERROR)</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; the original name of the uploaded file</li>
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; uuid of the project</li>
+<li><strong>status</strong> (<em>string</em>) &#8211; one of (UPLOADING, READY)</li>
+<li><strong>testsource_id</strong> (<em>uuid</em>) &#8211; identifier of the test source file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--projects">
+<code class="descname">POST </code><code class="descname">/projects</code><a class="headerlink" href="#post--projects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a project and assign it to the current user.</p>
+<p>A positive response means the creation of the project has been started.
+When the project creation is finalized, its status becomes READY.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http post :8084/projects <span class="nv">project_name</span><span class="o">=</span>peace
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;project_id&quot;</span><span class="p">:</span> <span class="s2">&quot;3d7cff8eb6ff11e69093fa163e5f2779&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; the user who will own the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>project_name</strong> (<em>string</em>) &#8211; user-provided name, need not be unique</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> &#8211; the creation of the project has started</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>project_id</strong> (<em>uuid</em>) &#8211; unique identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--projects-(string-project_id)-apk">
+<code class="descname">POST </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/apk</code><a class="headerlink" href="#post--projects-(string-project_id)-apk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload an APK file to a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http --form :8084/projects/e8248ab0baf111e69093fa163e5f2779/apk file@com.uberspot.a2048_23.apk
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c96b552baf311e69093fa163e5f2779&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> &#8211; the upload of the apk has started</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>apk_id</strong> (<em>uuid</em>) &#8211; the APK identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--projects-(string-project_id)-camera">
+<code class="descname">POST </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/camera</code><a class="headerlink" href="#post--projects-(string-project_id)-camera" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload a camera file to a project. The file can be an image or movie, and
+will be converted if needed.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http --form :8084/projects/722de0eeb70011e69093fa163e5f2779/camera file@ubuntu-logo.png
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;camera_file_id&quot;</span><span class="p">:</span> <span class="s2">&quot;15a56ea8b87911e69093fa163e5f2779&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> &#8211; the upload/conversion of the media file has started</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>camera_file_id</strong> (<em>uuid</em>) &#8211; the camera file identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--projects-(string-project_id)-campaigns">
+<code class="descname">POST </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/campaigns</code><a class="headerlink" href="#post--projects-(string-project_id)-campaigns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a test campaign.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http post :8084/projects/63f49082dbf811e690e6fa163e15ccce/campaigns <span class="nv">campaign_name</span><span class="o">=</span>my-campaign tests:<span class="o">=</span><span class="s1">&#39;[{&quot;image&quot;:&quot;kitkat-tablet&quot;, &quot;hwconfig&quot;:{&quot;dpi&quot;:160,&quot;enable_battery&quot;:1,&quot;enable_camera&quot;:1,&quot;enable_gps&quot;:1,&quot;enable_gsm&quot;:1,&quot;enable_nfc&quot;:0,&quot;enable_record&quot;:0,&quot;enable_sensors&quot;:1,&quot;height&quot;:600,&quot;width&quot;: 800}, &quot;apks&quot;:[&quot;54cf0536dbfa11e690e6fa163e15ccce&quot;,&quot;5b1c0a06dbfa11e690e6fa163e15ccce&quot;,&quot;10971afadca611e690e7fa163e15ccce&quot;], &quot;packages&quot;:[&quot;com.example.android.apis&quot;,&quot;com.android.gesture.builder&quot;]}]&#39;</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;campaign_id&quot;</span><span class="p">:</span> <span class="s2">&quot;5ee2fbc8dcb211e690e7fa163e15ccce&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>campaign_name</strong> (<em>string</em>) &#8211; custom campaign name, will generate one if missing</li>
+<li><strong>tests</strong> (<em>object</em>) &#8211; list of testruns to create</li>
+<li><strong>image</strong> (<em>string</em>) &#8211; Android image used to create the VM</li>
+<li><strong>hwconfig</strong> (<em>object</em>) &#8211; configuration of the VM</li>
+<li><strong>apks</strong> (<em>object</em>) &#8211; list of APKs to install</li>
+<li><strong>packages</strong> (<em>object</em>) &#8211; list of packages under test</li>
+<li><strong>campaign_id</strong> (<em>uuid</em>) &#8211; id of the new test campaign</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">202 Accepted</a> &#8211; the creation of the campaign has started</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--projects-(string-project_id)-testsources">
+<code class="descname">POST </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/testsources</code><a class="headerlink" href="#post--projects-(string-project_id)-testsources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload a test source to a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http --form :8084/projects/722de0eeb70011e69093fa163e5f2779/testsources file@test.aic
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;testsource_id&quot;</span><span class="p">:</span> <span class="s2">&quot;eaefe8b8b87911e69093fa163e5f2779&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.2">201 Created</a> &#8211; the file has been uploaded</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>testsource_id</strong> (<em>uuid</em>) &#8211; identifier of the test source file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--projects-(string-project_id)-testsources-(string-testsource_id)-apk">
+<code class="descname">POST </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/testsources/</code><span class="sig-paren">(</span><em class="property">string: </em><em>testsource_id</em><span class="sig-paren">)</span><code class="descname">/apk</code><a class="headerlink" href="#post--projects-(string-project_id)-testsources-(string-testsource_id)-apk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compile a test source to an APK file.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http post :8084/projects/63f49082dbf811e690e6fa163e15ccce/testsources/39c9ad06dca711e690e7fa163e15ccce/apk
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;apk_id&quot;</span><span class="p">:</span> <span class="s2">&quot;82db80fadca711e690e7fa163e15ccce&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">202 Accepted</a> &#8211; the testsource is being compiled</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>apk_id</strong> (<em>uuid</em>) &#8211; the APK identifier of the test application</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="put">
+<dt id="put--projects-(string-project_id)">
+<code class="descname">PUT </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><a class="headerlink" href="#put--projects-(string-project_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes metadata of a project (currently only the name).</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http put :8084/projects/722de0eeb70011e69093fa163e5f2779 <span class="nv">project_name</span><span class="o">=</span>qwerty
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>avm_name</strong> (<em>string</em>) &#8211; new project name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the name of the project has been changed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="put">
+<dt id="put--projects-(string-project_id)-testsources-(string-testsource_id)">
+<code class="descname">PUT </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/testsources/</code><span class="sig-paren">(</span><em class="property">string: </em><em>testsource_id</em><span class="sig-paren">)</span><a class="headerlink" href="#put--projects-(string-project_id)-testsources-(string-testsource_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the content of a test source. Filename will be updated too.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http --form put :8084/projects/722de0eeb70011e69093fa163e5f2779/testsources/eaefe8b8b87911e69093fa163e5f2779 file@test.aic
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>testsource_id</strong> &#8211; identifier of the test source file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the content has been updated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--projects-(string-project_id)">
+<code class="descname">DELETE </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--projects-(string-project_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a project. Projects can only be removed if they don&#8217;t contain running vms or campaigns.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http delete :8084/projects/3d7cff8eb6ff11e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; the identifier of the project to remove</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.3">202 Accepted</a> &#8211; the removal of the project has started</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; the project does not exist, or the user cannot access it, or the user does not exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--projects-(string-project_id)-apk-(string-apk_id)">
+<code class="descname">DELETE </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/apk/</code><span class="sig-paren">(</span><em class="property">string: </em><em>apk_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--projects-(string-project_id)-apk-(string-apk_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an APK file from a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http delete :8084/projects/722de0eeb70011e69093fa163e5f2779/apk/282831ecb71011e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>apk_id</strong> &#8211; the APK file to remove</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the APK file has been deleted</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--projects-(string-project_id)-camera-(string-camera_file_id)">
+<code class="descname">DELETE </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/camera/</code><span class="sig-paren">(</span><em class="property">string: </em><em>camera_file_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--projects-(string-project_id)-camera-(string-camera_file_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a camera file from a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http delete :8084/projects/722de0eeb70011e69093fa163e5f2779/camera/15a56ea8b87911e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>camera_file_id</strong> &#8211; the camera file to remove</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the camera file has been deleted</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--projects-(string-project_id)-testsources-(string-testsource_id)">
+<code class="descname">DELETE </code><code class="descname">/projects/</code><span class="sig-paren">(</span><em class="property">string: </em><em>project_id</em><span class="sig-paren">)</span><code class="descname">/testsources/</code><span class="sig-paren">(</span><em class="property">string: </em><em>testsource_id</em><span class="sig-paren">)</span><a class="headerlink" href="#delete--projects-(string-project_id)-testsources-(string-testsource_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a test source from a project.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http delete :8084/projects/722de0eeb70011e69093fa163e5f2779/testsources/eaefe8b8b87911e69093fa163e5f2779
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who has access to the project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project_id</strong> &#8211; uuid of the project</li>
+<li><strong>testsource_id</strong> &#8211; the test source to remove</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.5">204 No Content</a> &#8211; the test source has been deleted</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--user-quota">
+<code class="descname">GET </code><code class="descname">/user/quota</code><a class="headerlink" href="#get--user-quota" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quota consumption and limits for the current user.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/user/quota
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;quota&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;vm_async_current&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;vm_async_max&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="nt">&quot;vm_live_current&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;vm_live_max&quot;</span><span class="p">:</span> <span class="mi">3</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user who needs to know its quota consumption</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>vm_async_current</strong> (<em>integer</em>) &#8211; current total of vms running a test campaign</li>
+<li><strong>vm_async_max</strong> (<em>integer</em>) &#8211; maximum number of concurrent vms in test campaigns</li>
+<li><strong>vm_live_current</strong> (<em>integer</em>) &#8211; current total of live vms for the user</li>
+<li><strong>vm_live_max</strong> (<em>integer</em>) &#8211; maximum number of concurrent live vms</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--user-whoami">
+<code class="descname">GET </code><code class="descname">/user/whoami</code><a class="headerlink" href="#get--user-whoami" title="Permalink to this definition">¶</a></dt>
+<dd><p>Information about the current user. Currently only the user id, which
+a frontend may not know if it authenticates with an opaque token.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ http :8084/user/whoami
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;userid&quot;</span><span class="p">:</span> <span class="s2">&quot;marco&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Auth-UserId</em> &#8211; a user</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> &#8211; always application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first last simple">
+<li><strong>userid</strong> (<em>string</em>) &#8211; the unique user identifier</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="diagrams.html" class="btn btn-neutral" title="Sequence Diagrams" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, AiC Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
