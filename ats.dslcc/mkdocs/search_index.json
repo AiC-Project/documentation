@@ -1,0 +1,49 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "DSL Transpiler\n\n\nTo generate java file, use :\n\ngradle generateJavaFile\n\n\nAiC DSL\n\n\nExample : \ntest_file_example.aic\n\n\nFeature: \"Example feature\"\n\n    Scenario: \"Scenario 1\"\n        Click on \u201cSensor\u201d\n        Scroll from \"Picture\" to \"Photometer\"\n        Scroll from \"Photometer\" to \"Gyroscope\n        Click on \"Proximity Sensor\"\n        Type \"Value is going to change...\" into \"R.id.input_exemple\"\n        Set sensor \"TYPE_PROXIMITY\" at 18\n        Replace \"It's working !\" into \"R.id.input_exemple\"\n        Click on \"Proximity Sensor\"\n        Scroll from \"Proximity Sensor\" to \"Bluetooth\"\n        Click on \"Ambient Thermometer\"\n    End\n\n    Scenario: \"Scenario 2\"\n        Set battery level at 5\n        Check if \"Low battery\" exists\n    End\n\nEnd\n\n\n\nFeatures\n\n\nYou can only write one feature per file. Set name with double quote. Finished with keyword \nEnd\n\n\nScenarios\n\n\nYou could write as many scenario as you want into a feature. Like features, set name with double quote and finished with keyword \nEnd\n. It contains DSL instructions.\n\n\nInstructions\n\n\n\n\nSet sensor \nSENSOR_TYPE\n at \nSENSOR_VALUE(Integer)\n \n\n\nSet battery level at \nBATTERY_LEVEL(Integer)\n\n\nSet Gps position at \nLATITUDE_VALUE(Float)\n, \nLONGITUDE_VALUE(Float)\n, \nALTITUDE_VALUE(Float)\n\n\nTake a screenshot\n\n\nStart recording\n\n\nStop recording\n\n\n\n\nSensor Type\n\n\n\n\nTYPE_ACCELEROMETER\n\n\nTYPE_LINEAR_ACCELERATION\n\n\nTYPE_PRESSURE\n\n\nTYPE_LIGHT\n\n\nTYPE_TEMPERATURE\n\n\nTYPE_AMBIENT_TEMPERATURE\n\n\nTYPE_PROXIMITY\n\n\nTYPE_GRAVITY\n\n\nTYPE_MAGNETIC_FIELD\n\n\nTYPE_GYROSCOPE\n\n\nTYPE_ROTATION_VECTOR\n\n\n\n\nRecording\n\n\nYou have the abilitie to record your test set, by taking screenshot and/or taking video from the virtual machine screen.\n\n\nWrite test with UiAutomator\n\n\nYou have to include AiC Test Framework into your Android project.\nThen create new testing source file in your project.\nYou can write \"classic\" UiAutomator tests, and/or include AiC special instructions like setting sensors or location.\n\n\nExample :\n\n\nimport .....;\n\nimport com.zenika.aic.core.libs.sensor.Device;\n\n@RunWith(AndroidJUnit4.class)\npublic class Testing extends InstrumentationTestCase {\n\n    private Device device;\n    private String appName = \"Sensor\";\n\n\n    @Before\n    public void init() {\n        device = new Device(appName, InstrumentationRegistry.getInstrumentation());\n    }\n\n    @Test\n    public void test_one() {\n        device.getBatteryInstance().setLevel(100, 100);\n        device.takeScreenshot();\n        device.startRecording();\n        device.waitForUpdate();\n    }\n\n    @Test\n    public void test_two() {\n        device.getBatteryInstance().setLevel(25, 100);\n        try {\n            selectSensor(\"Photometer\", \"Sensor\");\n        } catch (UiObjectNotFoundException e) {\n            e.printStackTrace();\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n        device.waitForUpdate();\n        device.takeScreenshot();\n        device.setValuesForSensor(new float[]{42}, Sensor.TYPE_LIGHT);\n        device.waitForUpdate();\n        device.takeScreenshot();\n        try {\n            selectSensor(\"Home\", \"Photometer\");\n        } catch (UiObjectNotFoundException e) {\n            e.printStackTrace();\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n        device.waitForUpdate();\n        device.stopRecording();\n    }\n\n    public void selectSensor(String sensor, String from) throws UiObjectNotFoundException, RemoteException {\n        UiObject2 navigationDrawerButton = device.getUiDevice().findObject(By.text(from));\n        assertTrue(\"Navigation drawer button not found\", navigationDrawerButton != null);\n        navigationDrawerButton.click();\n\n        device.getUiDevice().waitForWindowUpdate(\"\", 1000);\n\n        UiObject2 item = device.getUiDevice().findObject(By.text(sensor));\n        assertTrue(sensor + \" item not found\", navigationDrawerButton != null);\n        item.click();\n    }\n}", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#dsl-transpiler", 
+            "text": "To generate java file, use : gradle generateJavaFile", 
+            "title": "DSL Transpiler"
+        }, 
+        {
+            "location": "/#aic-dsl", 
+            "text": "Example :  test_file_example.aic  Feature: \"Example feature\"\n\n    Scenario: \"Scenario 1\"\n        Click on \u201cSensor\u201d\n        Scroll from \"Picture\" to \"Photometer\"\n        Scroll from \"Photometer\" to \"Gyroscope\n        Click on \"Proximity Sensor\"\n        Type \"Value is going to change...\" into \"R.id.input_exemple\"\n        Set sensor \"TYPE_PROXIMITY\" at 18\n        Replace \"It's working !\" into \"R.id.input_exemple\"\n        Click on \"Proximity Sensor\"\n        Scroll from \"Proximity Sensor\" to \"Bluetooth\"\n        Click on \"Ambient Thermometer\"\n    End\n\n    Scenario: \"Scenario 2\"\n        Set battery level at 5\n        Check if \"Low battery\" exists\n    End\n\nEnd", 
+            "title": "AiC DSL"
+        }, 
+        {
+            "location": "/#features", 
+            "text": "You can only write one feature per file. Set name with double quote. Finished with keyword  End", 
+            "title": "Features"
+        }, 
+        {
+            "location": "/#scenarios", 
+            "text": "You could write as many scenario as you want into a feature. Like features, set name with double quote and finished with keyword  End . It contains DSL instructions.", 
+            "title": "Scenarios"
+        }, 
+        {
+            "location": "/#instructions", 
+            "text": "Set sensor  SENSOR_TYPE  at  SENSOR_VALUE(Integer)    Set battery level at  BATTERY_LEVEL(Integer)  Set Gps position at  LATITUDE_VALUE(Float) ,  LONGITUDE_VALUE(Float) ,  ALTITUDE_VALUE(Float)  Take a screenshot  Start recording  Stop recording", 
+            "title": "Instructions"
+        }, 
+        {
+            "location": "/#sensor-type", 
+            "text": "TYPE_ACCELEROMETER  TYPE_LINEAR_ACCELERATION  TYPE_PRESSURE  TYPE_LIGHT  TYPE_TEMPERATURE  TYPE_AMBIENT_TEMPERATURE  TYPE_PROXIMITY  TYPE_GRAVITY  TYPE_MAGNETIC_FIELD  TYPE_GYROSCOPE  TYPE_ROTATION_VECTOR", 
+            "title": "Sensor Type"
+        }, 
+        {
+            "location": "/#recording", 
+            "text": "You have the abilitie to record your test set, by taking screenshot and/or taking video from the virtual machine screen.", 
+            "title": "Recording"
+        }, 
+        {
+            "location": "/#write-test-with-uiautomator", 
+            "text": "You have to include AiC Test Framework into your Android project.\nThen create new testing source file in your project.\nYou can write \"classic\" UiAutomator tests, and/or include AiC special instructions like setting sensors or location.  Example :  import .....;\n\nimport com.zenika.aic.core.libs.sensor.Device;\n\n@RunWith(AndroidJUnit4.class)\npublic class Testing extends InstrumentationTestCase {\n\n    private Device device;\n    private String appName = \"Sensor\";\n\n\n    @Before\n    public void init() {\n        device = new Device(appName, InstrumentationRegistry.getInstrumentation());\n    }\n\n    @Test\n    public void test_one() {\n        device.getBatteryInstance().setLevel(100, 100);\n        device.takeScreenshot();\n        device.startRecording();\n        device.waitForUpdate();\n    }\n\n    @Test\n    public void test_two() {\n        device.getBatteryInstance().setLevel(25, 100);\n        try {\n            selectSensor(\"Photometer\", \"Sensor\");\n        } catch (UiObjectNotFoundException e) {\n            e.printStackTrace();\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n        device.waitForUpdate();\n        device.takeScreenshot();\n        device.setValuesForSensor(new float[]{42}, Sensor.TYPE_LIGHT);\n        device.waitForUpdate();\n        device.takeScreenshot();\n        try {\n            selectSensor(\"Home\", \"Photometer\");\n        } catch (UiObjectNotFoundException e) {\n            e.printStackTrace();\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n        device.waitForUpdate();\n        device.stopRecording();\n    }\n\n    public void selectSensor(String sensor, String from) throws UiObjectNotFoundException, RemoteException {\n        UiObject2 navigationDrawerButton = device.getUiDevice().findObject(By.text(from));\n        assertTrue(\"Navigation drawer button not found\", navigationDrawerButton != null);\n        navigationDrawerButton.click();\n\n        device.getUiDevice().waitForWindowUpdate(\"\", 1000);\n\n        UiObject2 item = device.getUiDevice().findObject(By.text(sensor));\n        assertTrue(sensor + \" item not found\", navigationDrawerButton != null);\n        item.click();\n    }\n}", 
+            "title": "Write test with UiAutomator"
+        }
+    ]
+}

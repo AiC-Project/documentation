@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - AiC ATS-DSLcc</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> AiC ATS-DSLcc</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#dsl-transpiler">DSL Transpiler</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#aic-dsl">AiC DSL</a></li>
+                
+                    <li><a class="toctree-l4" href="#features">Features</a></li>
+                
+                    <li><a class="toctree-l4" href="#scenarios">Scenarios</a></li>
+                
+                    <li><a class="toctree-l4" href="#instructions">Instructions</a></li>
+                
+                    <li><a class="toctree-l4" href="#sensor-type">Sensor Type</a></li>
+                
+                    <li><a class="toctree-l4" href="#recording">Recording</a></li>
+                
+                    <li><a class="toctree-l4" href="#write-test-with-uiautomator">Write test with UiAutomator</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">AiC ATS-DSLcc</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="dsl-transpiler">DSL Transpiler</h1>
+<p>To generate java file, use :
+<code>gradle generateJavaFile</code></p>
+<h1 id="aic-dsl">AiC DSL</h1>
+<p>Example : <em>test_file_example.aic</em></p>
+<pre><code>Feature: "Example feature"
+
+    Scenario: "Scenario 1"
+        Click on “Sensor”
+        Scroll from "Picture" to "Photometer"
+        Scroll from "Photometer" to "Gyroscope
+        Click on "Proximity Sensor"
+        Type "Value is going to change..." into "R.id.input_exemple"
+        Set sensor "TYPE_PROXIMITY" at 18
+        Replace "It's working !" into "R.id.input_exemple"
+        Click on "Proximity Sensor"
+        Scroll from "Proximity Sensor" to "Bluetooth"
+        Click on "Ambient Thermometer"
+    End
+
+    Scenario: "Scenario 2"
+        Set battery level at 5
+        Check if "Low battery" exists
+    End
+
+End
+</code></pre>
+<h3 id="features">Features</h3>
+<p>You can only write one feature per file. Set name with double quote. Finished with keyword <code>End</code></p>
+<h3 id="scenarios">Scenarios</h3>
+<p>You could write as many scenario as you want into a feature. Like features, set name with double quote and finished with keyword <code>End</code>. It contains DSL instructions.</p>
+<h3 id="instructions">Instructions</h3>
+<ul>
+<li>Set sensor <em>SENSOR_TYPE</em> at <em>SENSOR_VALUE(Integer)</em> </li>
+<li>Set battery level at <em>BATTERY_LEVEL(Integer)</em></li>
+<li>Set Gps position at <em>LATITUDE_VALUE(Float)</em>, <em>LONGITUDE_VALUE(Float)</em>, <em>ALTITUDE_VALUE(Float)</em></li>
+<li>Take a screenshot</li>
+<li>Start recording</li>
+<li>Stop recording</li>
+</ul>
+<h3 id="sensor-type">Sensor Type</h3>
+<ul>
+<li>TYPE_ACCELEROMETER</li>
+<li>TYPE_LINEAR_ACCELERATION</li>
+<li>TYPE_PRESSURE</li>
+<li>TYPE_LIGHT</li>
+<li>TYPE_TEMPERATURE</li>
+<li>TYPE_AMBIENT_TEMPERATURE</li>
+<li>TYPE_PROXIMITY</li>
+<li>TYPE_GRAVITY</li>
+<li>TYPE_MAGNETIC_FIELD</li>
+<li>TYPE_GYROSCOPE</li>
+<li>TYPE_ROTATION_VECTOR</li>
+</ul>
+<h3 id="recording">Recording</h3>
+<p>You have the abilitie to record your test set, by taking screenshot and/or taking video from the virtual machine screen.</p>
+<h3 id="write-test-with-uiautomator">Write test with UiAutomator</h3>
+<p>You have to include AiC Test Framework into your Android project.
+Then create new testing source file in your project.
+You can write "classic" UiAutomator tests, and/or include AiC special instructions like setting sensors or location.</p>
+<p>Example :</p>
+<pre><code>import .....;
+
+import com.zenika.aic.core.libs.sensor.Device;
+
+@RunWith(AndroidJUnit4.class)
+public class Testing extends InstrumentationTestCase {
+
+    private Device device;
+    private String appName = "Sensor";
+
+
+    @Before
+    public void init() {
+        device = new Device(appName, InstrumentationRegistry.getInstrumentation());
+    }
+
+    @Test
+    public void test_one() {
+        device.getBatteryInstance().setLevel(100, 100);
+        device.takeScreenshot();
+        device.startRecording();
+        device.waitForUpdate();
+    }
+
+    @Test
+    public void test_two() {
+        device.getBatteryInstance().setLevel(25, 100);
+        try {
+            selectSensor("Photometer", "Sensor");
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        device.waitForUpdate();
+        device.takeScreenshot();
+        device.setValuesForSensor(new float[]{42}, Sensor.TYPE_LIGHT);
+        device.waitForUpdate();
+        device.takeScreenshot();
+        try {
+            selectSensor("Home", "Photometer");
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        device.waitForUpdate();
+        device.stopRecording();
+    }
+
+    public void selectSensor(String sensor, String from) throws UiObjectNotFoundException, RemoteException {
+        UiObject2 navigationDrawerButton = device.getUiDevice().findObject(By.text(from));
+        assertTrue("Navigation drawer button not found", navigationDrawerButton != null);
+        navigationDrawerButton.click();
+
+        device.getUiDevice().waitForWindowUpdate("", 1000);
+
+        UiObject2 item = device.getUiDevice().findObject(By.text(sensor));
+        assertTrue(sensor + " item not found", navigationDrawerButton != null);
+        item.click();
+    }
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.16.1
+Build Date UTC : 2017-01-19 14:07:18
+-->
