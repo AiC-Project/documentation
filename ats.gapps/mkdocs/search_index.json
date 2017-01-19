@@ -1,0 +1,24 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "OpenGapps Installer for AiC\n\n\nThis repository provides OpenGapps installer scripts for each version of AiC.\n\n\n\n\nOne script (\ninstaller.sh\n) is the script to run in order to install gapps on the device\n\n\nThe other one is run on the device, it is automatically used by the first one. This is a modified \nupdate-binary\n script from OpenGapps.\n\n\n\n\nInstall OpenGapps\n\n\n\n\nInstall adb for your operating system\n\n\nClone the repo or get the two scripts in any other way: \n\n\n\n\nExample:\n\n\ngit clone https://github.com/AiC-Project/ats.gapps.git\n\n\n\n\n\n\nDownload the OpenGapps package (preferably \"micro\") for your version (x86, 4.4 or 5.1) \nhere\n\n\nUse adb connect to connect to your AiC device\n\n\n\n\nExample:\n\n\nadb connect 192.168.122.200\n\n\n\n\n\n\nrun the script with the opengapps zip path as a parameter\n\n\n\n\nExample:\n\n\n./install.sh open_gapps-x86-4.4-micro-20170107.zip\n\n\n\n\nWait a bit after the script terminates and the device should restart. If it doesn\u2019t, restart it manually.\nOpenGapps should now be installed.\n\n\nWhy is this needed?\n\n\nDue to the nature of AiC, we do not have a recovery, which is the required\nenvironment for running the OpengApps scripts. So we need to wrap around those\nscripts to install OpenGapps.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#opengapps-installer-for-aic", 
+            "text": "This repository provides OpenGapps installer scripts for each version of AiC.   One script ( installer.sh ) is the script to run in order to install gapps on the device  The other one is run on the device, it is automatically used by the first one. This is a modified  update-binary  script from OpenGapps.", 
+            "title": "OpenGapps Installer for AiC"
+        }, 
+        {
+            "location": "/#install-opengapps", 
+            "text": "Install adb for your operating system  Clone the repo or get the two scripts in any other way:    Example:  git clone https://github.com/AiC-Project/ats.gapps.git   Download the OpenGapps package (preferably \"micro\") for your version (x86, 4.4 or 5.1)  here  Use adb connect to connect to your AiC device   Example:  adb connect 192.168.122.200   run the script with the opengapps zip path as a parameter   Example:  ./install.sh open_gapps-x86-4.4-micro-20170107.zip  Wait a bit after the script terminates and the device should restart. If it doesn\u2019t, restart it manually.\nOpenGapps should now be installed.", 
+            "title": "Install OpenGapps"
+        }, 
+        {
+            "location": "/#why-is-this-needed", 
+            "text": "Due to the nature of AiC, we do not have a recovery, which is the required\nenvironment for running the OpengApps scripts. So we need to wrap around those\nscripts to install OpenGapps.", 
+            "title": "Why is this needed?"
+        }
+    ]
+}

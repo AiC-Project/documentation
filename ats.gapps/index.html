@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - AiC GApps</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> AiC GApps</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#opengapps-installer-for-aic">OpenGapps Installer for AiC</a></li>
+                
+                    <li><a class="toctree-l4" href="#install-opengapps">Install OpenGapps</a></li>
+                
+                    <li><a class="toctree-l4" href="#why-is-this-needed">Why is this needed?</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">AiC GApps</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="opengapps-installer-for-aic">OpenGapps Installer for AiC</h1>
+<p>This repository provides OpenGapps installer scripts for each version of AiC.</p>
+<ul>
+<li>One script (<code>installer.sh</code>) is the script to run in order to install gapps on the device</li>
+<li>The other one is run on the device, it is automatically used by the first one. This is a modified <em>update-binary</em> script from OpenGapps.</li>
+</ul>
+<h2 id="install-opengapps">Install OpenGapps</h2>
+<ul>
+<li>Install adb for your operating system</li>
+<li>Clone the repo or get the two scripts in any other way: </li>
+</ul>
+<p>Example:</p>
+<pre><code>git clone https://github.com/AiC-Project/ats.gapps.git
+</code></pre>
+
+<ul>
+<li>Download the OpenGapps package (preferably "micro") for your version (x86, 4.4 or 5.1) <a href="http://opengapps.org/">here</a></li>
+<li>Use adb connect to connect to your AiC device</li>
+</ul>
+<p>Example:</p>
+<pre><code>adb connect 192.168.122.200
+</code></pre>
+
+<ul>
+<li>run the script with the opengapps zip path as a parameter</li>
+</ul>
+<p>Example:</p>
+<pre><code>./install.sh open_gapps-x86-4.4-micro-20170107.zip
+</code></pre>
+
+<p>Wait a bit after the script terminates and the device should restart. If it doesn’t, restart it manually.
+OpenGapps should now be installed.</p>
+<h2 id="why-is-this-needed">Why is this needed?</h2>
+<p>Due to the nature of AiC, we do not have a recovery, which is the required
+environment for running the OpengApps scripts. So we need to wrap around those
+scripts to install OpenGapps.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.16.1
+Build Date UTC : 2017-01-19 13:23:55
+-->
