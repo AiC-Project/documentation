@@ -25,7 +25,7 @@ with the Android machine through NoVNC and AiC CLI.
 
 ## Architecture Cloud
 
-![AiC Cloud architecture overview](images/aic-cloud-overview.png)
+![AiC Cloud architecture overview](img/aic-cloud-overview.png)
 
 The AiC architecture is divided into four big groups:
 
@@ -63,7 +63,7 @@ ATS build & deployment tools | [documentation](ats.aic/) | [github](https://gith
 
 ## Architecture Local
 
-![AiC Local architecture overview](images/aic-local-overview.png)
+![AiC Local architecture overview](img/aic-local-overview.png)
 
 AiC Local can be imagined as a simplified version of the Cloud
 service. It uses the same Android images as in the cloud version but
