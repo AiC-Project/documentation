@@ -2,7 +2,7 @@
 ats.auth - AiC authenticator
 ============================
 
-version |version| (`pdf <../latex/ats-auth.pdf>`_)
+version |version|
 
 .. toctree::
    :maxdepth: 2

@@ -9,7 +9,7 @@ To print their default values:
 .. program-output:: ats-auth-server --write-config-defaults
    :prompt:
 
-  You can redirect this output to a file and source it from the shell.
+You can redirect this output to a file and source it from the shell.
 
 Once the variables are set, the server can be run with :command:`ats-auth-server`::
 

@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -162,7 +164,7 @@ These will have access to both AiC and OpenStack services (create linux vms, etc
 Android VMs do not not count against these user&#8217;s quota, as AiC has internal per-user limits.</p>
 <p>You can tell AiC to authenticate users against a different tenant (possibly with restricted policy, or quota 0).</p>
 <p>To do that, create an &#8220;aic-users&#8221; tenant and change <code class="code docutils literal"><span class="pre">ATSAUTH_AUTHENTICATION_OS_USER_TENANT_NAME</span> <span class="pre">=</span> <span class="pre">&quot;aic-users&quot;</span></code>
-in the file <code class="file docutils literal"><span class="pre">/etc/supervisor/conf.d/ats-auth.conf</span></code>, then restart the service with <strong class="command">supervisorctl restart ats-auth</strong></p>
+in the file <code class="file docutils literal"><span class="pre">/etc/supervisor/conf.d/ats-authentication.conf</span></code>, then restart the service with <strong class="command">supervisorctl restart ats-auth</strong></p>
 </div>
 </div>
 

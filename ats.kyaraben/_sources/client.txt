@@ -558,7 +558,7 @@ Compilation takes some time, but the API call returns immediately:
   Compiling APK 8f5deaf8b57811e6a436fa163e316d19
   8f5deaf8b57811e6a436fa163e316d19
 
-The return value is an apk_id -- though the APK is still not ready:
+The return value is an apk_id -- though the APK is not ready yet:
 
 .. code-block:: sh
 

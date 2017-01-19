@@ -29,5 +29,5 @@ Android VMs do not not count against these user's quota, as AiC has internal per
 You can tell AiC to authenticate users against a different tenant (possibly with restricted policy, or quota 0).
 
 To do that, create an "aic-users" tenant and change :code:`ATSAUTH_AUTHENTICATION_OS_USER_TENANT_NAME = "aic-users"`
-in the file :file:`/etc/supervisor/conf.d/ats-auth.conf`, then restart the service with :command:`supervisorctl restart ats-auth`
+in the file :file:`/etc/supervisor/conf.d/ats-authentication.conf`, then restart the service with :command:`supervisorctl restart ats-auth`
 

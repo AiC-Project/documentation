@@ -1,6 +1,6 @@
 
 Architecture diagrams
-====================
+=====================
 
 .. figure:: images/AiC-ArchitectureOverview.png
     :align: center

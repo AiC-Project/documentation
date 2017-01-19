@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -243,6 +245,10 @@ supported by the <a class="reference external" href="http://docs.openstack.org/d
   -c COLUMN, --column COLUMN
                         specify the column(s) to include, can be repeated
 
+CSV Formatter:
+  --quote {all,minimal,none,nonnumeric}
+                        when to include quotes, defaults to nonnumeric
+
 json formatter:
   --noindent            whether to disable indenting the JSON
 
@@ -251,10 +257,6 @@ table formatter:
                         Maximum display width, &lt;1 to disable. You can also use
                         the CLIFF_MAX_TERM_WIDTH environment variable, but the
                         parameter takes precedence.
-
-CSV Formatter:
-  --quote {all,minimal,none,nonnumeric}
-                        when to include quotes, defaults to nonnumeric
 </pre></div>
 </div>
 <p>Typing <strong class="command">kyaraben</strong> without any option provides an interactive console in which you
@@ -739,7 +741,7 @@ Compiling APK 8f5deaf8b57811e6a436fa163e316d19
 8f5deaf8b57811e6a436fa163e316d19
 </pre></div>
 </div>
-<p>The return value is an apk_id &#8211; though the APK is still not ready:</p>
+<p>The return value is an apk_id &#8211; though the APK is not ready yet:</p>
 <div class="highlight-sh"><div class="highlight"><pre><span></span>$ kyaraben project apk show <span class="nv">$project_id</span> 8f5deaf8b57811e6a436fa163e316d19
 +---------------+----------------------------------+
 <span class="p">|</span> Field         <span class="p">|</span> Value                            <span class="p">|</span>

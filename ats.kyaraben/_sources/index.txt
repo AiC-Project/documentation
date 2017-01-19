@@ -2,7 +2,7 @@
 Kyaraben - AiC orchestrator
 ===========================
 
-version |version| (`pdf <../latex/Kyaraben.pdf>`_)
+version |version|
 
 .. toctree::
    :maxdepth: 2

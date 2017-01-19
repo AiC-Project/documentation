@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -140,6 +142,20 @@
 <h1>ats.auth server<a class="headerlink" href="#ats-auth-server" title="Permalink to this headline">¶</a></h1>
 <p>The server application is configured via environment variables.</p>
 <p>To print their default values:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>$ ats-auth-server --write-config-defaults
+export ATSAUTH_SERVER_LISTEN_ADDRESS=127.0.0.1
+export ATSAUTH_SERVER_LISTEN_PORT=8081
+export ATSAUTH_LOG_JSONFORMAT=False
+export ATSAUTH_SERVER_JWT_SECRET=&#39;&#39;
+export ATSAUTH_AUTHENTICATION_INSECURE=False
+export ATSAUTH_AUTHENTICATION_OS_CACERT=&#39;&#39;
+export ATSAUTH_AUTHENTICATION_OS_AUTH_URL=&#39;&#39;
+# Name of the tenant that contains users to authenticate
+export ATSAUTH_AUTHENTICATION_OS_USER_TENANT_NAME=&#39;&#39;
+export ATSAUTH_DB_DSN=&#39;&#39;
+</pre></div>
+</div>
+<p>You can redirect this output to a file and source it from the shell.</p>
 <p>Once the variables are set, the server can be run with <strong class="command">ats-auth-server</strong>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>(auth) $ ats-auth-server
 2017-01-17 16:52:44,682 - ats.auth.server.app - DEBUG    event=&#39;Set up DBMS connection pool...&#39;

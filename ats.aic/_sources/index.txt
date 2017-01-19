@@ -2,7 +2,7 @@
 ats.aic - AiC build and deployment tool
 =======================================
 
-version |version| (`pdf <../latex/aic.pdf>`_)
+version |version|
 
 .. toctree::
    :maxdepth: 2
