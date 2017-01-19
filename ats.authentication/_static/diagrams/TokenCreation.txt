@@ -1,0 +1,13 @@
+# https://www.websequencediagrams.com/
+
+participant frontend
+participant ats.auth
+participant nginx-jwt
+participant http-service
+
+frontend->ats.auth: POST /tokens {username:johndoe...}
+ats.auth->frontend: {token:xyz...}
+frontend->nginx-jwt: Authorization: Bearer xyz...
+nginx-jwt->http-service: X-Auth-UserId: johndoe
+http-service->frontend: http content
+

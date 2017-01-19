@@ -1,0 +1,36 @@
+# https://www.websequencediagrams.com/
+
+participant client
+participant server
+participant dbms
+participant worker
+participant retry
+participant docker
+participant prjdata
+
+client->+server: POST /projects
+server->dbms: INSERT projects status QUEUED
+server->>+worker: task project-container-create
+server-->-client: 202 ACCEPTED
+worker->dbms: status CREATING
+
+alt success
+
+  worker->+docker: run-prjdata.yml up
+  docker->*prjdata: run
+  docker-->-worker: success
+  worker->dbms: status READY
+
+else failure
+
+  worker->+docker: run-prjdata.yml up
+  docker-->-worker: error
+
+  worker->retry: dead-letter
+  opt retry process
+    worker->dbms: status ERROR
+    retry-->worker: repost w/delay
+  end
+
+end
+

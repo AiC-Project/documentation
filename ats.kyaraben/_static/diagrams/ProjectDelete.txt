@@ -1,0 +1,26 @@
+# https://www.websequencediagrams.com/
+
+participant client
+participant server
+participant dbms
+participant worker
+participant docker
+participant prjdata
+
+client->server: DELETE projects/{project_id}
+activate prjdata
+server->>worker: task project-container-delete
+server->dbms: UPDATE projects status DELETING
+server-->client: 202 ACCEPTED
+
+worker->docker: run-prjdata.yml down
+docker->prjdata: delete
+destroy prjdata
+docker-->worker: success
+worker->dbms: project status DELETED
+
+client->server: GET /projects/{project_id}
+server->dbms: SELECT projects WHERE status <> 'DELETED'
+dbms-->server: (no rows)
+server-->client: 404 NOT FOUND
+

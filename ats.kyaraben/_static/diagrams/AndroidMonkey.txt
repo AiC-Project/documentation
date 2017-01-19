@@ -1,0 +1,22 @@
+# https://www.websequencediagrams.com/
+
+participant client
+participant server
+participant dbms
+participant worker
+
+client->+server: POST android/{avm_id}/monkey
+server->dbms: INSERT commands status QUEUED
+server->>+worker: task avm-monkey
+server-->-client: 202 ACCEPTED {command_id:..}
+worker->dbms: status RUNNING
+worker->adb (docker): adb shell pm...
+adb (docker)->+android: adb shell pm...
+android->-adb (docker): status, output
+adb (docker)->worker: status, output
+worker->-dbms: status READY
+
+client->+server: GET android/{avm_id}/monkey/{command_id}
+server->dbms: SELECT commands
+dbms-->server: status, output
+server-->-client: 200 OK {status, output}
