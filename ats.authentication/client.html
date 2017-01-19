@@ -145,43 +145,41 @@
 <p>With the provided client you can create authentication tokens, display
 their claims and optionally verify the signature.</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>$ ats-auth help
-Traceback (most recent call last):
-  File &quot;/home/marco/aic/services/auth/bin/ats-auth&quot;, line 6, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2976, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2962, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2989, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 660, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 968, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 854, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;ats.auth&#39; distribution was not found and is required by the application
+usage: ats-auth [--version] [-v | -q] [--log-file LOG_FILE] [-h] [--debug]
+                [--config CONFIG] [--debug-requests]
+
+ats-auth
+
+optional arguments:
+  --version            show program&#39;s version number and exit
+  -v, --verbose        Increase verbosity of output. Can be repeated.
+  -q, --quiet          Suppress output except warnings and errors.
+  --log-file LOG_FILE  Specify a file to log output. Disabled by default.
+  -h, --help           Show help message and exit.
+  --debug              Show tracebacks on errors.
+  --config CONFIG      Configuration file (default: auth-client.ini)
+  --debug-requests     Print request details
+
+Commands:
+  complete       print bash completion command
+  help           print detailed help for another command
+  token create   Create a JWT (RFC 7519) cryptographic token
+  token revoke   Revoke a token
+  token revoke-all  Revoke all tokens created by a user
 </pre></div>
 </div>
 <div class="section" id="token-generation">
 <h2>Token generation<a class="headerlink" href="#token-generation" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-text"><div class="highlight"><pre><span></span>$ ats-auth help token create
-Traceback (most recent call last):
-  File &quot;/home/marco/aic/services/auth/bin/ats-auth&quot;, line 6, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2976, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2962, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2989, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 660, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 968, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 854, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;ats.auth&#39; distribution was not found and is required by the application
+usage: ats-auth token create [-h] [--username USERNAME] [--password PASSWORD]
+
+Create a JWT (RFC 7519) cryptographic token
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --username USERNAME  username (will use OS_USERNAME if missing)
+  --password PASSWORD  password (will use OS_PASSWORD if missing, will prompt
+                       if OS_PASSWORD is also missing)
 </pre></div>
 </div>
 <p>You have to provide at least a username, either as a parameter or in the OS_USERNAME

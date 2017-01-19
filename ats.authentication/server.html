@@ -149,22 +149,14 @@
 <p>All log messages are printed to standard output. You can change the log format to JSON by setting <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ATSAUTH_LOG_JSONFORMAT</span></code> = True.</p>
 <p>Other options:</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>$ ats-auth-server -h
-Traceback (most recent call last):
-  File &quot;/home/marco/aic/services/auth/bin/ats-auth-server&quot;, line 6, in &lt;module&gt;
-    from pkg_resources import load_entry_point
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2976, in &lt;module&gt;
-    @_call_aside
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2962, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 2989, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 660, in _build_master
-    ws.require(__requires__)
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 968, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/home/marco/aic/services/auth/lib/python3.5/site-packages/pkg_resources/__init__.py&quot;, line 854, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;ats.auth&#39; distribution was not found and is required by the application
+usage: ats-auth-server [-h] [--write-config-defaults] [--debug] [--no-debug]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --write-config-defaults
+                        print default configuration values
+  --debug               enable debug toolbar
+  --no-debug            disable debug toolbar
 </pre></div>
 </div>
 <p>The debug toolbar is useful to inspect and troubleshoot requests, it is available under the path <code class="docutils literal"><span class="pre">/_debugtoolbar</span></code>.</p>
