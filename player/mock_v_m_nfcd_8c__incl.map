@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node23" href="$mock_v_m_nfcd_8h.html" title="mockVMNfcd.h" alt="" coords="997,83,1109,112"/>
+<area shape="rect" id="node34" href="$logger_8h.html" title="Logging macros." alt="" coords="1291,160,1357,189"/>
+<area shape="rect" id="node62" href="$mock_v_m_lib_nci_8h.html" title="mockVMLibNci.h" alt="" coords="713,83,836,112"/>
+<area shape="rect" id="node25" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="584,160,661,189"/>
+<area shape="rect" id="node38" href="$amqp__listen_8h.html" title="Utilities for consuming RabbitMQ messages." alt="" coords="888,160,989,189"/>
+<area shape="rect" id="node42" href="$amqp__send_8h.html" title="Send AMQP messages." alt="" coords="1117,160,1216,189"/>
+<area shape="rect" id="node30" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="344,237,448,267"/>
+<area shape="rect" id="node54" href="$config__env_8h.html" title="Utilities to get config values from the environment." alt="" coords="691,237,787,267"/>
+<area shape="rect" id="node58" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="811,237,883,267"/>
+<area shape="rect" id="node70" href="$player__nfc_8h.html" title="Nfc player." alt="" coords="467,160,560,189"/>
+</map>

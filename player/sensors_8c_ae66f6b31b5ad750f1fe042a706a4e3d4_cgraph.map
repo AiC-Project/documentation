@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_r_e_a_d_m_e__messages_8md.html#a970439c4e463ea0bb12120006231f772" title="sensors" alt="" coords="143,5,209,35"/>
+<area shape="rect" id="node5" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env." alt="" coords="520,97,635,127"/>
+<area shape="rect" id="node7" href="$config__env_8h.html#a64a6493a7d79d58276bbd3e7a0041083" title="Get the value of a boolean config variable from the env." alt="" coords="123,109,229,139"/>
+<area shape="rect" id="node9" href="$sensors_8h.html#a048261bc89e0e80e7e1edc5be39b6114" title="Start the sensor listener thread." alt="" coords="129,163,223,192"/>
+<area shape="rect" id="node11" href="$sensors_8h.html#a43cf79468ea8b87b95692b27ec451f6e" title="Creates the data structure for sensor threads." alt="" coords="105,216,247,245"/>
+<area shape="rect" id="node13" href="$player__nfc_8h.html#a5e389bdd6b0949887d6bce2f1c4c33ec" title="Listen to AMQP and send data to the NFC sensor in the VM." alt="" coords="132,269,220,299"/>
+<area shape="rect" id="node15" href="$amqp__listen_8h.html#a1ccb8b60f25915a15fceccc2e0918b9d" title="Setup a consumer for a specific queue." alt="" coords="313,136,439,165"/>
+<area shape="rect" id="node18" href="$socket_8h.html#af8242b562c5990b1eb0cfc91e309e882" title="Open a socket with SO_REUSEADDR." alt="" coords="296,216,456,245"/>
+<area shape="rect" id="node20" href="$amqp__listen_8h.html#ac058263f3c34db38b9bc0f492e95f6aa" title="Consume one message from a connection object." alt="" coords="319,269,433,299"/>
+<area shape="rect" id="node22" href="$protobuf__framing_8h.html#a44b931d8595eeae39f8c84e13fde6ccc" title="Write a protobuf, with a varint32 framing, and padding at the end from an envelope." alt="" coords="324,323,428,352"/>
+<area shape="rect" id="node24" href="$protobuf__framing_8h.html#a69c2bf2157da61fc5ea19a3bf35c6724" title="Convert an unsigned int to varint32 so that google’s C++ protobuf libs can read it." alt="" coords="504,323,651,352"/>
+</map>

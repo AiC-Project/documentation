@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$grabber_8c.html#a59a47331bd2c7708cc7aa10a2f1f5bbc" title="grab_handler_amqp" alt="" coords="169,5,303,35"/>
+<area shape="rect" id="node7" href="$player__nfc_8c.html#a5e389bdd6b0949887d6bce2f1c4c33ec" title="Listen to AMQP and send data to the NFC sensor in the VM." alt="" coords="192,59,280,88"/>
+<area shape="rect" id="node5" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="388,5,439,35"/>
+<area shape="rect" id="node9" href="$sensors_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="388,59,439,88"/>
+<area shape="rect" id="node11" href="$test_sensors_8c.html#a1c70e09f8acd59a8de1acb56586e4049" title="test_sensors_nfc" alt="" coords="352,112,475,141"/>
+</map>

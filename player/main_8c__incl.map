@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node39" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="1045,160,1149,189"/>
+<area shape="rect" id="node41" href="$config__env_8h.html" title="Utilities to get config values from the environment." alt="" coords="2623,83,2719,112"/>
+<area shape="rect" id="node43" href="$dump__trace_8h.html" title="Define dump_trace()" alt="" coords="2743,83,2844,112"/>
+<area shape="rect" id="node45" href="$grabber_8h.html" title="grabber records videos or snapshots from ampq messages" alt="" coords="657,83,732,112"/>
+<area shape="rect" id="node57" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="171,160,243,189"/>
+<area shape="rect" id="node61" href="$host__gl_8h.html" title="OpenGL proxy management." alt="" coords="2868,83,2943,112"/>
+<area shape="rect" id="node63" href="$logger_8h.html" title="Logging macros." alt="" coords="2967,83,3033,112"/>
+<area shape="rect" id="node67" href="$render__api_8h.html" title="Header for functions defined in the AOSP opengl libs." alt="" coords="3057,83,3151,112"/>
+<area shape="rect" id="node69" href="$sdl__events_8h.html" title="Produce virtual input events from SDL events." alt="" coords="436,83,532,112"/>
+<area shape="rect" id="node73" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="857,83,935,112"/>
+</map>

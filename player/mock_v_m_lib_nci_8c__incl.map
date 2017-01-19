@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$mock_v_m_lib_nci_8h.html" title="mockVMLibNci.h" alt="" coords="424,83,547,112"/>
+<area shape="rect" id="node13" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="371,160,448,189"/>
+<area shape="rect" id="node18" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="435,237,539,267"/>
+<area shape="rect" id="node20" href="$player__nfc_8h.html" title="Nfc player." alt="" coords="523,160,616,189"/>
+<area shape="rect" id="node25" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="744,160,816,189"/>
+<area shape="rect" id="node29" href="$amqp__listen_8h.html" title="Utilities for consuming RabbitMQ messages." alt="" coords="840,160,941,189"/>
+<area shape="rect" id="node33" href="$config__env_8h.html" title="Utilities to get config values from the environment." alt="" coords="965,160,1061,189"/>
+<area shape="rect" id="node35" href="$logger_8h.html" title="Logging macros." alt="" coords="1085,160,1152,189"/>
+</map>

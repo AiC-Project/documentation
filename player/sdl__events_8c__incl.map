@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node11" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="104,160,208,189"/>
+<area shape="rect" id="node13" href="$logger_8h.html" title="Logging macros." alt="" coords="1167,83,1233,112"/>
+<area shape="rect" id="node17" href="$grabber_8h.html" title="grabber records videos or snapshots from ampq messages" alt="" coords="536,83,611,112"/>
+<area shape="rect" id="node35" href="$sdl__events_8h.html" title="Produce virtual input events from SDL events." alt="" coords="743,83,839,112"/>
+<area shape="rect" id="node40" href="$sdl__translate_8h.html" title="Convert sdl events to uinput codes." alt="" coords="1273,83,1380,112"/>
+<area shape="rect" id="node31" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="912,160,984,189"/>
+</map>

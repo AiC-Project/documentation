@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$player__nfc_8c.html" title="src/player_nfc.c" alt="" coords="5,83,120,112"/>
+<area shape="rect" id="node5" href="$protobuf__framing_8c.html" title="Provide utilities for sending protobufs." alt="" coords="144,83,296,112"/>
+<area shape="rect" id="node7" href="$sensors_8c.html" title="Sensor packets forwarders." alt="" coords="320,83,421,112"/>
+</map>

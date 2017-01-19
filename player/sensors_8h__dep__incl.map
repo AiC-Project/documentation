@@ -1,0 +1,13 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$grabber_8c.html" title="Screen recording/snapshots." alt="" coords="5,83,104,112"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="Main loop and graphical rendering." alt="" coords="128,83,211,112"/>
+<area shape="rect" id="node7" href="$player__nfc_8c.html" title="src/player_nfc.c" alt="" coords="235,83,349,112"/>
+<area shape="rect" id="node9" href="$sensors_8c.html" title="Sensor packets forwarders." alt="" coords="373,83,475,112"/>
+<area shape="rect" id="node11" href="$mock_v_m_lib_nci_8h.html" title="testPlayer/mockVMLibNci.h" alt="" coords="499,83,683,112"/>
+<area shape="rect" id="node17" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="803,160,968,189"/>
+<area shape="rect" id="node19" href="$mock_v_m_nfcd_8h.html" title="testPlayer/mockVMNfcd.h" alt="" coords="707,83,883,112"/>
+<area shape="rect" id="node23" href="$mock_v_m_sensors_8h.html" title="testPlayer/mockVMSensors.h" alt="" coords="957,83,1152,112"/>
+<area shape="rect" id="node13" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="395,160,579,189"/>
+<area shape="rect" id="node15" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="603,160,779,189"/>
+<area shape="rect" id="node25" href="$mock_v_m_sensors_8c.html" title="testPlayer/mockVMSensors.c" alt="" coords="992,160,1187,189"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$amqp__listen_8h.html#a1ccb8b60f25915a15fceccc2e0918b9d" title="Setup a consumer for a specific queue." alt="" coords="159,5,284,35"/>
+<area shape="rect" id="node7" href="$socket_8h.html#af8242b562c5990b1eb0cfc91e309e882" title="Open a socket with SO_REUSEADDR." alt="" coords="141,59,301,88"/>
+<area shape="rect" id="node9" href="$amqp__listen_8h.html#ac058263f3c34db38b9bc0f492e95f6aa" title="Consume one message from a connection object." alt="" coords="164,112,279,141"/>
+<area shape="rect" id="node11" href="$protobuf__framing_8h.html#a44b931d8595eeae39f8c84e13fde6ccc" title="Write a protobuf, with a varint32 framing, and padding at the end from an envelope." alt="" coords="169,165,273,195"/>
+<area shape="rect" id="node5" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env." alt="" coords="365,5,480,35"/>
+<area shape="rect" id="node13" href="$protobuf__framing_8h.html#a69c2bf2157da61fc5ea19a3bf35c6724" title="Convert an unsigned int to varint32 so that google’s C++ protobuf libs can read it." alt="" coords="349,165,496,195"/>
+</map>

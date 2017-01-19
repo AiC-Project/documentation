@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env." alt="" coords="193,5,308,35"/>
+<area shape="rect" id="node5" href="$sensors_8h.html#a43cf79468ea8b87b95692b27ec451f6e" title="Creates the data structure for sensor threads." alt="" coords="180,59,321,88"/>
+<area shape="rect" id="node7" href="$amqp__send_8h.html#abdd75fdf09a79ab7023584bc426bedf9" title="Send a payload to an AMQP exchange." alt="" coords="207,112,295,141"/>
+<area shape="rect" id="node9" href="$sensors_8h.html#a048261bc89e0e80e7e1edc5be39b6114" title="Start the sensor listener thread." alt="" coords="204,165,297,195"/>
+<area shape="rect" id="node11" href="$mock_v_m_sensors_8c.html#ab0e656424d5ee23bbf7da5d5732abfb2" title="mock_vm_recv_poll" alt="" coords="181,219,320,248"/>
+<area shape="rect" id="node13" href="$mock_v_m_sensors_8c.html#a2d1f9d47dfb0bdc51142ee60362c21fe" title="socket_inaddr_any_server" alt="" coords="372,165,545,195"/>
+<area shape="rect" id="node15" href="$mock_v_m_sensors_8c.html#ad686d65822b842bdcb7703c7c277ad87" title="acceptNewClient" alt="" coords="397,219,520,248"/>
+<area shape="rect" id="node17" href="$mock_v_m_sensors_8c.html#a50fa6aaa0071034964df3da3b58e6a77" title="readBody" alt="" coords="420,272,497,301"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node9" href="$amqp__send_8h.html" title="Send AMQP messages." alt="" coords="373,83,472,112"/>
+<area shape="rect" id="node31" href="$logger_8h.html" title="Logging macros." alt="" coords="815,83,881,112"/>
+<area shape="rect" id="node23" href="$config__env_8h.html" title="Utilities to get config values from the environment." alt="" coords="653,160,749,189"/>
+<area shape="rect" id="node27" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="867,160,939,189"/>
+</map>

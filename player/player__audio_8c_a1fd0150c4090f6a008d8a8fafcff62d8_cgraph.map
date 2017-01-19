@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$player__audio_8c.html#ae0deb6480c1c387f2035f2ddb91f8b14" title="init_output_frame" alt="" coords="224,5,347,35"/>
+<area shape="rect" id="node7" href="$player__audio_8c.html#a5357f230b8fd19ed3c04233e49316c8b" title="encode_audio_frame" alt="" coords="215,59,356,88"/>
+<area shape="rect" id="node5" href="$player__audio_8c.html#aa51efe8890c8ebdfedfacbf61a13f7aa" title="get_error_text" alt="" coords="407,5,508,35"/>
+<area shape="rect" id="node9" href="$player__audio_8c.html#abc8ec9c5260ec70ecebb37cbcb746394" title="init_packet" alt="" coords="415,59,500,88"/>
+</map>

@@ -1,0 +1,22 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$amqp__listen_8c.html" title="Listen on AMQP queues and consume messages." alt="" coords="5,83,131,112"/>
+<area shape="rect" id="node5" href="$config__env_8c.html" title="Utilities to get config values from the environment." alt="" coords="155,83,272,112"/>
+<area shape="rect" id="node7" href="$grabber_8c.html" title="Screen recording/snapshots." alt="" coords="296,83,395,112"/>
+<area shape="rect" id="node9" href="$host__gl_8c.html" title="src/host_gl.c" alt="" coords="419,83,515,112"/>
+<area shape="rect" id="node11" href="$logger_8c.html" title="Logging." alt="" coords="539,83,629,112"/>
+<area shape="rect" id="node13" href="$main_8c.html" title="Main loop and graphical rendering." alt="" coords="653,83,736,112"/>
+<area shape="rect" id="node15" href="$player__audio_8c.html" title="AiC audio player, reads an audio stream from the vm and transfers it to ffmpeg." alt="" coords="760,83,888,112"/>
+<area shape="rect" id="node17" href="$player__nfc_8c.html" title="src/player_nfc.c" alt="" coords="912,83,1027,112"/>
+<area shape="rect" id="node19" href="$sdl__events_8c.html" title="Produce virtual input events from SDL events." alt="" coords="1051,83,1168,112"/>
+<area shape="rect" id="node21" href="$sdl__translate_8c.html" title="SDL scancode to uinput." alt="" coords="1192,83,1320,112"/>
+<area shape="rect" id="node23" href="$sensors_8c.html" title="Sensor packets forwarders." alt="" coords="1344,83,1445,112"/>
+<area shape="rect" id="node25" href="$socket_8c.html" title="Utilities for opening sockets." alt="" coords="1469,83,1563,112"/>
+<area shape="rect" id="node27" href="$amqp__send_8c.html" title="testPlayer/amqp_send.c" alt="" coords="1587,83,1749,112"/>
+<area shape="rect" id="node29" href="$mock_v_m_lib_nci_8h.html" title="testPlayer/mockVMLibNci.h" alt="" coords="1824,83,2008,112"/>
+<area shape="rect" id="node33" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="1712,160,1888,189"/>
+<area shape="rect" id="node35" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="2148,160,2313,189"/>
+<area shape="rect" id="node37" href="$mock_v_m_nfcd_8h.html" title="testPlayer/mockVMNfcd.h" alt="" coords="2032,83,2208,112"/>
+<area shape="rect" id="node42" href="$mock_v_m_sensors_8h.html" title="testPlayer/mockVMSensors.h" alt="" coords="2283,83,2477,112"/>
+<area shape="rect" id="node44" href="$mock_v_m_sensors_8c.html" title="testPlayer/mockVMSensors.c" alt="" coords="2397,160,2592,189"/>
+<area shape="rect" id="node31" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="1912,160,2096,189"/>
+</map>

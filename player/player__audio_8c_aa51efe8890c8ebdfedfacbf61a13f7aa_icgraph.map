@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$player__audio_8c.html#aac28838d760bc5bd9fa65cadd10d73cf" title="decode_audio_frame" alt="" coords="165,5,307,35"/>
+<area shape="rect" id="node5" href="$player__audio_8c.html#a22ab1e8a1d6f3fac1f0846c372fddcaa" title="init_converted_samples" alt="" coords="364,56,521,85"/>
+<area shape="rect" id="node9" href="$player__audio_8c.html#a06ae67b30527ba39c9683a73987b88bd" title="convert_samples" alt="" coords="383,109,503,139"/>
+<area shape="rect" id="node12" href="$player__audio_8c.html#ae0deb6480c1c387f2035f2ddb91f8b14" title="init_output_frame" alt="" coords="175,160,297,189"/>
+<area shape="rect" id="node17" href="$player__audio_8c.html#a5357f230b8fd19ed3c04233e49316c8b" title="encode_audio_frame" alt="" coords="165,213,307,243"/>
+<area shape="rect" id="node20" href="$player__audio_8c.html#af16360dc3fbd73cf6d2ee8415449bc63" title="write_output_file_trailer" alt="" coords="159,267,313,296"/>
+<area shape="rect" id="node7" href="$player__audio_8c.html#a4f9b8b73acff764504b43cbb04cdbaeb" title="audiolive_decode_encode" alt="" coords="571,109,741,139"/>
+<area shape="rect" id="node14" href="$player__audio_8c.html#a1fd0150c4090f6a008d8a8fafcff62d8" title="load_encode_and_write" alt="" coords="364,163,521,192"/>
+<area shape="rect" id="node22" href="$player__audio_8c.html#aee1ca14a933f54d8d70fcd22a2a8ece1" title="aic_audioplayer" alt="" coords="387,267,499,296"/>
+<area shape="rect" id="node24" href="$player__audio_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="631,267,681,296"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node19" href="$amqp__listen_8h.html" title="Utilities for consuming RabbitMQ messages." alt="" coords="437,83,539,112"/>
+<area shape="rect" id="node23" href="$config__env_8h.html" title="Utilities to get config values from the environment." alt="" coords="1139,83,1235,112"/>
+<area shape="rect" id="node25" href="$logger_8h.html" title="Logging macros." alt="" coords="1259,83,1325,112"/>
+<area shape="rect" id="node29" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="104,160,208,189"/>
+<area shape="rect" id="node31" href="$player__nfc_8h.html" title="Nfc player." alt="" coords="1349,83,1443,112"/>
+<area shape="rect" id="node33" href="$protobuf__framing_8h.html" title="Utility to convert framing to varint32 for google’s parser." alt="" coords="283,83,413,112"/>
+<area shape="rect" id="node37" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="507,160,579,189"/>
+<area shape="rect" id="node41" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="80,83,157,112"/>
+</map>

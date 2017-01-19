@@ -1,0 +1,23 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$logger_8h.html#ab3d0e9567cfad5d6f83abc585beb520d" title="init_logger" alt="" coords="151,5,231,35"/>
+<area shape="rect" id="node5" href="$dump__trace_8h.html#a1dbeb43c562db25d4cabbc112fc8f409" title="Dump a backtrace if there is a segfault." alt="" coords="145,59,236,88"/>
+<area shape="rect" id="node7" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env." alt="" coords="533,344,648,373"/>
+<area shape="rect" id="node9" href="$config__env_8h.html#a69c8b3fe2efa7bf253919822e0955b13" title="Get the value of a integer config variable from the env." alt="" coords="143,163,239,192"/>
+<area shape="rect" id="node11" href="$config__env_8h.html#a64a6493a7d79d58276bbd3e7a0041083" title="Get the value of a boolean config variable from the env." alt="" coords="137,216,244,245"/>
+<area shape="rect" id="node13" href="$grabber_8h.html#aedfbbbd02a0acd665e2d4acb36ff73b1" title="Set the static path to the screenshots/movies dir." alt="" coords="107,269,275,299"/>
+<area shape="rect" id="node15" href="$render__api_8h.html#ab817145310afe4cfc3502a5823c97aeb" title="initLibrary" alt="" coords="152,323,229,352"/>
+<area shape="rect" id="node17" href="$render__api_8h.html#a0a8064c551728bb88523a7bfc10472ce" title="setStreamMode" alt="" coords="133,376,248,405"/>
+<area shape="rect" id="node19" href="$render__api_8h.html#a051b34bb0e79229a04c1270a5ae8de33" title="initOpenGLRenderer" alt="" coords="121,429,260,459"/>
+<area shape="rect" id="node21" href="$host__gl_8h.html#a996ddc93a44b79d5170cbb809ad75703" title="Manage the remote OpenGL to the VM." alt="" coords="125,483,256,512"/>
+<area shape="rect" id="node27" href="$render__api_8h.html#a68714790601e21a0462f6fc18d38c952" title="createOpenGLSubwindow" alt="" coords="104,536,277,565"/>
+<area shape="rect" id="node29" href="$render__api_8h.html#a7963cb6edbe8f673efceb71159eff7fb" title="AiC_CallbackRotation" alt="" coords="116,589,265,619"/>
+<area shape="rect" id="node31" href="$render__api_8h.html#ac750289cb029558e2d02d0cfd2acc7f9" title="AiC_setDPI" alt="" coords="145,643,236,672"/>
+<area shape="rect" id="node33" href="$grabber_8h.html#a59a47331bd2c7708cc7aa10a2f1f5bbc" title="grab_handler_amqp" alt="" coords="124,696,257,725"/>
+<area shape="rect" id="node44" href="$grabber_8h.html#a9d9ad64cb39218bf4bd0f000fde19558" title="Start/Stop from socket connection via protobuf message." alt="" coords="125,749,256,779"/>
+<area shape="rect" id="node23" href="$socket_8h.html#af8242b562c5990b1eb0cfc91e309e882" title="Open a socket with SO_REUSEADDR." alt="" coords="325,456,485,485"/>
+<area shape="rect" id="node25" href="$socket_8h.html#aed3900fc0c59086419e490f0266b04e5" title="Open a socket with TCP_NODELAY." alt="" coords="332,509,479,539"/>
+<area shape="rect" id="node35" href="$amqp__listen_8h.html#a1ccb8b60f25915a15fceccc2e0918b9d" title="Setup a consumer for a specific queue." alt="" coords="343,576,468,605"/>
+<area shape="rect" id="node38" href="$amqp__listen_8h.html#ac058263f3c34db38b9bc0f492e95f6aa" title="Consume one message from a connection object." alt="" coords="348,643,463,672"/>
+<area shape="rect" id="node40" href="$grabber_8h.html#a0497bd4df0c871e0997655fd69f32cd6" title="Function passed to a thread in order to detect format encoding &#45; encode frame&#45; and write in a file..." alt="" coords="349,696,461,725"/>
+<area shape="rect" id="node42" href="$grabber_8h.html#a48f6cd7606f077585e21d8aec736a1ee" title="grab_snapshot" alt="" coords="352,749,459,779"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env." alt="" coords="104,5,219,35"/>
+<area shape="rect" id="node5" href="$player__audio_8c.html#aee1ca14a933f54d8d70fcd22a2a8ece1" title="aic_audioplayer" alt="" coords="105,59,217,88"/>
+<area shape="rect" id="node7" href="$socket_8h.html#a548f0ed12e49a65bf1a6b62c0d30ccab" title="Connect to a host:port couple." alt="" coords="297,32,393,61"/>
+<area shape="rect" id="node9" href="$player__audio_8c.html#af16360dc3fbd73cf6d2ee8415449bc63" title="write_output_file_trailer" alt="" coords="268,85,423,115"/>
+<area shape="rect" id="node11" href="$player__audio_8c.html#aa51efe8890c8ebdfedfacbf61a13f7aa" title="get_error_text" alt="" coords="473,85,575,115"/>
+</map>

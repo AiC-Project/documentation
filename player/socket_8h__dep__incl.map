@@ -1,0 +1,22 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$amqp__send_8h.html" title="Send AMQP messages." alt="" coords="217,83,361,112"/>
+<area shape="rect" id="node11" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="143,237,309,267"/>
+<area shape="rect" id="node14" href="$grabber_8h.html" title="grabber records videos or snapshots from ampq messages" alt="" coords="726,83,846,112"/>
+<area shape="rect" id="node16" href="$grabber_8c.html" title="Screen recording/snapshots." alt="" coords="671,160,770,189"/>
+<area shape="rect" id="node18" href="$main_8c.html" title="Main loop and graphical rendering." alt="" coords="935,160,1018,189"/>
+<area shape="rect" id="node22" href="$protobuf__framing_8h.html" title="Utility to convert framing to varint32 for google’s parser." alt="" coords="1137,83,1310,112"/>
+<area shape="rect" id="node24" href="$player__nfc_8c.html" title="src/player_nfc.c" alt="" coords="1042,160,1157,189"/>
+<area shape="rect" id="node28" href="$sensors_8c.html" title="Sensor packets forwarders." alt="" coords="1357,160,1458,189"/>
+<area shape="rect" id="node30" href="$sdl__events_8h.html" title="Produce virtual input events from SDL events." alt="" coords="870,83,1011,112"/>
+<area shape="rect" id="node35" href="$host__gl_8c.html" title="src/host_gl.c" alt="" coords="1385,83,1481,112"/>
+<area shape="rect" id="node38" href="$player__audio_8c.html" title="AiC audio player, reads an audio stream from the vm and transfers it to ffmpeg." alt="" coords="1505,83,1633,112"/>
+<area shape="rect" id="node42" href="$socket_8c.html" title="Utilities for opening sockets." alt="" coords="1657,83,1750,112"/>
+<area shape="rect" id="node44" href="$mock_v_m_lib_nci_8h.html" title="testPlayer/mockVMLibNci.h" alt="" coords="463,160,647,189"/>
+<area shape="rect" id="node50" href="$mock_v_m_sensors_8c.html" title="testPlayer/mockVMSensors.c" alt="" coords="1774,83,1969,112"/>
+<area shape="rect" id="node5" href="$amqp__send_8c.html" title="testPlayer/amqp_send.c" alt="" coords="26,160,189,189"/>
+<area shape="rect" id="node7" href="$mock_v_m_nfcd_8h.html" title="testPlayer/mockVMNfcd.h" alt="" coords="263,160,439,189"/>
+<area shape="rect" id="node9" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="333,237,509,267"/>
+<area shape="rect" id="node20" href="$sdl__events_8c.html" title="Produce virtual input events from SDL events." alt="" coords="794,160,911,189"/>
+<area shape="rect" id="node26" href="$protobuf__framing_8c.html" title="Provide utilities for sending protobufs." alt="" coords="1181,160,1333,189"/>
+<area shape="rect" id="node46" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="533,237,717,267"/>
+</map>

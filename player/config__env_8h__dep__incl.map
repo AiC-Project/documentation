@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$amqp__send_8h.html" title="Send AMQP messages." alt="" coords="152,83,296,112"/>
+<area shape="rect" id="node11" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="141,237,307,267"/>
+<area shape="rect" id="node14" href="$amqp__listen_8c.html" title="Listen on AMQP queues and consume messages." alt="" coords="371,83,496,112"/>
+<area shape="rect" id="node16" href="$config__env_8c.html" title="Utilities to get config values from the environment." alt="" coords="520,83,637,112"/>
+<area shape="rect" id="node18" href="$main_8c.html" title="Main loop and graphical rendering." alt="" coords="661,83,744,112"/>
+<area shape="rect" id="node20" href="$player__audio_8c.html" title="AiC audio player, reads an audio stream from the vm and transfers it to ffmpeg." alt="" coords="768,83,896,112"/>
+<area shape="rect" id="node22" href="$sensors_8c.html" title="Sensor packets forwarders." alt="" coords="920,83,1021,112"/>
+<area shape="rect" id="node24" href="$mock_v_m_lib_nci_8h.html" title="testPlayer/mockVMLibNci.h" alt="" coords="461,160,645,189"/>
+<area shape="rect" id="node5" href="$amqp__send_8c.html" title="testPlayer/amqp_send.c" alt="" coords="24,160,187,189"/>
+<area shape="rect" id="node7" href="$mock_v_m_nfcd_8h.html" title="testPlayer/mockVMNfcd.h" alt="" coords="261,160,437,189"/>
+<area shape="rect" id="node9" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="331,237,507,267"/>
+<area shape="rect" id="node26" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="531,237,715,267"/>
+</map>

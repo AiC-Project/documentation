@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$grabber_8c.html" title="Screen recording/snapshots." alt="" coords="5,83,104,112"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="Main loop and graphical rendering." alt="" coords="128,83,211,112"/>
+<area shape="rect" id="node7" href="$sdl__events_8c.html" title="Produce virtual input events from SDL events." alt="" coords="235,83,352,112"/>
+</map>

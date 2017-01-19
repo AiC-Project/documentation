@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$sensors_8h.html#a43cf79468ea8b87b95692b27ec451f6e" title="Creates the data structure for sensor threads." alt="" coords="177,5,319,35"/>
+<area shape="rect" id="node5" href="$amqp__send_8h.html#abdd75fdf09a79ab7023584bc426bedf9" title="Send a payload to an AMQP exchange." alt="" coords="204,59,292,88"/>
+<area shape="rect" id="node7" href="$player__nfc_8h.html#a5e389bdd6b0949887d6bce2f1c4c33ec" title="Listen to AMQP and send data to the NFC sensor in the VM." alt="" coords="204,112,292,141"/>
+<area shape="rect" id="node9" href="$amqp__listen_8h.html#a1ccb8b60f25915a15fceccc2e0918b9d" title="Setup a consumer for a specific queue." alt="" coords="385,32,511,61"/>
+<area shape="rect" id="node13" href="$socket_8h.html#af8242b562c5990b1eb0cfc91e309e882" title="Open a socket with SO_REUSEADDR." alt="" coords="368,85,528,115"/>
+<area shape="rect" id="node15" href="$amqp__listen_8h.html#ac058263f3c34db38b9bc0f492e95f6aa" title="Consume one message from a connection object." alt="" coords="391,139,505,168"/>
+<area shape="rect" id="node17" href="$protobuf__framing_8h.html#a44b931d8595eeae39f8c84e13fde6ccc" title="Write a protobuf, with a varint32 framing, and padding at the end from an envelope." alt="" coords="396,192,500,221"/>
+<area shape="rect" id="node11" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env." alt="" coords="592,32,707,61"/>
+<area shape="rect" id="node19" href="$protobuf__framing_8h.html#a69c2bf2157da61fc5ea19a3bf35c6724" title="Convert an unsigned int to varint32 so that google’s C++ protobuf libs can read it." alt="" coords="576,192,723,221"/>
+</map>
