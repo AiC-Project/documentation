@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - AiC ATS-RomBuild</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> AiC ATS-RomBuild</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#building-android-images-for-aic">Building Android Images for AiC</a></li>
+                
+                    <li><a class="toctree-l4" href="#install-binrepo">Install bin/repo</a></li>
+                
+                    <li><a class="toctree-l4" href="#download-the-aosp-mirror-optional">Download the AOSP mirror (optional)</a></li>
+                
+                    <li><a class="toctree-l4" href="#download-the-sources">Download the sources</a></li>
+                
+                    <li><a class="toctree-l4" href="#compiling-android">Compiling Android</a></li>
+                
+                    <li><a class="toctree-l4" href="#compile-the-kernel-kitkat-only">Compile the kernel (Kitkat only):</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">AiC ATS-RomBuild</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="building-android-images-for-aic">Building Android Images for AiC</h1>
+<p>This repository automates the creation of AOSP images for the AiC project.</p>
+<p>Requirements:</p>
+<ul>
+<li>A lot of disk space and time. 90-100GB for each Android version is a reasonable assumption.</li>
+<li>A reasonably modern linux distribution (tested with Ubuntu 16.10).</li>
+<li>The commands <code>make</code> and <code>docker</code>.</li>
+</ul>
+<h2 id="install-binrepo">Install bin/repo</h2>
+<p>Repo is a Google tool used to handle many git repositories in a sane way.</p>
+<pre><code>user@server:~/aic/ats.rombuild$ make bin/repo
+curl -s https://storage.googleapis.com/git-repo-downloads/repo -o bin/repo &amp;&amp; chmod 755 bin/repo
+</code></pre>
+
+<h2 id="download-the-aosp-mirror-optional">Download the AOSP mirror (optional)</h2>
+<p>If you need to build multiple AOSP versions (for instance, Android 4.4.4 and 5.1.1) you should make
+a local mirror of all AOSP repositories.</p>
+<p>When a local mirror is available, recreating the sources of any version is faster and consumes a lot less bandwidth.</p>
+<p>Downloading too much data from android.googlesource.com can trigger a temporary ban on your IP address.</p>
+<p>The downside is that the mirror takes about 125GB and contains more than a thousand repositories.</p>
+<p>To create the local mirror, run</p>
+<pre><code>user@server:~/aic/ats.rombuild$ ./bin/mirror-update
+repo mirror has been initialized in /home/user/aic/ats.rombuild/src/mirror
+Fetching projects:   0% (1/1125)
+[...]
+Fetching projects: 100% (1125/1125), done.
+</code></pre>
+
+<p>After the first download, you can periodically run mirror-update to synchronize with the upstream sources.</p>
+<h2 id="download-the-sources">Download the sources</h2>
+<p>If you have a local mirror, run:</p>
+<pre><code>user@server:~/aic/ats.rombuildtest$ make rom-init-mirror
+mkdir -p src/aic-kitkat &amp;&amp; cd src/aic-kitkat &amp;&amp; /home/user/aic/ats.rombuildtest/bin/repo init -q
+-u https://github.com/AiC-Project/manifest.git -b aic-kitkat --reference=/home/user/aic/ats.rombuildtest/src/mirror
+warning: no common commits
+[...]
+
+repo has been initialized in /home/user/aic/ats.rombuildtest/src/aic-kitkat
+mkdir -p src/aic-lollipop &amp;&amp; cd src/aic-lollipop &amp;&amp; /home/user/aic/ats.rombuildtest/bin/repo init -q
+-u https://github.com/AiC-Project/manifest.git -b aic-lollipop --reference=/home/user/aic/ats.rombuildtest/src/mirror
+[...]
+</code></pre>
+
+<p>If you decided NOT to have a local mirror, run <code>make rom-init-nomirror</code> instead.</p>
+<p>Then create the source tree:</p>
+<pre><code>user@server:~/aic/ats.rombuildtest$ make rom-sync-all
+/home/user/aic/ats.rombuildtest/bin/rom-sync src/aic-kitkat
+Fetching projects: 100% (378/378), done.
+Syncing work tree: 100% (377/377), done.
+
+/home/user/aic/ats.rombuild/bin/rom-sync src/aic-lollipop
+Fetching projects: 100% (388/388), done.
+Syncing work tree: 100% (387/387), done.
+</code></pre>
+
+<p>The above command creates a directory under <code>src/</code> for each available branch.
+You can adapt the <code>Makefile</code> to your needs, for instance to only download a specific branch.</p>
+<p>Even after syncing, do NOT remove src/mirror as that would break the existing source trees.</p>
+<h2 id="compiling-android">Compiling Android</h2>
+<p>The following command requires access to docker, therefore you may need to run it through sudo.</p>
+<p>It creates docker images with compiler + dependencies, then run the compilation inside containers
+that share the sources through a volume.</p>
+<pre><code>user@server:~/aic/ats.rombuild$ sudo make rom-build-all
+docker build --build-arg USER_ID=1000 --build-arg GROUP_ID=1000 -t aic.rombuilder-4.4.4 docker/4.4.4
+Sending build context to Docker daemon 4.608 kB
+Step 1 : FROM ubuntu:16.04
+ ---&gt; 2fa927b5cdd3
+Step 2 : ENV archive &quot;make-3.82.tar.gz&quot;
+ ---&gt; Running in f0eb3ed0a0be
+[...]
+I/diskutils(29143): Wrote 1073741824 bytes to out/target/product/gobyt/android_system_disk.img @ 31365120
+Updated inst_boot length to be 5413KB
+Updated inst_system length to be 1048576KB
+Copying images to specified partition offsets
+File edit complete. Wrote 2 images.
+Done with bootable android system-disk image -[ out/target/product/gobyt/android_system_disk.img ]-
+WARNING: The character device /dev/vboxdrv does not exist.
+         Please install the virtualbox-dkms package and the appropriate
+         headers, most likely linux-headers-generic.
+
+         You will not be able to start VMs until this problem is fixed.
+Converting from raw image file=&quot;out/target/product/gobyt/android_system_disk.img&quot; to file=&quot;out/target/product/gobyt/android_system_disk.vdi&quot;...
+Creating dynamic image with size 1105106944 bytes (1054MB)...
+Done with VirtualBox bootable system-disk image -[ out/target/product/gobyt/android_system_disk.vdi ]-
+</code></pre>
+
+<p>For each compiled branch, two images will appear under <code>./android/{branch-name}/{gobyp, gobyt}/</code> as soon as they are built,
+respectively for phone and tablet.</p>
+<p>You can reference these directories directly from the other AiC deployment scripts, or pack everything with <code>make tar</code>.</p>
+<h2 id="compile-the-kernel-kitkat-only">Compile the kernel (Kitkat only):</h2>
+<p>In AOSP 5.x and later, the kernel is compiled with the rest of the system.</p>
+<p>To do the same for kitkat, you'll have to compile it manually before running <code>make rom-build-all</code>.</p>
+<p>You don't need to do that unless you want to change configuration, because the aic-kitkat
+sources include a precompiled kernel image.</p>
+<pre><code>$ git clone https://github.com/AiC-Project/kernel.git -b aic-kitkat src/kernel
+$ cp src/aic-kitkat/device/aicVM/blob/bzImage.config src/kernel/.config
+$ . bin/kernel-env.sh
+$ cd src/kernel
+$ make clean oldconfig
+
+(optional) make xconfig
+
+$ make -j4
+$ cp arch/x86/boot/bzImage ../aic-kitkat/device/aicVM/blob/
+$ cp drivers/video/uvesafb.ko ../aic-kitkat/device/aicVM/blob/
+$ cp .config ../aic-kitkat/device/aicVM/blob/
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.16.1
+Build Date UTC : 2017-01-19 14:08:12
+-->
