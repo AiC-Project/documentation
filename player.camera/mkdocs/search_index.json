@@ -1,0 +1,34 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "player.camera\n\n\nThis small daemon is a fork of the AOSP goldfish emulator camera\nservice, to split it into a client and a server who talk over TCP,\ninstead of qemu sockets which we cannot use.\n\n\nIt needs an additional adaptation of the sources on the VM side in\norder to work.\n\n\nThe goal of this fork is to provide a ffmpeg-backed camera that can\nplay any kind of video file as a camera input, instead of webcams like\nthe android emulator does. It switches files by listening to remote\ncommands on an AMQP server.\n\n\nBuilding\n\n\nBuilding this software requires a working C compiler, glib-2.0,\n\nrabbitmq-c\n, and pthreads.\n\n\nmake\n\n\n\nRunning\n\n\nThis d\u00e6mon requires several env variables to be set:\n\n\n\n\n\n\n\n\nVariable\n\n\nUsage\n\n\n\n\n\n\n\n\n\n\nAIC_PLAYER_VM_HOST\n\n\nIP address of the android machine\n\n\n\n\n\n\nAIC_PLAYER_VM_ID\n\n\nVirtual machine identifier\n\n\n\n\n\n\nAIC_PLAYER_AMQP_HOST\n\n\nAMQP host IP\n\n\n\n\n\n\nAIC_PLAYER_AMQP_USERNAME\n\n\nUsername for AMQP\n\n\n\n\n\n\nAIC_PLAYER_AMQP_PASSWORD\n\n\nPassword for AMQP\n\n\n\n\n\n\n\n\nUpdating the base sources\n\n\nWhile clang-format was used on the sources, a special care was given to not\ntouch at all the biggest chunks of code from AOSP in order to easily diff\nthe new changes.\n\n\nLicense\n\n\nSince it is a derivative of a part of GPLv2 software (qemu), this part is\nalso licenced under the GPLv2.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#playercamera", 
+            "text": "This small daemon is a fork of the AOSP goldfish emulator camera\nservice, to split it into a client and a server who talk over TCP,\ninstead of qemu sockets which we cannot use.  It needs an additional adaptation of the sources on the VM side in\norder to work.  The goal of this fork is to provide a ffmpeg-backed camera that can\nplay any kind of video file as a camera input, instead of webcams like\nthe android emulator does. It switches files by listening to remote\ncommands on an AMQP server.", 
+            "title": "player.camera"
+        }, 
+        {
+            "location": "/#building", 
+            "text": "Building this software requires a working C compiler, glib-2.0, rabbitmq-c , and pthreads.  make", 
+            "title": "Building"
+        }, 
+        {
+            "location": "/#running", 
+            "text": "This d\u00e6mon requires several env variables to be set:     Variable  Usage      AIC_PLAYER_VM_HOST  IP address of the android machine    AIC_PLAYER_VM_ID  Virtual machine identifier    AIC_PLAYER_AMQP_HOST  AMQP host IP    AIC_PLAYER_AMQP_USERNAME  Username for AMQP    AIC_PLAYER_AMQP_PASSWORD  Password for AMQP", 
+            "title": "Running"
+        }, 
+        {
+            "location": "/#updating-the-base-sources", 
+            "text": "While clang-format was used on the sources, a special care was given to not\ntouch at all the biggest chunks of code from AOSP in order to easily diff\nthe new changes.", 
+            "title": "Updating the base sources"
+        }, 
+        {
+            "location": "/#license", 
+            "text": "Since it is a derivative of a part of GPLv2 software (qemu), this part is\nalso licenced under the GPLv2.", 
+            "title": "License"
+        }
+    ]
+}

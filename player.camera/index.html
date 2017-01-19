@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - AiC player.camera</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> AiC player.camera</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#playercamera">player.camera</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#building">Building</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#running">Running</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#updating-the-base-sources">Updating the base sources</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#license">License</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">AiC player.camera</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="playercamera">player.camera</h1>
+<p>This small daemon is a fork of the AOSP goldfish emulator camera
+service, to split it into a client and a server who talk over TCP,
+instead of qemu sockets which we cannot use.</p>
+<p>It needs an additional adaptation of the sources on the VM side in
+order to work.</p>
+<p>The goal of this fork is to provide a ffmpeg-backed camera that can
+play any kind of video file as a camera input, instead of webcams like
+the android emulator does. It switches files by listening to remote
+commands on an AMQP server.</p>
+<h1 id="building">Building</h1>
+<p>Building this software requires a working C compiler, glib-2.0,
+<a href="https://github.com/alanxz/rabbitmq-c/">rabbitmq-c</a>, and pthreads.</p>
+<pre><code>make
+</code></pre>
+<h1 id="running">Running</h1>
+<p>This dæmon requires several env variables to be set:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AIC_PLAYER_VM_HOST</td>
+<td>IP address of the android machine</td>
+</tr>
+<tr>
+<td>AIC_PLAYER_VM_ID</td>
+<td>Virtual machine identifier</td>
+</tr>
+<tr>
+<td>AIC_PLAYER_AMQP_HOST</td>
+<td>AMQP host IP</td>
+</tr>
+<tr>
+<td>AIC_PLAYER_AMQP_USERNAME</td>
+<td>Username for AMQP</td>
+</tr>
+<tr>
+<td>AIC_PLAYER_AMQP_PASSWORD</td>
+<td>Password for AMQP</td>
+</tr>
+</tbody>
+</table>
+<h1 id="updating-the-base-sources">Updating the base sources</h1>
+<p>While clang-format was used on the sources, a special care was given to not
+touch at all the biggest chunks of code from AOSP in order to easily diff
+the new changes.</p>
+<h1 id="license">License</h1>
+<p>Since it is a derivative of a part of GPLv2 software (qemu), this part is
+also licenced under the GPLv2.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.16.1
+Build Date UTC : 2017-01-19 14:07:00
+-->
