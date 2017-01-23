@@ -30,4 +30,3 @@ Build both the binaries and the Docker images:
   Saving docker images...
   Build complete in /data/home/developer/aic/images/docker-images.tar
  
-
