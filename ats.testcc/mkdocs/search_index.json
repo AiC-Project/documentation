@@ -1,0 +1,74 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "UiAutomator known issues\n\n\nEditText\n\n\nEditText xml must contains an hint\n\n\nEditText\n    android:id=\"@+id/password_input\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:inputType=\"text\"\n    android:hint=\"\"\n    android:backgroundTint=\"@color/red\"\n    android:shadowColor=\"@color/red\"/\n\n\n\n\ntextPassword is not well supported, use \ntext\n instead\n\n\nSetup\n\n\nAndroid\n\n\nYou must install the android SDK into your computer. The latest version is provided by \ngoogle\n.\n\n\nNow setup your $ANDROID_HOME and export it into the PATH variable\n\n\nexport ANDROID_HOME=$HOME/Documents/android-sdk-linux\nexport PATH=$ANDROID_HOME/tools:$ANDROID_HOME/plateform-tools:$PATH\n\n\n\nGoogle utils\n\n\nTo run all applications, your virtual machine needs\n\n\n\n\ngoogle services\n\n\ngoogle applications\n\n\ngoogle +\n\n\ngoogle account\n\n\n\n\nDownload\n\n\nDownload the latest version of google services from \napkmirror\n.\n\n\nIn the versions list, search the last version which match \nGoogle Play services X.X.X (XXXXXXX-070)\n, for example \nGoogle Play services 7.3.29 (1866531-070)\n.\n\n\n070\n means this is an \nx86\n version.\n\n\n\n\nDownload the latest version of google+ from \napkmirror\n\n\n\n\nDownload the needed version of Gapps from \ncyanogenmod\n\n\nExtract it. It must contains a \nsystem\n folder\n\n\n\n\nInstall\n\n\nReset the adb connection and connect to the vm\n\n\nadb kill-server\nadb connect xxx.xxx.xxx.xxx\n\n\n\nInstall the google play services\n\n\nadb install com.google.android.gms-\nversion\n.apk\n\n\n\nInstall shared library. Move to gapps directory and run\n\n\nadb remount\nadb push system/framework/com.google.android.maps.jar /system/framework\nadb push system/etc/permissions/com.google.android.maps.xml /system/etc/permissions\n\n\n\nRestart your VM\n\n\nInstall google+\n\n\nadb kill-server\nadb connect xxx.xxx.xxx.xxx\nadb install com.google.android.apps.plus-\nversion\n.apk\n\n\n\nInstall gapps. Move to gapps directory add run\n\n\nadb remount\nadb push system/ /system\n\n\n\nRestart your VM\n\n\nNow you can login to a google account, so you will have access to :\n\n\n\n\ngoogle store\n\n\nupdates\n\n\napplications and services\n\n\n...\n\n\n\n\nAndroid Sensor Demo\n\n\nBattery\n\n\n\n\nLevel\n\n\nHealth\n\n\nPower source\n\n\nStatus\n\n\nTechnology\n\n\nTemperature\n\n\nVoltage\n\n\n\n\nSensor\n\n\nAccelerometer\n\n\n\n\nX value\n\n\nY value\n\n\nZ value\n\n\nName\n\n\nVendor\n\n\nPower\n\n\nRange\n\n\nResolution\n\n\nHistory\n\n\n\n\nHow to create java protobuff\n\n\nprotoc -I=./sdl/proto/. --java_out=\n/tmp/.\n sdl/proto/sensors_packet.proto\n\n\n\n\nTest Framework Integration\n\n\nTo include AiC Test Framework into existing application, you just have to put in it the \naiccore\n package. Just take a look to add \nandroidTestCompile project(path: ':aiccore')\n into \nbuild.gradle", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#uiautomator-known-issues", 
+            "text": "", 
+            "title": "UiAutomator known issues"
+        }, 
+        {
+            "location": "/#edittext", 
+            "text": "EditText xml must contains an hint  EditText\n    android:id=\"@+id/password_input\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:inputType=\"text\"\n    android:hint=\"\"\n    android:backgroundTint=\"@color/red\"\n    android:shadowColor=\"@color/red\"/   textPassword is not well supported, use  text  instead", 
+            "title": "EditText"
+        }, 
+        {
+            "location": "/#setup", 
+            "text": "", 
+            "title": "Setup"
+        }, 
+        {
+            "location": "/#android", 
+            "text": "You must install the android SDK into your computer. The latest version is provided by  google .  Now setup your $ANDROID_HOME and export it into the PATH variable  export ANDROID_HOME=$HOME/Documents/android-sdk-linux\nexport PATH=$ANDROID_HOME/tools:$ANDROID_HOME/plateform-tools:$PATH", 
+            "title": "Android"
+        }, 
+        {
+            "location": "/#google-utils", 
+            "text": "To run all applications, your virtual machine needs   google services  google applications  google +  google account", 
+            "title": "Google utils"
+        }, 
+        {
+            "location": "/#download", 
+            "text": "Download the latest version of google services from  apkmirror .  In the versions list, search the last version which match  Google Play services X.X.X (XXXXXXX-070) , for example  Google Play services 7.3.29 (1866531-070) .  070  means this is an  x86  version.   Download the latest version of google+ from  apkmirror   Download the needed version of Gapps from  cyanogenmod  Extract it. It must contains a  system  folder", 
+            "title": "Download"
+        }, 
+        {
+            "location": "/#install", 
+            "text": "Reset the adb connection and connect to the vm  adb kill-server\nadb connect xxx.xxx.xxx.xxx  Install the google play services  adb install com.google.android.gms- version .apk  Install shared library. Move to gapps directory and run  adb remount\nadb push system/framework/com.google.android.maps.jar /system/framework\nadb push system/etc/permissions/com.google.android.maps.xml /system/etc/permissions  Restart your VM  Install google+  adb kill-server\nadb connect xxx.xxx.xxx.xxx\nadb install com.google.android.apps.plus- version .apk  Install gapps. Move to gapps directory add run  adb remount\nadb push system/ /system  Restart your VM  Now you can login to a google account, so you will have access to :   google store  updates  applications and services  ...", 
+            "title": "Install"
+        }, 
+        {
+            "location": "/#android-sensor-demo", 
+            "text": "", 
+            "title": "Android Sensor Demo"
+        }, 
+        {
+            "location": "/#battery", 
+            "text": "Level  Health  Power source  Status  Technology  Temperature  Voltage", 
+            "title": "Battery"
+        }, 
+        {
+            "location": "/#sensor", 
+            "text": "", 
+            "title": "Sensor"
+        }, 
+        {
+            "location": "/#accelerometer", 
+            "text": "X value  Y value  Z value  Name  Vendor  Power  Range  Resolution  History", 
+            "title": "Accelerometer"
+        }, 
+        {
+            "location": "/#how-to-create-java-protobuff", 
+            "text": "protoc -I=./sdl/proto/. --java_out= /tmp/.  sdl/proto/sensors_packet.proto", 
+            "title": "How to create java protobuff"
+        }, 
+        {
+            "location": "/#test-framework-integration", 
+            "text": "To include AiC Test Framework into existing application, you just have to put in it the  aiccore  package. Just take a look to add  androidTestCompile project(path: ':aiccore')  into  build.gradle", 
+            "title": "Test Framework Integration"
+        }
+    ]
+}

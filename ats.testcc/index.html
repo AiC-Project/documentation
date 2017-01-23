@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - AiC ATS-Testcc</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> AiC ATS-Testcc</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#uiautomator-known-issues">UiAutomator known issues</a></li>
+                
+                    <li><a class="toctree-l4" href="#edittext">EditText</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#setup">Setup</a></li>
+                
+                    <li><a class="toctree-l4" href="#android">Android</a></li>
+                
+                    <li><a class="toctree-l4" href="#google-utils">Google utils</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#android-sensor-demo">Android Sensor Demo</a></li>
+                
+                    <li><a class="toctree-l4" href="#battery">Battery</a></li>
+                
+                    <li><a class="toctree-l4" href="#sensor">Sensor</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#how-to-create-java-protobuff">How to create java protobuff</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#test-framework-integration">Test Framework Integration</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">AiC ATS-Testcc</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="uiautomator-known-issues">UiAutomator known issues</h1>
+<h2 id="edittext">EditText</h2>
+<p>EditText xml must contains an hint</p>
+<pre><code>&lt;EditText
+    android:id="@+id/password_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="text"
+    android:hint=""
+    android:backgroundTint="@color/red"
+    android:shadowColor="@color/red"/&gt;
+</code></pre>
+<p>textPassword is not well supported, use <code>text</code> instead</p>
+<h1 id="setup">Setup</h1>
+<h2 id="android">Android</h2>
+<p>You must install the android SDK into your computer. The latest version is provided by <a href="https://developer.android.com/sdk/installing/index.html?pkg=tools">google</a>.</p>
+<p>Now setup your $ANDROID_HOME and export it into the PATH variable</p>
+<pre><code>export ANDROID_HOME=$HOME/Documents/android-sdk-linux
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/plateform-tools:$PATH
+</code></pre>
+<h2 id="google-utils">Google utils</h2>
+<p>To run all applications, your virtual machine needs</p>
+<ul>
+<li>google services</li>
+<li>google applications</li>
+<li>google +</li>
+<li>google account</li>
+</ul>
+<h3 id="download">Download</h3>
+<p>Download the latest version of google services from <a href="http://www.apkmirror.com/apk/google-inc/google-play-services/">apkmirror</a>.</p>
+<p>In the versions list, search the last version which match <code>Google Play services X.X.X (XXXXXXX-070)</code>, for example <code>Google Play services 7.3.29 (1866531-070)</code>.</p>
+<p><strong>070</strong> means this is an <code>x86</code> version.</p>
+<hr />
+<p>Download the latest version of google+ from <a href="http://www.apkmirror.com/apk/google-inc/google/google-8-9-1-136414806-release/google-8-9-1-136414806-7-android-apk-download/">apkmirror</a></p>
+<hr />
+<p>Download the needed version of Gapps from <a href="http://wiki.cyanogenmod.org/w/Google_Apps">cyanogenmod</a></p>
+<p>Extract it. It must contains a <code>system</code> folder</p>
+<hr />
+<h3 id="install">Install</h3>
+<p>Reset the adb connection and connect to the vm</p>
+<pre><code>adb kill-server
+adb connect xxx.xxx.xxx.xxx
+</code></pre>
+<p>Install the google play services</p>
+<pre><code>adb install com.google.android.gms-&lt;version&gt;.apk
+</code></pre>
+<p>Install shared library. Move to gapps directory and run</p>
+<pre><code>adb remount
+adb push system/framework/com.google.android.maps.jar /system/framework
+adb push system/etc/permissions/com.google.android.maps.xml /system/etc/permissions
+</code></pre>
+<p><strong>Restart your VM</strong></p>
+<p>Install google+</p>
+<pre><code>adb kill-server
+adb connect xxx.xxx.xxx.xxx
+adb install com.google.android.apps.plus-&lt;version&gt;.apk
+</code></pre>
+<p>Install gapps. Move to gapps directory add run</p>
+<pre><code>adb remount
+adb push system/ /system
+</code></pre>
+<p><strong>Restart your VM</strong></p>
+<p>Now you can login to a google account, so you will have access to :</p>
+<ul>
+<li>google store</li>
+<li>updates</li>
+<li>applications and services</li>
+<li>...</li>
+</ul>
+<h1 id="android-sensor-demo">Android Sensor Demo</h1>
+<h2 id="battery">Battery</h2>
+<ul>
+<li>Level</li>
+<li>Health</li>
+<li>Power source</li>
+<li>Status</li>
+<li>Technology</li>
+<li>Temperature</li>
+<li>Voltage</li>
+</ul>
+<h2 id="sensor">Sensor</h2>
+<h3 id="accelerometer">Accelerometer</h3>
+<ul>
+<li>X value</li>
+<li>Y value</li>
+<li>Z value</li>
+<li>Name</li>
+<li>Vendor</li>
+<li>Power</li>
+<li>Range</li>
+<li>Resolution</li>
+<li>History</li>
+</ul>
+<h1 id="how-to-create-java-protobuff">How to create java protobuff</h1>
+<pre><code>protoc -I=./sdl/proto/. --java_out=&quot;/tmp/.&quot; sdl/proto/sensors_packet.proto
+</code></pre>
+
+<h1 id="test-framework-integration">Test Framework Integration</h1>
+<p>To include AiC Test Framework into existing application, you just have to put in it the <code>aiccore</code> package. Just take a look to add <code>androidTestCompile project(path: ':aiccore')</code> into <code>build.gradle</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.16.1
+Build Date UTC : 2017-01-23 09:18:00
+-->
