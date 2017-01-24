@@ -54,14 +54,14 @@ project repository.
 Component | Documentation | Github
 ---------- | --------------- | ----------------
 ATS-LuaAuth | (NA) | [github](https://github.com/AiC-Project/ats.authorization)
-ATS-Authentication | [documentation](ats.auth/) | [github](https://github.com/AiC-Project/ats.authentication)
-ATS-Kyaraben | [documentation](ats.kyaraben/) | [github](https://github.com/AiC-Project/ats.authorization)
-ATS-Senza |  [documentation](ats.senza/) | [github](https://github.com/AiC-Project/ats.senza)
-player | [documentation](player/) | [github](https://github.com/AiC-Project/player)
-player.camera | [documentation](player.camera/) | [github](https://github.com/AiC-Project/player.camera)
-ATS-DSLcc | [documentation](ats.dslcc/) | [github](https://github.com/AiC-Project/ats.dslcc)
-ATS-RomBuild | [documentation](ats.rombuild/) | [github](https://github.com/AiC-Project/ats.rombuild)
-ATS build & deployment tools | [documentation](ats.aic/) | [github](https://github.com/AiC-Project/ats.aic)
+ATS-Authentication | [documentation](sub/ats.authentication/) | [github](https://github.com/AiC-Project/ats.authentication)
+ATS-Kyaraben | [documentation](sub/ats.kyaraben/) | [github](https://github.com/AiC-Project/ats.authorization)
+ATS-Senza |  [documentation](sub/ats.senza/) | [github](https://github.com/AiC-Project/ats.senza)
+player | [documentation](sub/player/) | [github](https://github.com/AiC-Project/player)
+player.camera | [documentation](sub/player.camera/) | [github](https://github.com/AiC-Project/player.camera)
+ATS-DSLcc | [documentation](sub/ats.dslcc/) | [github](https://github.com/AiC-Project/ats.dslcc)
+ATS-RomBuild | [documentation](sub/ats.rombuild/) | [github](https://github.com/AiC-Project/ats.rombuild)
+ATS build & deployment tools | [documentation](sub/ats.aic/) | [github](https://github.com/AiC-Project/ats.aic)
 
 ## Architecture Local
 
@@ -74,7 +74,7 @@ all services will run in the user machine.
 We recommend the installation in a modern Linux distribution and it
 should be able to run Docker 1.10+, and qemu-kvm through libvirt. The
 installation details are available at
-[documentation](local-aic/)
+[documentation](sub/local-aic/)
 and
 [github repository](https://github.com/AiC-Project/local-aic).
 
@@ -83,7 +83,7 @@ and
 Some Android applications depend on Google Apps (GApps).
 Documentation with instructions to install GApps in the AiC Android
 roms are available at
-[documentation](ats.gapps/)
+[documentation](sub/ats.gapps/)
 and
 [github repository](https://github.com/AiC-Project/ats.gapps).
 
