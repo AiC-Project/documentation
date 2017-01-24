@@ -1,5 +1,6 @@
-# AiC Project
+# [AiC Project](https://aic-project.github.io)
 
+<!---
 Android is an Open Source operating system developed by Google. It
 was at first targeted to mobile devices but Today it is present, as
 well, on televisions and watches. Leader on the mobile market, Android
@@ -7,6 +8,7 @@ is present in
 [in more than 14 billion devices [Callaham, John. September 29, 2015.]](http://www.androidcentral.com/google-says-there-are-now-14-billion-active-android-devices-worldwide)
 and it has more than
 [2 million applications [AppBrain. January 16, 2017.]](http://www.appbrain.com/stats/number-of-android-apps).
+-->
 
 AiC is an Open Source project that facilitates Android application
 testing. It offers many components to achieve Android virtualization
