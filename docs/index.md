@@ -85,6 +85,9 @@ roms are available at
 and
 [github repository](https://github.com/AiC-Project/ats.gapps).
 
+<!---
 ## License & Copyright
 
 TODO
+-->
+
