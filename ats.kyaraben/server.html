@@ -217,16 +217,14 @@ each only executes one task at a time.</p>
 </div>
 <p>For debugging purposes, a few options are provided:</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>$ kyaraben-worker -h
-Traceback (most recent call last):
-  File &quot;/home/travis/virtualenv/python3.5.2/bin/kyaraben-worker&quot;, line 11, in &lt;module&gt;
-    load_entry_point(&#39;ats.kyaraben&#39;, &#39;console_scripts&#39;, &#39;kyaraben-worker&#39;)()
-  File &quot;/home/travis/build/AiC-Project/ats.kyaraben/ats/kyaraben/worker/main.py&quot;, line 194, in main
-    config = config_get(environ=os.environ)
-  File &quot;/home/travis/build/AiC-Project/ats.kyaraben/ats/kyaraben/config.py&quot;, line 49, in config_get
-    environ=environ)
-  File &quot;/home/travis/build/AiC-Project/ats.util/ats/util/options.py&quot;, line 75, in get_configdict
-    raise ConfigError(&#39;Missing required options: %s&#39; % &#39;, &#39;.join(missing))
-ats.util.options.ConfigError: Missing required options: KYARABEN_LOG_JSONFORMAT, KYARABEN_ORCHESTRATION_NOVNC_HOST, KYARABEN_ORCHESTRATION_STACKPREFIX, KYARABEN_OPENSTACK_OS_AUTH_URL, KYARABEN_OPENSTACK_OS_TENANT_NAME, KYARABEN_OPENSTACK_OS_USERNAME, KYARABEN_OPENSTACK_OS_PASSWORD, KYARABEN_DOCKER_HOST, KYARABEN_DB_DSN
+usage: kyaraben-worker [-h] [--reject [REJECT [REJECT ...]]] [--tasks TASKS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --reject [REJECT [REJECT ...]]
+                        Reject message
+  --tasks TASKS         Perform a given number of tasks, then quit (0 = loop
+                        forever)
 </pre></div>
 </div>
 <p>Though it should not happen in production, tasks may fail when services are temporarily unavailable. An optional,

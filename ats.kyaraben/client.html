@@ -236,15 +236,11 @@ Commands:
 easily change the output to JSON, comma-separated-values or other formats
 supported by the <a class="reference external" href="http://docs.openstack.org/developer/cliff/">Cliff</a> package:</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>...
-  output formatter options
 
   -f {csv,json,table,value,yaml}, --format {csv,json,table,value,yaml}
                         the output format, defaults to table
   -c COLUMN, --column COLUMN
                         specify the column(s) to include, can be repeated
-
-json formatter:
-  --noindent            whether to disable indenting the JSON
 
 CSV Formatter:
   --quote {all,minimal,none,nonnumeric}
@@ -255,6 +251,9 @@ table formatter:
                         Maximum display width, &lt;1 to disable. You can also use
                         the CLIFF_MAX_TERM_WIDTH environment variable, but the
                         parameter takes precedence.
+
+json formatter:
+  --noindent            whether to disable indenting the JSON
 </pre></div>
 </div>
 <p>Typing <strong class="command">kyaraben</strong> without any option provides an interactive console in which you
