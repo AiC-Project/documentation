@@ -54,9 +54,9 @@
             
                 <li class="toctree-l3"><a href="#aic-project">AiC Project</a></li>
                 
-                    <li><a class="toctree-l4" href="#architecture-cloud">Architecture Cloud</a></li>
+                    <li><a class="toctree-l4" href="#cloud-version-architecture">Cloud Version Architecture</a></li>
                 
-                    <li><a class="toctree-l4" href="#architecture-local">Architecture Local</a></li>
+                    <li><a class="toctree-l4" href="#local-version-architecture">Local Version Architecture</a></li>
                 
                     <li><a class="toctree-l4" href="#opengapps">OpenGapps</a></li>
                 
@@ -123,12 +123,12 @@ within the cloud platform).</li>
 (in the user machine) through qemu-kvm/libvirt. The user can interact
 with the Android machine through NoVNC and AiC CLI.</li>
 </ul>
-<h2 id="architecture-cloud">Architecture Cloud</h2>
+<h2 id="cloud-version-architecture">Cloud Version Architecture</h2>
 <p><img alt="AiC Cloud architecture overview" src="./img/aic-cloud-overview.png" /></p>
 <p>The AiC architecture is divided into four big groups:</p>
 <ul>
 <li><strong>Browser</strong>: In the browser section we have one component, the <strong>frontend</strong> web application.</li>
-<li><strong>AiC Test Services (ATS)</strong>: AiC Services are composed by many components.<ul>
+<li><strong>AiC Test Services (ATS)</strong>: AiC Services are made of many components.<ul>
 <li><strong>ATS-LuaAuth</strong>: Component responsible for the user authorization.</li>
 <li><strong>ATS-Authentication</strong>: Component responsible for the user authentication.</li>
 <li><strong>ATS-Kyaraben</strong>: Component responsible for virtual machine orchestration on the cloud platform (Android machine creation and removal). It also handles the database and data docker containers (project information, APKs, test files, etc).</li>
@@ -203,7 +203,7 @@ project repository.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="architecture-local">Architecture Local</h2>
+<h2 id="local-version-architecture">Local Version Architecture</h2>
 <p><img alt="AiC Local architecture overview" src="./img/aic-local-overview.png" /></p>
 <p>AiC Local can be imagined as a simplified version of the Cloud
 service. It uses the same Android images as in the cloud version but
@@ -263,5 +263,5 @@ TODO
 
 <!--
 MkDocs version : 0.16.1
-Build Date UTC : 2017-01-24 13:26:58
+Build Date UTC : 2017-01-24 14:11:15
 -->
