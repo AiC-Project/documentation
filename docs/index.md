@@ -81,10 +81,9 @@ and
 ## OpenGapps
 
 Some Android applications depend on Google Apps (GApps).
-Documentation with instructions to install GApps in the AiC Android
-roms are available at
-[documentation](sub/ats.gapps/)
-and
+Instructions on how to install GApps in the AiC Android roms are available in the 
+[documentation](sub/ats.gapps/) 
+and 
 [github repository](https://github.com/AiC-Project/ats.gapps).
 
 <!---
