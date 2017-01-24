@@ -32,9 +32,6 @@
   
 
   
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Kyaraben 0.8 documentation" href="index.html"/>
         <link rel="next" title="Sequence Diagrams" href="diagrams.html"/>
         <link rel="prev" title="Kyaraben server &amp; worker" href="server.html"/> 
@@ -239,18 +236,19 @@ Commands:
 easily change the output to JSON, comma-separated-values or other formats
 supported by the <a class="reference external" href="http://docs.openstack.org/developer/cliff/">Cliff</a> package:</p>
 <div class="highlight-text"><div class="highlight"><pre><span></span>...
+  output formatter options
 
   -f {csv,json,table,value,yaml}, --format {csv,json,table,value,yaml}
                         the output format, defaults to table
   -c COLUMN, --column COLUMN
                         specify the column(s) to include, can be repeated
 
+json formatter:
+  --noindent            whether to disable indenting the JSON
+
 CSV Formatter:
   --quote {all,minimal,none,nonnumeric}
                         when to include quotes, defaults to nonnumeric
-
-json formatter:
-  --noindent            whether to disable indenting the JSON
 
 table formatter:
   --max-width &lt;integer&gt;
