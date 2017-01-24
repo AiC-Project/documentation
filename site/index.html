@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - AiC Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> AiC Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#aic-project">AiC Project</a></li>
+                
+                    <li><a class="toctree-l4" href="#architecture-cloud">Architecture Cloud</a></li>
+                
+                    <li><a class="toctree-l4" href="#architecture-local">Architecture Local</a></li>
+                
+                    <li><a class="toctree-l4" href="#opengapps">OpenGapps</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">AiC Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="aic-project"><a href="https://aic-project.github.io">AiC Project</a></h1>
+<!---
+Android is an Open Source operating system developed by Google. It
+was at first targeted to mobile devices but Today it is present, as
+well, on televisions and watches. Leader on the mobile market, Android
+is present in
+[in more than 14 billion devices [Callaham, John. September 29, 2015.]](http://www.androidcentral.com/google-says-there-are-now-14-billion-active-android-devices-worldwide)
+and it has more than
+[2 million applications [AppBrain. January 16, 2017.]](http://www.appbrain.com/stats/number-of-android-apps).
+-->
+
+<p>AiC is an Open Source project that facilitates Android application
+testing. It offers many components to achieve Android virtualization
+that can run applications and tests, allowing a fast feedback for the
+application developer.</p>
+<p>Two different AiC deployments are proposed:</p>
+<ul>
+<li><strong>Cloud version</strong>: Android virtualized machines are deployed
+within a cloud platform (Open Stack). The user can interact
+with the Android machine through a web application (also deployed
+within the cloud platform).</li>
+<li><strong>Local version</strong>: Android virtualized machines are deployed locally
+(in the user machine) through qemu-kvm/libvirt. The user can interact
+with the Android machine through NoVNC and AiC CLI.</li>
+</ul>
+<h2 id="architecture-cloud">Architecture Cloud</h2>
+<p><img alt="AiC Cloud architecture overview" src="./img/aic-cloud-overview.png" /></p>
+<p>The AiC architecture is divided into four big groups:</p>
+<ul>
+<li><strong>Browser</strong>: In the browser section we have one component, the <strong>frontend</strong> web application.</li>
+<li><strong>AiC Test Services (ATS)</strong>: AiC Services are composed by many components.<ul>
+<li><strong>ATS-LuaAuth</strong>: Component responsible for the user authorization.</li>
+<li><strong>ATS-Authentication</strong>: Component responsible for the user authentication.</li>
+<li><strong>ATS-Kyaraben</strong>: Component responsible for virtual machine orchestration on the cloud platform (Android machine creation and removal). It also handles the database and data docker containers (project information, APKs, test files, etc).</li>
+<li><strong>ATS-Senza</strong>: Component that will interact with Android machine emulated sensors and services (GPS, battery, rotation, GSM, etc).</li>
+</ul>
+</li>
+<li><strong>Docker host</strong>: There are many services associated to each virtual Android machine created.
+  The docker host will provide containers with these services, needed by the Android machine to work.
+  One of these containers is <strong>player</strong>, the interface between Android machine and sensors emitters.
+    Another of these containers is <strong>player.camera</strong>, a component that handles the Android machine camera input.
+    There is also an extra ATS service that runs on the docker host, which is the <strong>ATS-DSLcc</strong>, a component that parsers the AiC Testing DSL to Java files.</li>
+<li><strong>OpenStack</strong>: Cloud service where virtual Android machines are
+deployed and all services are hosted. The Android machines images are
+built with <strong>ATS-RomBuild</strong>.</li>
+</ul>
+<p>All these components can be deployed using <strong>AiC ATS build &amp; deployment tools</strong>.</p>
+<p>Details about each component can be found on its own documentation and
+project repository.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Documentation</th>
+<th>Github</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ATS-LuaAuth</td>
+<td>(NA)</td>
+<td><a href="https://github.com/AiC-Project/ats.authorization">github</a></td>
+</tr>
+<tr>
+<td>ATS-Authentication</td>
+<td><a href="./ats.auth/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/ats.authentication">github</a></td>
+</tr>
+<tr>
+<td>ATS-Kyaraben</td>
+<td><a href="./ats.kyaraben/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/ats.authorization">github</a></td>
+</tr>
+<tr>
+<td>ATS-Senza</td>
+<td><a href="./ats.senza/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/ats.senza">github</a></td>
+</tr>
+<tr>
+<td>player</td>
+<td><a href="./player/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/player">github</a></td>
+</tr>
+<tr>
+<td>player.camera</td>
+<td><a href="./player.camera/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/player.camera">github</a></td>
+</tr>
+<tr>
+<td>ATS-DSLcc</td>
+<td><a href="./ats.dslcc/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/ats.dslcc">github</a></td>
+</tr>
+<tr>
+<td>ATS-RomBuild</td>
+<td><a href="./ats.rombuild/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/ats.rombuild">github</a></td>
+</tr>
+<tr>
+<td>ATS build &amp; deployment tools</td>
+<td><a href="./ats.aic/">documentation</a></td>
+<td><a href="https://github.com/AiC-Project/ats.aic">github</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="architecture-local">Architecture Local</h2>
+<p><img alt="AiC Local architecture overview" src="./img/aic-local-overview.png" /></p>
+<p>AiC Local can be imagined as a simplified version of the Cloud
+service. It uses the same Android images as in the cloud version but
+all services will run in the user machine.</p>
+<p>We recommend the installation in a modern Linux distribution and it
+should be able to run Docker 1.10+, and qemu-kvm through libvirt. The
+installation details are available at
+<a href="./local-aic/">documentation</a>
+and
+<a href="https://github.com/AiC-Project/local-aic">github repository</a>.</p>
+<h2 id="opengapps">OpenGapps</h2>
+<p>Some Android applications depend on Google Apps (GApps).
+Documentation with instructions to install GApps in the AiC Android
+roms are available at
+<a href="./ats.gapps/">documentation</a>
+and
+<a href="https://github.com/AiC-Project/ats.gapps">github repository</a>.</p>
+<!---
+## License & Copyright
+
+TODO
+-->
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.16.1
+Build Date UTC : 2017-01-24 12:31:24
+-->
