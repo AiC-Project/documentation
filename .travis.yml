@@ -9,4 +9,4 @@ notifications:
 
 branches:
   only:
-  - docs
+  - master
