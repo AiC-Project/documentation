@@ -25,14 +25,14 @@ within the cloud platform).
 (in the user machine) through qemu-kvm/libvirt. The user can interact
 with the Android machine through NoVNC and AiC CLI.
 
-## Architecture Cloud
+## Cloud Version Architecture
 
 ![AiC Cloud architecture overview](img/aic-cloud-overview.png)
 
 The AiC architecture is divided into four big groups:
 
 * **Browser**: In the browser section we have one component, the **frontend** web application.
-* **AiC Test Services (ATS)**: AiC Services are composed by many components.
+* **AiC Test Services (ATS)**: AiC Services are made of many components.
 	* **ATS-LuaAuth**: Component responsible for the user authorization.
 	* **ATS-Authentication**: Component responsible for the user authentication.
 	* **ATS-Kyaraben**: Component responsible for virtual machine orchestration on the cloud platform (Android machine creation and removal). It also handles the database and data docker containers (project information, APKs, test files, etc).
@@ -63,7 +63,7 @@ ATS-DSLcc | [documentation](sub/ats.dslcc/) | [github](https://github.com/AiC-Pr
 ATS-RomBuild | [documentation](sub/ats.rombuild/) | [github](https://github.com/AiC-Project/ats.rombuild)
 ATS build & deployment tools | [documentation](sub/ats.aic/) | [github](https://github.com/AiC-Project/ats.aic)
 
-## Architecture Local
+## Local Version Architecture
 
 ![AiC Local architecture overview](img/aic-local-overview.png)
 
