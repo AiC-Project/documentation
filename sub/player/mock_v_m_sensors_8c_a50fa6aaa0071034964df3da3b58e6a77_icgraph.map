@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$mock_v_m_sensors_8h.html#ab0e656424d5ee23bbf7da5d5732abfb2" title="mock_vm_recv_poll" alt="" coords="131,5,269,35"/>
-<area shape="rect" id="node5" href="$test_sensors_8c.html#a289fcb29763e3ffd2c96ddf3fc90a2b4" title="test_sensors_acc" alt="" coords="317,5,443,35"/>
-<area shape="rect" id="node7" href="$test_sensors_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="491,5,541,35"/>
+<map id="readBody" name="readBody">
+<area shape="rect" id="node2" href="$mock_v_m_sensors_8h.html#ab0e656424d5ee23bbf7da5d5732abfb2" title="mock_vm_recv_poll" alt="" coords="131,5,269,32"/>
+<area shape="rect" id="node3" href="$test_sensors_8c.html#a289fcb29763e3ffd2c96ddf3fc90a2b4" title="test_sensors_acc" alt="" coords="317,5,443,32"/>
+<area shape="rect" id="node4" href="$test_sensors_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="491,5,541,32"/>
 </map>

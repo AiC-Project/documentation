@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$player__audio_8c.html#aac28838d760bc5bd9fa65cadd10d73cf" title="decode_audio_frame" alt="" coords="140,5,281,35"/>
-<area shape="rect" id="node5" href="$player__audio_8c.html#a5357f230b8fd19ed3c04233e49316c8b" title="encode_audio_frame" alt="" coords="140,59,281,88"/>
-<area shape="rect" id="node7" href="$player__audio_8c.html#a1fd0150c4090f6a008d8a8fafcff62d8" title="load_encode_and_write" alt="" coords="332,59,489,88"/>
-<area shape="rect" id="node9" href="$player__audio_8c.html#a4f9b8b73acff764504b43cbb04cdbaeb" title="audiolive_decode_encode" alt="" coords="539,59,709,88"/>
+<map id="init_packet" name="init_packet">
+<area shape="rect" id="node2" href="$player__audio_8c.html#aac28838d760bc5bd9fa65cadd10d73cf" title="decode_audio_frame" alt="" coords="139,5,282,32"/>
+<area shape="rect" id="node3" href="$player__audio_8c.html#a5357f230b8fd19ed3c04233e49316c8b" title="encode_audio_frame" alt="" coords="139,56,282,83"/>
+<area shape="rect" id="node4" href="$player__audio_8c.html#a1fd0150c4090f6a008d8a8fafcff62d8" title="load_encode_and_write" alt="" coords="331,56,490,83"/>
+<area shape="rect" id="node5" href="$player__audio_8c.html#a4f9b8b73acff764504b43cbb04cdbaeb" title="audiolive_decode_encode" alt="" coords="539,56,709,83"/>
 </map>

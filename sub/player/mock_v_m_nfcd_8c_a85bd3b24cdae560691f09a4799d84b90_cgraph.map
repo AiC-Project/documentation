@@ -1,8 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$mock_v_m_nfcd_8c.html#a024c293585ffaa71346a19a2dff58258" title="readNfcBody" alt="" coords="217,5,316,35"/>
-<area shape="rect" id="node5" href="$mock_v_m_lib_nci_8c.html#adff2d99b1fcbcac41dc153e9952f0731" title="codeNFC" alt="" coords="228,59,305,88"/>
-<area shape="rect" id="node13" href="$test_validate_n_f_c_8c.html#ad40071584d81f7b4eb479c63e725ef28" title="vshort_sendata" alt="" coords="212,112,321,141"/>
-<area shape="rect" id="node7" href="$test_validate_n_f_c_8c.html#abed538836e5efabd161cb1650e25076a" title="createBufNdef_TypeURI" alt="" coords="396,5,561,35"/>
-<area shape="rect" id="node9" href="$test_validate_n_f_c_8c.html#a8610a1d8823c030a9c6f32f3bed1d109" title="createBufNdef_TypeText" alt="" coords="395,59,563,88"/>
-<area shape="rect" id="node11" href="$test_validate_n_f_c_8c.html#ac14c9224a66a2a89125aa85960049e75" title="createBufNdef_TypeSmartPoster" alt="" coords="372,112,585,141"/>
+<map id="mock_vmnfc_recv_poll" name="mock_vmnfc_recv_poll">
+<area shape="rect" id="node2" href="$mock_v_m_nfcd_8c.html#a024c293585ffaa71346a19a2dff58258" title="readNfcBody" alt="" coords="217,5,316,32"/>
+<area shape="rect" id="node3" href="$mock_v_m_lib_nci_8c.html#adff2d99b1fcbcac41dc153e9952f0731" title="codeNFC" alt="" coords="227,56,306,83"/>
+<area shape="rect" id="node7" href="$test_validate_n_f_c_8c.html#ad40071584d81f7b4eb479c63e725ef28" title="vshort_sendata" alt="" coords="211,107,322,133"/>
+<area shape="rect" id="node4" href="$mock_v_m_lib_nci_8c.html#abed538836e5efabd161cb1650e25076a" title="createBufNdef_TypeURI" alt="" coords="395,5,562,32"/>
+<area shape="rect" id="node5" href="$mock_v_m_lib_nci_8c.html#a8610a1d8823c030a9c6f32f3bed1d109" title="createBufNdef_TypeText" alt="" coords="395,56,563,83"/>
+<area shape="rect" id="node6" href="$mock_v_m_lib_nci_8c.html#a53c6076cdb9f2097d559b0e055a532e6" title="createBufNdef_TypeSmartPoster" alt="" coords="371,107,586,133"/>
 </map>

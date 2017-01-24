@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node21" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="797,83,869,112"/>
-<area shape="rect" id="node24" href="$logger_8h.html" title="Logging macros." alt="" coords="893,83,960,112"/>
-<area shape="rect" id="node28" href="$host__gl_8h.html" title="OpenGL proxy management." alt="" coords="984,83,1059,112"/>
+<map id="src/host_gl.c" name="src/host_gl.c">
+<area shape="rect" id="node11" href="$socket_8h.html" title="Define socket utilities to simplify networking. " alt="" coords="807,80,879,107"/>
+<area shape="rect" id="node12" href="$logger_8h.html" title="Logging macros. " alt="" coords="903,80,971,107"/>
+<area shape="rect" id="node14" href="$host__gl_8h.html" title="OpenGL proxy management. " alt="" coords="996,80,1069,107"/>
 </map>

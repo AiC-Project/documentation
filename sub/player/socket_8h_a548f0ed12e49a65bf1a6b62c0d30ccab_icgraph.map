@@ -1,7 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$grabber_8c.html#a93df6fe2a489eecafc9f9f92004f12fe" title="grab_handler_sock" alt="" coords="149,5,280,35"/>
-<area shape="rect" id="node5" href="$player__audio_8c.html#aee1ca14a933f54d8d70fcd22a2a8ece1" title="aic_audioplayer" alt="" coords="159,59,271,88"/>
-<area shape="rect" id="node9" href="$test_validate_n_f_c_8c.html#a33fcb99963a6a0e0b93f3673f96d9e53" title="getconnect" alt="" coords="172,112,257,141"/>
-<area shape="rect" id="node7" href="$player__audio_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="328,59,379,88"/>
-<area shape="rect" id="node11" href="$test_validate_n_f_c_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="328,112,379,141"/>
+<map id="open_socket" name="open_socket">
+<area shape="rect" id="node2" href="$grabber_8c.html#a93df6fe2a489eecafc9f9f92004f12fe" title="grab_handler_sock" alt="" coords="149,5,280,32"/>
+<area shape="rect" id="node3" href="$player__audio_8c.html#aee1ca14a933f54d8d70fcd22a2a8ece1" title="aic_audioplayer" alt="" coords="159,56,271,83"/>
+<area shape="rect" id="node4" href="$player__audio_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="328,56,379,83"/>
 </map>

@@ -1,7 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$grabber_8c.html#a7873c0d7b27c48d0d373c4e4733524ca" title="pgrab" alt="" coords="207,5,260,35"/>
-<area shape="rect" id="node7" href="$grabber_8c.html#a59a47331bd2c7708cc7aa10a2f1f5bbc" title="grab_handler_amqp" alt="" coords="167,59,300,88"/>
-<area shape="rect" id="node11" href="$sdl__events_8c.html#addfa3b2d26af3642ad3bd8c4418a43e3" title="Produce a key press/release event to the virtual input." alt="" coords="200,112,267,141"/>
-<area shape="rect" id="node5" href="$grabber_8c.html#a93df6fe2a489eecafc9f9f92004f12fe" title="grab_handler_sock" alt="" coords="349,5,480,35"/>
-<area shape="rect" id="node9" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="389,59,440,88"/>
+<map id="ffmpeg_grabber" name="ffmpeg_grabber">
+<area shape="rect" id="node2" href="$grabber_8c.html#a7873c0d7b27c48d0d373c4e4733524ca" title="pgrab" alt="" coords="206,5,261,32"/>
+<area shape="rect" id="node4" href="$grabber_8c.html#a59a47331bd2c7708cc7aa10a2f1f5bbc" title="grab_handler_amqp" alt="" coords="166,56,301,83"/>
+<area shape="rect" id="node6" href="$sdl__events_8c.html#addfa3b2d26af3642ad3bd8c4418a43e3" title="Produce a key press/release event to the virtual input. " alt="" coords="200,107,267,133"/>
+<area shape="rect" id="node3" href="$grabber_8c.html#a93df6fe2a489eecafc9f9f92004f12fe" title="grab_handler_sock" alt="" coords="349,5,480,32"/>
+<area shape="rect" id="node5" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="389,56,440,83"/>
 </map>

@@ -14,6 +14,8 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="player__audio_8c.html#aee1ca14a933f54d8d70fcd22a2a8ece1"><param name="Name" value="aic_audioplayer"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="render__api_8h.html#a7963cb6edbe8f673efceb71159eff7fb"><param name="Name" value="AiC_CallbackRotation"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="render__api_8h.html#ac750289cb029558e2d02d0cfd2acc7f9"><param name="Name" value="AiC_setDPI"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="md__r_e_a_d_m_e.html"><param name="Name" value="AiCPlayer - README"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="md__r_e_a_d_m_e_messages.html"><param name="Name" value="AMQP Messages Reference"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="amqp__listen_8c.html#ac058263f3c34db38b9bc0f492e95f6aa"><param name="Name" value="amqp_consume"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="amqp__listen_8c.html#ac058263f3c34db38b9bc0f492e95f6aa"><param name="Name" value="amqp_listen.c"></OBJECT>
@@ -74,13 +76,11 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="buffer__sizes_8h.html#a6821bafc3c88dfb2e433a095df9940c6"><param name="Name" value="BUF_SIZE"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="grabber_8h.html#a62a46cb032ba1774d8683906d23f4804"><param name="Name" value="CLIP"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#a881062df150ca1a6dcae4a5be5fcccb6"><param name="Name" value="cmake"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_lib_nci_8c.html#adff2d99b1fcbcac41dc153e9952f0731"><param name="Name" value="codeNFC"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_lib_nci_8c.html#adff2d99b1fcbcac41dc153e9952f0731"><param name="Name" value="mockVMLibNci.c"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_lib_nci_8h.html#adff2d99b1fcbcac41dc153e9952f0731"><param name="Name" value="mockVMLibNci.h"></OBJECT>
   </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c___r_e_a_d_m_e_8md.html#a6d5cc5ef801557ca52f9dbb021d19a73"><param name="Name" value="com"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="structread__args.html#a0a1433271fddfed84bc959ae6c202e5a"><param name="Name" value="cond"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="config__env_8c.html"><param name="Name" value="config_env.c"></OBJECT>
   <UL>
@@ -152,7 +152,6 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="player__audio_8c.html#a5357f230b8fd19ed3c04233e49316c8b"><param name="Name" value="encode_audio_frame"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_b_t___h_d_r.html#ae80ef262c94a1c7a4773ec7e4a3c8db9"><param name="Name" value="event"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="structs__sensor__params.html#a4e520e111c57262208811b1b77599902"><param name="Name" value="exchange"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#a967a2457ba79552484de9f031739474c"><param name="Name" value="executables"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c_8c.html#aa93f0eb578d23995850d61f7d61c55c1"><param name="Name" value="FALSE"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="grabber_8c.html#a0497bd4df0c871e0997655fd69f32cd6"><param name="Name" value="ffmpeg_grabber"></OBJECT>
   <UL>
@@ -1109,7 +1108,6 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_nfcd_8c.html#a0a671f1e68fb643a804864644c48ff97"><param name="Name" value="NFC_UPDATE_PERIOD"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="socket_8c.html#a55408b2481eec65b622d57cc06f79edda210508cc7a0b0c8f89d4dbf0cfe3027b"><param name="Name" value="NODELAY"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="socket_8c.html#a55408b2481eec65b622d57cc06f79eddac157bdf0b85a40d2619cbc8bc1ae5fe2"><param name="Name" value="NONE"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c___r_e_a_d_m_e_8md.html#ad66f343e0effa4a1bd153860c4eebb5c"><param name="Name" value="o"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_b_t___h_d_r.html#ac681806181c80437cfab37335f62ff39"><param name="Name" value="offset"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="socket_8c.html#a548f0ed12e49a65bf1a6b62c0d30ccab"><param name="Name" value="open_socket"></OBJECT>
   <UL>
@@ -1158,7 +1156,6 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="structs__sensor__params__acc.html#a4e5b807b0251f8410d21e6a850430c56"><param name="Name" value="s_sensor_params_acc"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="grabber_8c.html#a7873c0d7b27c48d0d373c4e4733524ca"><param name="Name" value="pgrab"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#a397c39e03a01a685881fd36e89392f43"><param name="Name" value="player"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="player__audio_8c.html"><param name="Name" value="player_audio.c"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="player__audio_8c.html#ae26b4b320a7995565d0fb085db4d788b"><param name="Name" value="add_samples_to_fifo"></OBJECT>
@@ -1241,14 +1238,6 @@
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="grabber_8c.html#a46167a977503a51eb6efe97e870568c3"><param name="Name" value="READ_BUFFER_SIZE"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_sensors_8c.html#a50fa6aaa0071034964df3da3b58e6a77"><param name="Name" value="readBody"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html"><param name="Name" value="README.md"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#a881062df150ca1a6dcae4a5be5fcccb6"><param name="Name" value="cmake"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#a967a2457ba79552484de9f031739474c"><param name="Name" value="executables"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#a397c39e03a01a685881fd36e89392f43"><param name="Name" value="player"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#af847a3dfae77d5ba9e500e3028355c6a"><param name="Name" value="UI"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e__messages_8md.html"><param name="Name" value="README_messages.md"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_nfcd_8c.html#a024c293585ffaa71346a19a2dff58258"><param name="Name" value="readNfcBody"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="structthread__args.html#af2c4d6043e95a7869af5452ca61118a9"><param name="Name" value="record_filename"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="render__api_8h.html"><param name="Name" value="render_api.h"></OBJECT>
@@ -1463,11 +1452,9 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="sensors_8h.html#ad22a52fad121558a7a64bba9cd23795e"><param name="Name" value="sensor_params"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="sensors_8h.html#a048261bc89e0e80e7e1edc5be39b6114"><param name="Name" value="start_sensor"></OBJECT>
   </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e__messages_8md.html#a970439c4e463ea0bb12120006231f772"><param name="Name" value="sensors"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="render__api_8h.html#a3caca688297dc497d41afceca14a4178"><param name="Name" value="setOpenGLDisplayRotation"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="render__api_8h.html#a0a8064c551728bb88523a7bfc10472ce"><param name="Name" value="setStreamMode"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_nfcd_8c.html#aee8878b289f73eae260255976c807f42"><param name="Name" value="SIM_NFC_PORT"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c___r_e_a_d_m_e_8md.html#a64ec70591e393276b5f75643496fcc97"><param name="Name" value="sleep"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="structread__args.html#a38e99abf9c2b5702286500209c26a350"><param name="Name" value="sock"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c_8c.html#ae334b73cedf7204187dce3f817576009"><param name="Name" value="SOCKADDR"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c_8c.html#a29046dc0232f0e5c70adbc25090d77b8"><param name="Name" value="SOCKADDR_IN"></OBJECT>
@@ -1643,12 +1630,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c_8c.html#ac1deab4cf4a6e808b1e8686b70c4ddf1"><param name="Name" value="vshort_actidata"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c_8c.html#ad40071584d81f7b4eb479c63e725ef28"><param name="Name" value="vshort_sendata"></OBJECT>
   </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c___r_e_a_d_m_e_8md.html"><param name="Name" value="testValidateNFC_README.md"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c___r_e_a_d_m_e_8md.html#a6d5cc5ef801557ca52f9dbb021d19a73"><param name="Name" value="com"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c___r_e_a_d_m_e_8md.html#ad66f343e0effa4a1bd153860c4eebb5c"><param name="Name" value="o"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c___r_e_a_d_m_e_8md.html#a64ec70591e393276b5f75643496fcc97"><param name="Name" value="sleep"></OBJECT>
-  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="md_test_n_f_c_test_validate_n_f_c__r_e_a_d_m_e.html"><param name="Name" value="testValidateNFC_README"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="structthread__args.html"><param name="Name" value="thread_args"></OBJECT>
   <UL>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="structthread__args.html#a2680f9fe5653a596c7e779b838180fdc"><param name="Name" value="mtx"></OBJECT>
@@ -1673,7 +1655,6 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="structs__sensor__params__acc.html#aa4d492430e08dc09a4d1d0e2a06dbddc"><param name="Name" value="s_sensor_params_acc"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="test_validate_n_f_c_8c.html#aa8cecfc5c5c054d2875c03e77b7be15d"><param name="Name" value="TRUE"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_r_e_a_d_m_e_8md.html#af847a3dfae77d5ba9e500e3028355c6a"><param name="Name" value="UI"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8c.html#aa8d7cc77567beff0a1e499d54807255d"><param name="Name" value="USER_EVENT_NEWCLIENT"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8c.html#a17676ea61e4ed741007f55af61f54be5"><param name="Name" value="USER_EVENT_ROTATION"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="mock_v_m_lib_nci_8c.html#ac1deab4cf4a6e808b1e8686b70c4ddf1"><param name="Name" value="vshort_actidata"></OBJECT>

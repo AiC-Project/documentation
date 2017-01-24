@@ -1,9 +1,9 @@
-<map id="G" name="G">
-<area shape="rect" id="node11" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="371,83,448,112"/>
-<area shape="rect" id="node16" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="435,160,539,189"/>
-<area shape="rect" id="node18" href="$player__nfc_8h.html" title="Nfc player." alt="" coords="523,83,616,112"/>
-<area shape="rect" id="node23" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="744,83,816,112"/>
-<area shape="rect" id="node27" href="$amqp__listen_8h.html" title="Utilities for consuming RabbitMQ messages." alt="" coords="840,83,941,112"/>
-<area shape="rect" id="node31" href="$config__env_8h.html" title="Utilities to get config values from the environment." alt="" coords="965,83,1061,112"/>
-<area shape="rect" id="node33" href="$logger_8h.html" title="Logging macros." alt="" coords="1085,83,1152,112"/>
+<map id="testPlayer/mockVMLibNci.h" name="testPlayer/mockVMLibNci.h">
+<area shape="rect" id="node6" href="$sensors_8h.html" title="Defines ports and structures for sensor threads. " alt="" coords="371,80,449,107"/>
+<area shape="rect" id="node8" href="$buffer__sizes_8h.html" title="Define common buffer sizes. " alt="" coords="437,155,541,181"/>
+<area shape="rect" id="node9" href="$player__nfc_8h.html" title="Nfc player. " alt="" coords="525,80,619,107"/>
+<area shape="rect" id="node11" href="$socket_8h.html" title="Define socket utilities to simplify networking. " alt="" coords="747,80,819,107"/>
+<area shape="rect" id="node13" href="$amqp__listen_8h.html" title="Utilities for consuming RabbitMQ messages. " alt="" coords="843,80,945,107"/>
+<area shape="rect" id="node15" href="$config__env_8h.html" title="Utilities to get config values from the environment. " alt="" coords="971,80,1067,107"/>
+<area shape="rect" id="node16" href="$logger_8h.html" title="Logging macros. " alt="" coords="1091,80,1159,107"/>
 </map>

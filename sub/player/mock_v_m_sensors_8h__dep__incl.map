@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$mock_v_m_sensors_8c.html" title="testPlayer/mockVMSensors.c" alt="" coords="5,83,200,112"/>
-<area shape="rect" id="node5" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="224,83,389,112"/>
+<map id="testPlayer/mockVMSensors.h" name="testPlayer/mockVMSensors.h">
+<area shape="rect" id="node2" href="$mock_v_m_sensors_8c.html" title="testPlayer/mockVMSensors.c" alt="" coords="5,80,200,107"/>
+<area shape="rect" id="node3" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="225,80,391,107"/>
 </map>

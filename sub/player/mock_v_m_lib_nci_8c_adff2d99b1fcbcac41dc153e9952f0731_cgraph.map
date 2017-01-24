@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$test_validate_n_f_c_8c.html#abed538836e5efabd161cb1650e25076a" title="createBufNdef_TypeURI" alt="" coords="159,5,324,35"/>
-<area shape="rect" id="node5" href="$test_validate_n_f_c_8c.html#a8610a1d8823c030a9c6f32f3bed1d109" title="createBufNdef_TypeText" alt="" coords="157,59,325,88"/>
-<area shape="rect" id="node7" href="$test_validate_n_f_c_8c.html#ac14c9224a66a2a89125aa85960049e75" title="createBufNdef_TypeSmartPoster" alt="" coords="135,112,348,141"/>
+<map id="codeNFC" name="codeNFC">
+<area shape="rect" id="node2" href="$mock_v_m_lib_nci_8c.html#abed538836e5efabd161cb1650e25076a" title="createBufNdef_TypeURI" alt="" coords="158,5,325,32"/>
+<area shape="rect" id="node3" href="$mock_v_m_lib_nci_8c.html#a8610a1d8823c030a9c6f32f3bed1d109" title="createBufNdef_TypeText" alt="" coords="157,56,325,83"/>
+<area shape="rect" id="node4" href="$mock_v_m_lib_nci_8c.html#a53c6076cdb9f2097d559b0e055a532e6" title="createBufNdef_TypeSmartPoster" alt="" coords="134,107,349,133"/>
 </map>

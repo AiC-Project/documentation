@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="92,83,169,112"/>
-<area shape="rect" id="node13" href="$logger_8h.html" title="Logging macros." alt="" coords="372,83,439,112"/>
-<area shape="rect" id="node9" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="192,160,296,189"/>
+<map id="testPlayer/mockVMSensors.h" name="testPlayer/mockVMSensors.h">
+<area shape="rect" id="node2" href="$sensors_8h.html" title="Defines ports and structures for sensor threads. " alt="" coords="93,80,171,107"/>
+<area shape="rect" id="node7" href="$logger_8h.html" title="Logging macros. " alt="" coords="374,80,441,107"/>
+<area shape="rect" id="node5" href="$buffer__sizes_8h.html" title="Define common buffer sizes. " alt="" coords="195,155,299,181"/>
 </map>

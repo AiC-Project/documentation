@@ -1,8 +1,8 @@
-<map id="G" name="G">
-<area shape="rect" id="node51" href="$amqp__listen_8h.html" title="Utilities for consuming RabbitMQ messages." alt="" coords="3099,83,3200,112"/>
-<area shape="rect" id="node55" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="792,160,896,189"/>
-<area shape="rect" id="node57" href="$logger_8h.html" title="Logging macros." alt="" coords="3224,83,3291,112"/>
-<area shape="rect" id="node63" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="725,83,803,112"/>
-<area shape="rect" id="node68" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="597,160,669,189"/>
-<area shape="rect" id="node72" href="$grabber_8h.html" title="grabber records videos or snapshots from ampq messages" alt="" coords="525,83,600,112"/>
+<map id="src/grabber.c" name="src/grabber.c">
+<area shape="rect" id="node26" href="$amqp__listen_8h.html" title="Utilities for consuming RabbitMQ messages. " alt="" coords="3115,80,3217,107"/>
+<area shape="rect" id="node28" href="$buffer__sizes_8h.html" title="Define common buffer sizes. " alt="" coords="795,155,899,181"/>
+<area shape="rect" id="node29" href="$logger_8h.html" title="Logging macros. " alt="" coords="3242,80,3309,107"/>
+<area shape="rect" id="node32" href="$sensors_8h.html" title="Defines ports and structures for sensor threads. " alt="" coords="726,80,804,107"/>
+<area shape="rect" id="node33" href="$socket_8h.html" title="Define socket utilities to simplify networking. " alt="" coords="597,155,669,181"/>
+<area shape="rect" id="node35" href="$grabber_8h.html" title="grabber records videos or snapshots from ampq messages " alt="" coords="523,80,599,107"/>
 </map>

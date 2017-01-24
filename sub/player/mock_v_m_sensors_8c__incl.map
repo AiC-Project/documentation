@@ -1,7 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$mock_v_m_sensors_8h.html" title="mockVMSensors.h" alt="" coords="209,83,343,112"/>
-<area shape="rect" id="node15" href="$logger_8h.html" title="Logging macros." alt="" coords="372,160,439,189"/>
-<area shape="rect" id="node20" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="475,83,547,112"/>
-<area shape="rect" id="node5" href="$sensors_8h.html" title="Defines ports and structures for sensor threads." alt="" coords="92,160,169,189"/>
-<area shape="rect" id="node11" href="$buffer__sizes_8h.html" title="Define common buffer sizes." alt="" coords="192,237,296,267"/>
+<map id="testPlayer/mockVMSensors.c" name="testPlayer/mockVMSensors.c">
+<area shape="rect" id="node2" href="$mock_v_m_sensors_8h.html" title="mockVMSensors.h" alt="" coords="213,80,347,107"/>
+<area shape="rect" id="node8" href="$logger_8h.html" title="Logging macros. " alt="" coords="374,155,441,181"/>
+<area shape="rect" id="node10" href="$socket_8h.html" title="Define socket utilities to simplify networking. " alt="" coords="479,80,551,107"/>
+<area shape="rect" id="node3" href="$sensors_8h.html" title="Defines ports and structures for sensor threads. " alt="" coords="93,155,171,181"/>
+<area shape="rect" id="node6" href="$buffer__sizes_8h.html" title="Define common buffer sizes. " alt="" coords="195,229,299,256"/>
 </map>

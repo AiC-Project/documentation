@@ -1,7 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$host__gl_8c.html#a996ddc93a44b79d5170cbb809ad75703" title="Manage the remote OpenGL to the VM." alt="" coords="213,5,344,35"/>
-<area shape="rect" id="node7" href="$player__nfc_8c.html#a5e389bdd6b0949887d6bce2f1c4c33ec" title="Listen to AMQP and send data to the NFC sensor in the VM." alt="" coords="235,59,323,88"/>
-<area shape="rect" id="node5" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="428,5,479,35"/>
-<area shape="rect" id="node9" href="$sensors_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="428,59,479,88"/>
-<area shape="rect" id="node11" href="$test_sensors_8c.html#a1c70e09f8acd59a8de1acb56586e4049" title="test_sensors_nfc" alt="" coords="392,112,515,141"/>
+<map id="open_socket_reuseaddr" name="open_socket_reuseaddr">
+<area shape="rect" id="node2" href="$host__gl_8c.html#a996ddc93a44b79d5170cbb809ad75703" title="Manage the remote OpenGL to the VM. " alt="" coords="213,5,344,32"/>
+<area shape="rect" id="node4" href="$player__nfc_8c.html#a5e389bdd6b0949887d6bce2f1c4c33ec" title="Listen to AMQP and send data to the NFC sensor in the VM. " alt="" coords="235,56,323,83"/>
+<area shape="rect" id="node3" href="$main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="428,5,479,32"/>
+<area shape="rect" id="node5" href="$sensors_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="428,56,479,83"/>
+<area shape="rect" id="node6" href="$test_sensors_8c.html#a1c70e09f8acd59a8de1acb56586e4049" title="test_sensors_nfc" alt="" coords="392,107,515,133"/>
 </map>

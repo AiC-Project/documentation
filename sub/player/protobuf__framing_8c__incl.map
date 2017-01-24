@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node9" href="$protobuf__framing_8h.html" title="Utility to convert framing to varint32 for google’s parser." alt="" coords="69,83,200,112"/>
-<area shape="rect" id="node13" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="99,160,171,189"/>
+<map id="src/protobuf_framing.c" name="src/protobuf_framing.c">
+<area shape="rect" id="node5" href="$protobuf__framing_8h.html" title="Utility to convert framing to varint32 for google’s parser. " alt="" coords="71,80,200,107"/>
+<area shape="rect" id="node6" href="$socket_8h.html" title="Define socket utilities to simplify networking. " alt="" coords="100,155,172,181"/>
 </map>

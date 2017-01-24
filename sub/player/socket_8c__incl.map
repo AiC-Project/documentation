@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node21" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="808,83,880,112"/>
-<area shape="rect" id="node24" href="$logger_8h.html" title="Logging macros." alt="" coords="904,83,971,112"/>
+<map id="src/socket.c" name="src/socket.c">
+<area shape="rect" id="node11" href="$socket_8h.html" title="Define socket utilities to simplify networking. " alt="" coords="817,80,889,107"/>
+<area shape="rect" id="node12" href="$logger_8h.html" title="Logging macros. " alt="" coords="914,80,981,107"/>
 </map>

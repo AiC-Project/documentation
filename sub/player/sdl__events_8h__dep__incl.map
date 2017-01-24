@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$main_8c.html" title="Main loop and graphical rendering." alt="" coords="5,83,88,112"/>
-<area shape="rect" id="node5" href="$sdl__events_8c.html" title="Produce virtual input events from SDL events." alt="" coords="112,83,229,112"/>
+<map id="include/sdl_events.h" name="include/sdl_events.h">
+<area shape="rect" id="node2" href="$main_8c.html" title="Main loop and graphical rendering. " alt="" coords="5,80,87,107"/>
+<area shape="rect" id="node3" href="$sdl__events_8c.html" title="Produce virtual input events from SDL events. " alt="" coords="111,80,229,107"/>
 </map>

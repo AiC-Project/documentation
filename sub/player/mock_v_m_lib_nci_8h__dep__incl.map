@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="5,83,189,112"/>
-<area shape="rect" id="node5" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="213,83,389,112"/>
-<area shape="rect" id="node7" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="413,83,579,112"/>
+<map id="testPlayer/mockVMLibNci.h" name="testPlayer/mockVMLibNci.h">
+<area shape="rect" id="node2" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="5,80,189,107"/>
+<area shape="rect" id="node3" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="215,80,391,107"/>
+<area shape="rect" id="node4" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="415,80,581,107"/>
 </map>

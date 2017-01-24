@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$sdl__translate_8h.html" title="Convert sdl events to uinput codes." alt="" coords="159,83,265,112"/>
-<area shape="rect" id="node11" href="$logger_8h.html" title="Logging macros." alt="" coords="404,83,471,112"/>
+<map id="src/sdl_translate.c" name="src/sdl_translate.c">
+<area shape="rect" id="node2" href="$sdl__translate_8h.html" title="Convert sdl events to uinput codes. " alt="" coords="159,80,265,107"/>
+<area shape="rect" id="node6" href="$logger_8h.html" title="Logging macros. " alt="" coords="406,80,473,107"/>
 </map>

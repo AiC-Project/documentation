@@ -1,12 +1,12 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$player__audio_8c.html#a88f220faad1baa2753ed61330971ce07" title="init_fifo" alt="" coords="272,5,336,35"/>
-<area shape="rect" id="node5" href="$player__audio_8c.html#a7ee8b4fa5255ba1e25decc9d96b5a983" title="init_resampler" alt="" coords="253,59,355,88"/>
-<area shape="rect" id="node7" href="$player__audio_8c.html#a22ab1e8a1d6f3fac1f0846c372fddcaa" title="init_converted_samples" alt="" coords="433,109,591,139"/>
-<area shape="rect" id="node11" href="$player__audio_8c.html#a06ae67b30527ba39c9683a73987b88bd" title="convert_samples" alt="" coords="452,163,572,192"/>
-<area shape="rect" id="node14" href="$player__audio_8c.html#ae26b4b320a7995565d0fb085db4d788b" title="add_samples_to_fifo" alt="" coords="233,213,375,243"/>
-<area shape="rect" id="node16" href="$player__audio_8c.html#a1fd0150c4090f6a008d8a8fafcff62d8" title="load_encode_and_write" alt="" coords="225,267,383,296"/>
-<area shape="rect" id="node9" href="$player__audio_8c.html#aa51efe8890c8ebdfedfacbf61a13f7aa" title="get_error_text" alt="" coords="641,189,743,219"/>
-<area shape="rect" id="node18" href="$player__audio_8c.html#ae0deb6480c1c387f2035f2ddb91f8b14" title="init_output_frame" alt="" coords="451,216,573,245"/>
-<area shape="rect" id="node21" href="$player__audio_8c.html#a5357f230b8fd19ed3c04233e49316c8b" title="encode_audio_frame" alt="" coords="441,269,583,299"/>
-<area shape="rect" id="node23" href="$player__audio_8c.html#abc8ec9c5260ec70ecebb37cbcb746394" title="init_packet" alt="" coords="649,269,735,299"/>
+<map id="audiolive_decode_encode" name="audiolive_decode_encode">
+<area shape="rect" id="node2" href="$player__audio_8c.html#a88f220faad1baa2753ed61330971ce07" title="init_fifo" alt="" coords="272,5,336,32"/>
+<area shape="rect" id="node3" href="$player__audio_8c.html#a7ee8b4fa5255ba1e25decc9d96b5a983" title="init_resampler" alt="" coords="253,56,355,83"/>
+<area shape="rect" id="node4" href="$player__audio_8c.html#a22ab1e8a1d6f3fac1f0846c372fddcaa" title="init_converted_samples" alt="" coords="433,107,591,133"/>
+<area shape="rect" id="node6" href="$player__audio_8c.html#a06ae67b30527ba39c9683a73987b88bd" title="convert_samples" alt="" coords="451,157,573,184"/>
+<area shape="rect" id="node7" href="$player__audio_8c.html#ae26b4b320a7995565d0fb085db4d788b" title="add_samples_to_fifo" alt="" coords="233,208,375,235"/>
+<area shape="rect" id="node8" href="$player__audio_8c.html#a1fd0150c4090f6a008d8a8fafcff62d8" title="load_encode_and_write" alt="" coords="225,259,383,285"/>
+<area shape="rect" id="node5" href="$player__audio_8c.html#aa51efe8890c8ebdfedfacbf61a13f7aa" title="get_error_text" alt="" coords="641,183,743,209"/>
+<area shape="rect" id="node9" href="$player__audio_8c.html#ae0deb6480c1c387f2035f2ddb91f8b14" title="init_output_frame" alt="" coords="451,208,573,235"/>
+<area shape="rect" id="node10" href="$player__audio_8c.html#a5357f230b8fd19ed3c04233e49316c8b" title="encode_audio_frame" alt="" coords="441,259,583,285"/>
+<area shape="rect" id="node11" href="$player__audio_8c.html#abc8ec9c5260ec70ecebb37cbcb746394" title="init_packet" alt="" coords="649,259,735,285"/>
 </map>

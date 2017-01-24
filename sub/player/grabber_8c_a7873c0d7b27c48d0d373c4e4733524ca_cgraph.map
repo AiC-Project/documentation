@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$grabber_8h.html#a0497bd4df0c871e0997655fd69f32cd6" title="Function passed to a thread in order to detect format encoding &#45; encode frame&#45; and write in a file..." alt="" coords="109,5,221,35"/>
-<area shape="rect" id="node5" href="$grabber_8h.html#a48f6cd7606f077585e21d8aec736a1ee" title="grab_snapshot" alt="" coords="112,59,219,88"/>
+<map id="pgrab" name="pgrab">
+<area shape="rect" id="node2" href="$grabber_8c.html#a0497bd4df0c871e0997655fd69f32cd6" title="Function passed to a thread in order to detect format encoding &#45; encode frame&#45; and write in a file..." alt="" coords="109,5,221,32"/>
+<area shape="rect" id="node3" href="$grabber_8c.html#a48f6cd7606f077585e21d8aec736a1ee" title="grab_snapshot" alt="" coords="112,56,219,83"/>
 </map>

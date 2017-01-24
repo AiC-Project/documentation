@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$player__audio_8c.html#a1fd0150c4090f6a008d8a8fafcff62d8" title="load_encode_and_write" alt="" coords="177,5,335,35"/>
-<area shape="rect" id="node5" href="$player__audio_8c.html#a4f9b8b73acff764504b43cbb04cdbaeb" title="audiolive_decode_encode" alt="" coords="384,5,555,35"/>
+<map id="init_output_frame" name="init_output_frame">
+<area shape="rect" id="node2" href="$player__audio_8c.html#a1fd0150c4090f6a008d8a8fafcff62d8" title="load_encode_and_write" alt="" coords="177,5,335,32"/>
+<area shape="rect" id="node3" href="$player__audio_8c.html#a4f9b8b73acff764504b43cbb04cdbaeb" title="audiolive_decode_encode" alt="" coords="384,5,555,32"/>
 </map>

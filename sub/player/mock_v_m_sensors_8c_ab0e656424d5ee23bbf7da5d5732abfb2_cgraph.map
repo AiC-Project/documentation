@@ -1,5 +1,5 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$mock_v_m_sensors_8c.html#a2d1f9d47dfb0bdc51142ee60362c21fe" title="socket_inaddr_any_server" alt="" coords="193,5,367,35"/>
-<area shape="rect" id="node5" href="$mock_v_m_sensors_8c.html#ad686d65822b842bdcb7703c7c277ad87" title="acceptNewClient" alt="" coords="219,59,341,88"/>
-<area shape="rect" id="node7" href="$mock_v_m_sensors_8c.html#a50fa6aaa0071034964df3da3b58e6a77" title="readBody" alt="" coords="241,112,319,141"/>
+<map id="mock_vm_recv_poll" name="mock_vm_recv_poll">
+<area shape="rect" id="node2" href="$mock_v_m_sensors_8c.html#a2d1f9d47dfb0bdc51142ee60362c21fe" title="socket_inaddr_any_server" alt="" coords="193,5,367,32"/>
+<area shape="rect" id="node3" href="$mock_v_m_sensors_8c.html#ad686d65822b842bdcb7703c7c277ad87" title="acceptNewClient" alt="" coords="219,56,341,83"/>
+<area shape="rect" id="node4" href="$mock_v_m_sensors_8c.html#a50fa6aaa0071034964df3da3b58e6a77" title="readBody" alt="" coords="241,107,319,133"/>
 </map>

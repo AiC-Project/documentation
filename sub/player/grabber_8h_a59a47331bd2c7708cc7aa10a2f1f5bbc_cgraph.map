@@ -1,7 +1,7 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$amqp__listen_8h.html#a1ccb8b60f25915a15fceccc2e0918b9d" title="Setup a consumer for a specific queue." alt="" coords="189,5,315,35"/>
-<area shape="rect" id="node7" href="$amqp__listen_8h.html#ac058263f3c34db38b9bc0f492e95f6aa" title="Consume one message from a connection object." alt="" coords="195,59,309,88"/>
-<area shape="rect" id="node9" href="$grabber_8h.html#a0497bd4df0c871e0997655fd69f32cd6" title="Function passed to a thread in order to detect format encoding &#45; encode frame&#45; and write in a file..." alt="" coords="196,112,308,141"/>
-<area shape="rect" id="node11" href="$grabber_8h.html#a48f6cd7606f077585e21d8aec736a1ee" title="grab_snapshot" alt="" coords="199,165,305,195"/>
-<area shape="rect" id="node5" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env." alt="" coords="363,5,477,35"/>
+<map id="grab_handler_amqp" name="grab_handler_amqp">
+<area shape="rect" id="node2" href="$amqp__listen_8h.html#a1ccb8b60f25915a15fceccc2e0918b9d" title="Setup a consumer for a specific queue. " alt="" coords="189,5,315,32"/>
+<area shape="rect" id="node4" href="$amqp__listen_8h.html#ac058263f3c34db38b9bc0f492e95f6aa" title="Consume one message from a connection object. " alt="" coords="195,56,309,83"/>
+<area shape="rect" id="node5" href="$grabber_8c.html#a0497bd4df0c871e0997655fd69f32cd6" title="Function passed to a thread in order to detect format encoding &#45; encode frame&#45; and write in a file..." alt="" coords="196,107,308,133"/>
+<area shape="rect" id="node6" href="$grabber_8c.html#a48f6cd7606f077585e21d8aec736a1ee" title="grab_snapshot" alt="" coords="199,157,305,184"/>
+<area shape="rect" id="node3" href="$config__env_8h.html#a7a3442c830784b7d0aea5290269232ad" title="Get the value of a config variable from the env. " alt="" coords="363,5,477,32"/>
 </map>

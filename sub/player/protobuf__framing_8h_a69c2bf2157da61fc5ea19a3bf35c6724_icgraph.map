@@ -1,6 +1,6 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$protobuf__framing_8c.html#a44b931d8595eeae39f8c84e13fde6ccc" title="Write a protobuf, with a varint32 framing, and padding at the end from an envelope." alt="" coords="200,32,304,61"/>
-<area shape="rect" id="node5" href="$player__nfc_8c.html#a5e389bdd6b0949887d6bce2f1c4c33ec" title="Listen to AMQP and send data to the NFC sensor in the VM." alt="" coords="352,32,440,61"/>
-<area shape="rect" id="node7" href="$sensors_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="524,5,575,35"/>
-<area shape="rect" id="node9" href="$test_sensors_8c.html#a1c70e09f8acd59a8de1acb56586e4049" title="test_sensors_nfc" alt="" coords="488,59,611,88"/>
+<map id="convert_framing_size" name="convert_framing_size">
+<area shape="rect" id="node2" href="$protobuf__framing_8c.html#a44b931d8595eeae39f8c84e13fde6ccc" title="Write a protobuf, with a varint32 framing, and padding at the end from an envelope. " alt="" coords="200,31,304,57"/>
+<area shape="rect" id="node3" href="$player__nfc_8c.html#a5e389bdd6b0949887d6bce2f1c4c33ec" title="Listen to AMQP and send data to the NFC sensor in the VM. " alt="" coords="352,31,440,57"/>
+<area shape="rect" id="node4" href="$sensors_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="524,5,575,32"/>
+<area shape="rect" id="node5" href="$test_sensors_8c.html#a1c70e09f8acd59a8de1acb56586e4049" title="test_sensors_nfc" alt="" coords="488,56,611,83"/>
 </map>

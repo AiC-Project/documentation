@@ -1,4 +1,4 @@
-<map id="G" name="G">
-<area shape="rect" id="node17" href="$config__env_8h.html" title="Utilities to get config values from the environment." alt="" coords="741,83,837,112"/>
-<area shape="rect" id="node21" href="$socket_8h.html" title="Define socket utilities to simplify networking." alt="" coords="955,83,1027,112"/>
+<map id="include/amqp_send.h" name="include/amqp_send.h">
+<area shape="rect" id="node9" href="$config__env_8h.html" title="Utilities to get config values from the environment. " alt="" coords="745,80,841,107"/>
+<area shape="rect" id="node11" href="$socket_8h.html" title="Define socket utilities to simplify networking. " alt="" coords="959,80,1031,107"/>
 </map>

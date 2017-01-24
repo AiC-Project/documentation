@@ -1,11 +1,11 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$amqp__listen_8c.html" title="Listen on AMQP queues and consume messages." alt="" coords="5,83,131,112"/>
-<area shape="rect" id="node5" href="$grabber_8c.html" title="Screen recording/snapshots." alt="" coords="155,83,253,112"/>
-<area shape="rect" id="node7" href="$player__nfc_8c.html" title="src/player_nfc.c" alt="" coords="277,83,392,112"/>
-<area shape="rect" id="node9" href="$sensors_8c.html" title="Sensor packets forwarders." alt="" coords="416,83,517,112"/>
-<area shape="rect" id="node11" href="$mock_v_m_lib_nci_8h.html" title="testPlayer/mockVMLibNci.h" alt="" coords="541,83,725,112"/>
-<area shape="rect" id="node17" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="817,160,983,189"/>
-<area shape="rect" id="node19" href="$mock_v_m_nfcd_8h.html" title="testPlayer/mockVMNfcd.h" alt="" coords="749,83,925,112"/>
-<area shape="rect" id="node13" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="409,160,593,189"/>
-<area shape="rect" id="node15" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="617,160,793,189"/>
+<map id="include/amqp_listen.h" name="include/amqp_listen.h">
+<area shape="rect" id="node2" href="$amqp__listen_8c.html" title="Listen on AMQP queues and consume messages. " alt="" coords="5,80,131,107"/>
+<area shape="rect" id="node3" href="$grabber_8c.html" title="Screen recording/snapshots. " alt="" coords="155,80,253,107"/>
+<area shape="rect" id="node4" href="$player__nfc_8c.html" title="src/player_nfc.c" alt="" coords="277,80,392,107"/>
+<area shape="rect" id="node5" href="$sensors_8c.html" title="Sensor packets forwarders. " alt="" coords="416,80,517,107"/>
+<area shape="rect" id="node6" href="$mock_v_m_lib_nci_8h.html" title="testPlayer/mockVMLibNci.h" alt="" coords="542,80,727,107"/>
+<area shape="rect" id="node9" href="$test_sensors_8c.html" title="testPlayer/testSensors.c" alt="" coords="819,155,985,181"/>
+<area shape="rect" id="node10" href="$mock_v_m_nfcd_8h.html" title="testPlayer/mockVMNfcd.h" alt="" coords="752,80,928,107"/>
+<area shape="rect" id="node7" href="$mock_v_m_lib_nci_8c.html" title="testPlayer/mockVMLibNci.c" alt="" coords="409,155,593,181"/>
+<area shape="rect" id="node8" href="$mock_v_m_nfcd_8c.html" title="testPlayer/mockVMNfcd.c" alt="" coords="619,155,795,181"/>
 </map>
