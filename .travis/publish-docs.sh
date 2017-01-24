@@ -17,13 +17,13 @@ git config --global user.email "Travis Docs CI"
 git config --global user.name "Travis Docs CI"
 git clone "$GIT_PUB_REPO" "$GIT_PUB_LOCAL_DIR" -b "$GIT_PUB_BRANCH"
 
-# remove old version
-cd "$GIT_PUB_LOCAL_DIR"
-git rm -r "$GIT_PUB_SUB_DIR"
-cd ..
+# remove old version (XXX broken atm)
+#cd "$GIT_PUB_LOCAL_DIR"
+#git rm -r "$GIT_PUB_SUB_DIR"
+#cd ..
 
 # add new version
-mv "$GIT_PUB_BUILD_DIR" "${GIT_PUB_LOCAL_DIR:?}/${GIT_PUB_SUB_DIR:?}"
+mv "$GIT_PUB_BUILD_DIR" "${GIT_PUB_LOCAL_DIR:?}/${GIT_PUB_SUB_DIR}"
 
 # publish
 cd "$GIT_PUB_LOCAL_DIR"
