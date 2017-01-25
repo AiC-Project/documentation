@@ -242,8 +242,9 @@ supported by the <a class="reference external" href="http://docs.openstack.org/d
   -c COLUMN, --column COLUMN
                         specify the column(s) to include, can be repeated
 
-json formatter:
-  --noindent            whether to disable indenting the JSON
+CSV Formatter:
+  --quote {all,minimal,none,nonnumeric}
+                        when to include quotes, defaults to nonnumeric
 
 table formatter:
   --max-width &lt;integer&gt;
@@ -251,9 +252,8 @@ table formatter:
                         the CLIFF_MAX_TERM_WIDTH environment variable, but the
                         parameter takes precedence.
 
-CSV Formatter:
-  --quote {all,minimal,none,nonnumeric}
-                        when to include quotes, defaults to nonnumeric
+json formatter:
+  --noindent            whether to disable indenting the JSON
 </pre></div>
 </div>
 <p>Typing <strong class="command">kyaraben</strong> without any option provides an interactive console in which you
