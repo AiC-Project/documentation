@@ -1,8 +1,8 @@
 # AiC Documentation
 
-This project contains the index AiC documentation.
+This repository collects the AiC documentation.
 It is also an example on how to integrate a project with Travis to
-automatically build the documentation and publish.
+automatically build the documentation and publish it.
 
 ## How to include a new project to AiC documentation Github pages
 
@@ -15,10 +15,10 @@ To secure the key we encrypt it with travis client. You should follow
 Add the encrypted file to your repository (for example deploy_key.enc).
 DO NOT add the original non encrypted key.
 
-Add a .travis.yml with the build and publish instructions.
+Add a .travis.yml file with the build and publish instructions.
 
-You can check the script/publish.sh for a script that publishes the
-documentation build result in a repository. You will need to set
+You can check .travis/publish-docs.sh for a script that publishes the
+documentation build result in a GitHub Pages branch. You need to set
 several environment variables in Travis to use this script.
 
 ## References
